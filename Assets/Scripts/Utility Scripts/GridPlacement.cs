@@ -27,6 +27,7 @@ public class GridPlacement : MonoBehaviour
         Debug.DrawRay(playerTransform.position, fwd, Color.red);
         if (!Physics.Raycast(playerTransform.position, fwd, out var hit, 2, -1))
         {
+            // Player doesn't have a cell in front of them, destroy the highlight
             if (_currHighlighted)
                 Destroy(_currHighlighted);
             
@@ -35,14 +36,19 @@ public class GridPlacement : MonoBehaviour
 
         // Raise target position slightly so instantiated object shows above the grid
         var cell = hit.transform.position;
-        cell.y += 0.1f;
+        cell.y += 0.6f;
         if (cell != _prevCell)
         {
-            // Delete last highlighted cell before instantiating a new one
+            // Move highlight to new cell, or instantiate a new one if no current cell is highlighted
             if (_currHighlighted)
-                Destroy(_currHighlighted);
-
-            _currHighlighted = Instantiate(temp, cell, Quaternion.identity);
+            {
+                // TODO: Fix this so its a smooth transition to new tiles instead of instant
+                _currHighlighted.transform.position = Vector3.Lerp(_currHighlighted.transform.position, cell, 1f);
+            }
+            else
+            {
+                _currHighlighted = Instantiate(temp, cell, Quaternion.identity);
+            }
         }
 
         _prevCell = cell;
