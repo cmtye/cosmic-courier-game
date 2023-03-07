@@ -351,8 +351,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSmoothing: 0.1
   speed: 5
-  gravityMultiplier: 1
   rotateSpeed: 10
+  gravityMultiplier: 1
 --- !u!1 &1540680335
 GameObject:
   m_ObjectHideFlags: 0
