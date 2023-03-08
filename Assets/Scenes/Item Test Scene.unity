@@ -51758,8 +51758,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 723f63bdf68340d46a7e233b0fecf6f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placementDistance: 2
-  temp: {fileID: 1826549264935647520, guid: 0f7f213be67c94ffaa9cafe736d719f3, type: 3}
+  interactDistance: 3
+  highlighter: {fileID: 1141489050299206886, guid: 05fa978eaf9367a4bb9704c04ed3970e, type: 3}
+  transitionTime: 0.05
+  selectionMask:
+    serializedVersion: 2
+    m_Bits: 2147483647
 --- !u!4 &1805606892 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9002588319824804569, guid: 6eb22d4a99f1f4e4fa8e4ad3e3f0206c, type: 3}
