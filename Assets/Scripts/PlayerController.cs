@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Utility_Scripts;
 
 namespace Character_Scripts
 {
@@ -14,11 +15,14 @@ namespace Character_Scripts
         private CharacterMovement _characterMovement;
         private CharacterController _characterController;
         private Vector2 _moveDirectionInput;
+
+        private GridSelector _gridSelector;
     
         private void Awake()
         {
             _characterMovement = GetComponent<CharacterMovement>();
             _characterController = GetComponent<CharacterController>();
+            _gridSelector = GetComponent<GridSelector>();
 
             _controls = new PlayerInputActions();
             _controls.Player.Move.started += OnMovementInput;
@@ -55,6 +59,23 @@ namespace Character_Scripts
         // TODO: Maybe move this to a separate script?
         private GameObject AttemptInteract()
         {
+            // Here is a solution using the selector component since it already keeps track of what we're looking at
+            // I've commented it out so you can test it, feel free to delete if it doesn't work for our use case
+            /*if (_gridSelector)
+            {
+                var selectedObject = _gridSelector.SelectedObject;
+                if (selectedObject == null) return null;
+                
+                var script = selectedObject.GetComponent<Interactable>();
+                return script?.Interact();
+
+            }
+            else
+            {
+                Debug.LogError("No selector component attached on " + name);
+                return null;
+            }*/
+            
             // Make a vector out in front of the character and slightly downward to get the tile in front of us
             float interactDistance = 2; 
             var fwd = transform.TransformDirection(Vector3.forward) * interactDistance;

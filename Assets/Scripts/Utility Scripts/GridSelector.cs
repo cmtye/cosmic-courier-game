@@ -20,6 +20,8 @@ namespace Utility_Scripts
         private GameObject _currHighlighted;
         private Vector3 _prevCell;
 
+        public GameObject SelectedObject { get; private set; }
+
         private void Update()
         {
             FindTarget(transform);
@@ -35,7 +37,8 @@ namespace Utility_Scripts
             Debug.DrawRay(playerTransform.position, fwd, Color.red);
             if (!Physics.Raycast(playerTransform.position, fwd, out var hit, interactDistance, selectionMask))
             {
-                // Player doesn't have a cell in front of them, destroy the highlight
+                // Player doesn't have a cell in front of them, destroy the highlight and update current selected
+                SelectedObject = null;
                 if (!_currHighlighted) return;
                 Destroy(_currHighlighted);
                 
@@ -50,27 +53,28 @@ namespace Utility_Scripts
             // Raise target position slightly so instantiated object shows above the selected tile
             var cell = hit.transform.position;
             cell.y += 0.6f;
+
+            if (cell == _prevCell) return;
             
-            if (cell != _prevCell)
+            // Move highlight to new cell, or instantiate a new one if no current cell is highlighted
+            if (_currHighlighted)
             {
-                // Move highlight to new cell, or instantiate a new one if no current cell is highlighted
-                if (_currHighlighted)
+                if (_transitionCoroutine != null)
                 {
-                    if (_transitionCoroutine != null)
-                    {
-                        StopCoroutine(_transitionCoroutine);
-                        _transitionCoroutine = StartCoroutine(TransitionCell(cell));
-                    }
-                    else
-                    {
-                        _transitionCoroutine = StartCoroutine(TransitionCell(cell));
-                    }
+                    StopCoroutine(_transitionCoroutine);
+                    _transitionCoroutine = StartCoroutine(TransitionCell(cell));
                 }
                 else
-                    _currHighlighted = Instantiate(highlighter, cell, highlighter.transform.rotation);
+                {
+                    _transitionCoroutine = StartCoroutine(TransitionCell(cell));
+                }
             }
-
+            else
+            {
+                _currHighlighted = Instantiate(highlighter, cell, highlighter.transform.rotation);
+            }
             _prevCell = cell;
+            SelectedObject = hit.transform.gameObject;
         }
         
         private IEnumerator TransitionCell(Vector3 cell) {
