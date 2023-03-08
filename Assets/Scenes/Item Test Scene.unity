@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -32774,7 +32774,8 @@ GameObject:
   - component: {fileID: 1174290881}
   - component: {fileID: 1174290880}
   - component: {fileID: 1174290884}
-  m_Layer: 0
+  - component: {fileID: 1174290885}
+  m_Layer: 6
   m_Name: TestItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32853,7 +32854,7 @@ Transform:
   m_GameObject: {fileID: 1174290879}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.5, y: 0.35, z: -5.5}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -32871,6 +32872,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54492afbd2c38cd4aa06e923139954c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1174290885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174290879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de01c56d2f356f34d8a421d78bf1eef7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0.21698111, g: 0.21698111, b: 0.21698111, a: 1}
 --- !u!4 &1174350210 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4435094004748140694, guid: bd1911d7afff39e49af89f5afa452bf1, type: 3}
@@ -51758,12 +51772,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 723f63bdf68340d46a7e233b0fecf6f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactDistance: 3
+  interactDistance: 4
   highlighter: {fileID: 1141489050299206886, guid: 05fa978eaf9367a4bb9704c04ed3970e, type: 3}
   transitionTime: 0.05
   selectionMask:
     serializedVersion: 2
     m_Bits: 2147483647
+  interactableMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!4 &1805606892 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9002588319824804569, guid: 6eb22d4a99f1f4e4fa8e4ad3e3f0206c, type: 3}
