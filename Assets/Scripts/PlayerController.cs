@@ -39,7 +39,7 @@ namespace Character_Scripts
 
         private void OnInteractInput(InputAction.CallbackContext context)
         {
-            Debug.Log("Interact!");
+            AttemptInteract();
         }
     
         private void OnEnable()
@@ -50,6 +50,26 @@ namespace Character_Scripts
         private void OnDisable()
         {
             _controls.Disable();
+        }
+
+        // TODO: Maybe move this to a separate script?
+        private GameObject AttemptInteract()
+        {
+            // Make a vector out in front of the character and slightly downward to get the tile in front of us
+            float interactDistance = 2; 
+            var fwd = transform.TransformDirection(Vector3.forward) * interactDistance;
+            fwd.y -= 1;
+
+            RaycastHit hit;
+            Debug.DrawRay(transform.position, fwd, Color.blue);
+            if (Physics.Raycast(transform.position, fwd, out hit, 2, -1))
+            {
+                GameObject hitObject = hit.transform.gameObject;
+                Interactable script = hitObject.GetComponent<Interactable>();
+                return script?.Interact();
+            }
+
+            return null;
         }
     }
 }
