@@ -8,6 +8,7 @@ public class Interactable : MonoBehaviour
     public GameObject Interact()
     {
         Debug.Log("I was just interacted with!");
+        // TODO: call InteractionHandler
         return gameObject;
     }
 

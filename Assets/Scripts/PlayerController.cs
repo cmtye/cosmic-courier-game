@@ -8,6 +8,7 @@ namespace Character_Scripts
 {
     [RequireComponent(typeof(CharacterMovement))]
     [RequireComponent(typeof(CharacterController))]
+    [RequireComponent(typeof(GridSelector))]
     public class PlayerController : MonoBehaviour
     {
         // The players movement and input variables.
@@ -56,41 +57,12 @@ namespace Character_Scripts
             _controls.Disable();
         }
 
-        // TODO: Maybe move this to a separate script?
         private GameObject AttemptInteract()
         {
-            // Here is a solution using the selector component since it already keeps track of what we're looking at
-            // I've commented it out so you can test it, feel free to delete if it doesn't work for our use case
-            /*if (_gridSelector)
-            {
-                var selectedObject = _gridSelector.SelectedObject;
-                if (selectedObject == null) return null;
-                
-                var script = selectedObject.GetComponent<Interactable>();
-                return script?.Interact();
-
-            }
-            else
-            {
-                Debug.LogError("No selector component attached on " + name);
-                return null;
-            }*/
+            var selectedObject = _gridSelector.SelectedObject;
+            if (selectedObject == null) return null;
             
-            // Make a vector out in front of the character and slightly downward to get the tile in front of us
-            float interactDistance = 2; 
-            var fwd = transform.TransformDirection(Vector3.forward) * interactDistance;
-            fwd.y -= 1;
-
-            RaycastHit hit;
-            Debug.DrawRay(transform.position, fwd, Color.blue);
-            if (Physics.Raycast(transform.position, fwd, out hit, 2, -1))
-            {
-                GameObject hitObject = hit.transform.gameObject;
-                Interactable script = hitObject.GetComponent<Interactable>();
-                return script?.Interact();
-            }
-
-            return null;
+            return selectedObject.GetComponent<Interactable>()?.Interact();
         }
     }
 }
