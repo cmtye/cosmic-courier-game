@@ -21,10 +21,14 @@ namespace Character_Scripts
         private float _gravityVelocity;
         private float _gravity;
 
+        // Reference to camera for euler angle calculation
+        private Camera _camera;
         
         private void Awake()
         {
             _characterController = GetComponent<CharacterController>();
+
+            _camera = (Camera)FindObjectOfType(typeof(Camera));
 
             _gravity = 9.81f;
         }
@@ -36,16 +40,23 @@ namespace Character_Scripts
             // Translate Vec2 to Vec3
             var moveDirection = new Vector3(moveDirection2D.x, 0, moveDirection2D.y);
 
-            RotateTowardMovement(moveDirection);
+            moveDirection = TransformMoveDirection(moveDirection);
+
+            RotateTowardDirection(moveDirection);
 
             MoveInDirection(moveDirection);
     
         }
 
-        private void RotateTowardMovement(Vector3 movement)
+        private Vector3 TransformMoveDirection(Vector3 direction)
         {
-            if(movement.magnitude == 0) return;
-            var rotation = Quaternion.LookRotation(movement);
+            return Quaternion.Euler(0, _camera.gameObject.transform.eulerAngles.y, 0) * direction;
+        }
+
+        private void RotateTowardDirection(Vector3 direction)
+        {
+            if(direction.magnitude == 0) return;
+            var rotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotateSpeed * Time.deltaTime);
         }
 
