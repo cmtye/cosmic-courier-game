@@ -14,7 +14,7 @@ namespace Utility_Scripts.Grid
         [Range(0,1)] [SerializeField] private float transitionTime = 0.1f;
         private Coroutine _transitionCoroutine;
 
-        // The layers that the player can interact with
+        // The layers that the player can interface with
         [SerializeField] private LayerMask selectionMask;
         [SerializeField] private LayerMask interactableMask;
         
@@ -22,115 +22,83 @@ namespace Utility_Scripts.Grid
         private GameObject _currHighlightMarker;
         private GameObject _prevObject;
         private Vector3 _prevCell;
-        private readonly Collider[] _collidersAbove = new Collider[10];
 
+        // The object the player is currently selecting
         public GameObject SelectedObject { get; private set; }
 
-        private void Update()
+        private void FixedUpdate()
         {
             FindTarget(transform);
         }
 
+        // Shoots out a ray every call. What this ray hits/doesnt hit determines what the player
+        // is currently targeting and what should be highlighted
         private void FindTarget(Transform playerTransform)
         {
             // Make a vector out in front of the character and slightly downward to get the tile in front of us
-            var fwd = playerTransform.TransformDirection(Vector3.forward) * interactDistance;
-            fwd.y -= 1;
+            var aheadVector = playerTransform.TransformDirection(Vector3.forward) * interactDistance;
+            aheadVector.y -= 1;
 
             // Check layers for a hit, return if nothing (can change valid layers as need be)
-            Debug.DrawRay(playerTransform.position, fwd, Color.red);
-            if (!Physics.Raycast(playerTransform.position, fwd, out var hit, interactDistance, selectionMask))
+            Debug.DrawRay(playerTransform.position, aheadVector, Color.red);
+            if (!Physics.Raycast(playerTransform.position, aheadVector, out var hit, interactDistance, selectionMask))
             {
-                // Player doesn't have a cell in front of them, destroy the highlight and update current selected
+                // Player doesn't have a cell in front of them, destroy the highlight and update
+                // the currently selected selected object to reflect it
                 SelectedObject = null;
-                if (!_currHighlightMarker) return;
-                Destroy(_currHighlightMarker);
-                
-                // End the current highlight transition if there is one
-                StopCoroutine(_transitionCoroutine);
+                DestroyMarker();
 
-                // Reset previous cell since there is no cell in front of them
-                _prevCell = Vector3.negativeInfinity;
+                // Reset previously selected cell since there is no cell in front of the player
+                ResetPreviousCell();
                 return;
             }
-            SelectedObject = hit.transform.gameObject;
-
-            var cellPosition = SelectedObject.transform.position;
-
-            // If there is no valid placement at this position, return
-            if (!CheckValidPlacement(cellPosition)) return;
             
-            // Store selected cell and its position
-            SelectedObject = hit.transform.gameObject;
-            cellPosition = SelectedObject.transform.position;
-            if (cellPosition == _prevCell) return;
-
-            // Turn off previous interactable highlight on object if there was one
-            if (_prevObject && !_currHighlightMarker)
+            // If we're not looking at a new position, no need to alter the selection/highlight
+            var hitPosition = hit.transform.position;
+            if (hitPosition == _prevCell) return;
+            
+            // Select an object based on intractability and vertical height
+            var blockAbove = GridManager.Instance.FindBlockAbove(hitPosition);
+            if (blockAbove)
             {
-                if (_prevObject.transform.position == cellPosition) return;
-                TryHighlightInteractable(_prevObject, false);
-            }
+                // If the block above is not interactable, we don't need a marker and can
+                // set the previous cell position so we don't do another calculation next call
+                if (!CheckInteractable(blockAbove))
+                {
+                    DestroyMarker();
+                    _prevCell = hitPosition;
+                    return;
+                }
+                // Otherwise set the block as the selected object
+                SelectedObject = blockAbove;
                 
-            if (interactableMask == (interactableMask | (1 << SelectedObject.layer)))
+            }
+            else
+            {
+                SelectedObject = hit.transform.gameObject;
+            }
+
+            // Turn off previous interactable highlight on last object if there is one
+            if (_prevObject)
+                TryHighlightInteractable(_prevObject, false);
+
+            if (CheckInteractable(SelectedObject))
             {
                 // Destroy highlight marker since we're highlighting the object now
-                if (_currHighlightMarker)
-                {
-                    Destroy(_currHighlightMarker);
-                    StopCoroutine(_transitionCoroutine);
-                }
+                DestroyMarker();
                 TryHighlightInteractable(SelectedObject, true);
             }
             else
             {
                 // Move highlight to new cell, or instantiate a new one if no current cell is highlighted
-                TryHighlightBlock(cellPosition);
+                TryHighlightBlock(hitPosition);
             }
-            _prevCell = cellPosition;
+            _prevCell = hitPosition;
             _prevObject = SelectedObject;
         }
 
-        private bool CheckValidPlacement(Vector3 cellPosition)
-        {
-            return CheckCellAbove(cellPosition);
-        }
-        private bool CheckCellAbove(Vector3 cellPosition)
-        {
-            var cellAbove = cellPosition;
-            cellAbove.y += 1;
-            var amountHit = Physics.OverlapSphereNonAlloc(cellAbove, 0.01f, _collidersAbove);
-            if (amountHit == 0)
-            {
-                return true;
-            }
-            for (var i = 0; i < amountHit; i++)
-            {
-                if (interactableMask == (interactableMask | (1 << _collidersAbove[i].gameObject.layer)))
-                {
-                    if (_prevObject && !_currHighlightMarker)
-                    {
-                        SelectedObject = _collidersAbove[i].gameObject;
-                        if (_prevObject.transform.position == cellAbove) return false;
-                        TryHighlightInteractable(_prevObject, false);
-                    }
-                    SelectedObject = _collidersAbove[i].gameObject;
-                    TryHighlightInteractable(SelectedObject, true);
-                    _prevObject = SelectedObject;
-
-                    if (!_currHighlightMarker) return false;
-                    Destroy(_currHighlightMarker);
-                    StopCoroutine(_transitionCoroutine);
-                    return false;
-                }
-            }
-
-            if (!_currHighlightMarker) return false;
-            Destroy(_currHighlightMarker);
-            StopCoroutine(_transitionCoroutine);
-            return false;
-        }
-
+        // Highlight a block by placing a marker prefab over top of it. Re-instantiates 
+        // the transition coroutine and marker when necessary
         private void TryHighlightBlock(Vector3 cell)
         {
             var highlightPosition = cell;
@@ -153,11 +121,8 @@ namespace Utility_Scripts.Grid
                 _currHighlightMarker = Instantiate(highlighter, highlightPosition, highlighter.transform.rotation);
             }
         }
-
-        // TODO: Maybe theres a cleaner/more efficient way to handle highlighting?
-        // I feel like this may be better if integrated closely with the grid system.
-        // Least expensive solution I could currently come up with since we are changing renderers
-        // Other highlighting solutions potentially? Events?
+        
+        // Toggles the highlight on an interactable using its attached script to alter its emission value
         private void TryHighlightInteractable(GameObject target, bool highlight)
         {
             var interactableComponent = target.GetComponent<InteractableHighlight>();
@@ -167,6 +132,7 @@ namespace Utility_Scripts.Grid
             }
         }
         
+        // Smoothly transition the marker over to a newly selected cell
         private IEnumerator TransitionMarker(Vector3 cell) {
             var position = Vector3.zero;
 
@@ -175,6 +141,30 @@ namespace Utility_Scripts.Grid
                                                                     cell, ref position, transitionTime);
                 yield return null;
             }
+        }
+        
+        // Destroys the marker if it exists and stops any coroutine associated with it
+        private void DestroyMarker()
+        {
+            if (!_currHighlightMarker) return;
+            if (_transitionCoroutine != null)
+            {
+                StopCoroutine(_transitionCoroutine);
+            }
+            Destroy(_currHighlightMarker);
+        }
+        
+        // Return whether or not the given block is an interactable object
+        private bool CheckInteractable(GameObject block)
+        {
+            return interactableMask == (interactableMask | (1 << block.gameObject.layer));
+        }
+        
+        // Resets the location of the previously selected cell. Used both when we're not looking
+        // at anything and also when we place something since we have to recalculate what we're selecting
+        public void ResetPreviousCell()
+        {
+            _prevCell = Vector3.negativeInfinity;
         }
     }
 }

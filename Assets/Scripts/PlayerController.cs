@@ -68,9 +68,18 @@ namespace Character_Scripts
             {
                 return selectedObject.GetComponent<Interactable>()?.Interact();
             }
-            
+
             if (currentlyHeld)
-                GridManager.Instance.TryPlaceObject(currentlyHeld, selectedObject.transform.position);
+            {
+                if (GridManager.Instance.TryPlaceObject(currentlyHeld, selectedObject.transform.position))
+                {
+                    _gridSelector.ResetPreviousCell();
+                }
+                else
+                {
+                    Debug.Log("Cannot place currently held object here");
+                }
+            }
 
             return null;
         }
