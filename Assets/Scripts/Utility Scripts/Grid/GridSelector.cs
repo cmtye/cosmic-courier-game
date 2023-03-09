@@ -1,16 +1,16 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Utility_Scripts
+namespace Utility_Scripts.Grid
 {
     public class GridSelector : MonoBehaviour
     {
         // The distance in front of the player that they can select/interact with objects
-        [SerializeField] private float interactDistance;
+        [SerializeField] private float interactDistance = 4;
         
         // The highlight prefab and the time its takes to smoothly transition between cells
         [SerializeField] private GameObject highlighter;
-        [Range(0,1)] [SerializeField] private float transitionTime;
+        [Range(0,1)] [SerializeField] private float transitionTime = 0.1f;
         private Coroutine _transitionCoroutine;
 
         // The layers that the player can interact with
@@ -92,16 +92,16 @@ namespace Utility_Scripts
                 if (_transitionCoroutine != null)
                 {
                     StopCoroutine(_transitionCoroutine);
-                    _transitionCoroutine = StartCoroutine(TransitionCell(highlightPosition));
+                    _transitionCoroutine = StartCoroutine(TransitionMarker(highlightPosition));
                 }
                 else
                 {
-                    _transitionCoroutine = StartCoroutine(TransitionCell(highlightPosition));
+                    _transitionCoroutine = StartCoroutine(TransitionMarker(highlightPosition));
                 }
             }
             else
             {
-                // Increase position by a bit over half a block to show marker over top of target
+                // Increase position by a bit over half a block to show marker over top of the target
                 _currHighlightMarker = Instantiate(highlighter, highlightPosition, highlighter.transform.rotation);
             }
         }
@@ -119,7 +119,7 @@ namespace Utility_Scripts
             }
         }
         
-        private IEnumerator TransitionCell(Vector3 cell) {
+        private IEnumerator TransitionMarker(Vector3 cell) {
             var position = Vector3.zero;
 
             while(_currHighlightMarker.transform.position != cell) {

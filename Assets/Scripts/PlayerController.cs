@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Utility_Scripts;
+using Utility_Scripts.Grid;
 
 namespace Character_Scripts
 {

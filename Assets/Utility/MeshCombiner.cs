@@ -7,7 +7,7 @@ namespace Utility
 {
     public static class MeshCombiner
     {
-        public static void MeshCombine(this GameObject gameObject, bool destroyObjects = false, params GameObject[] ignore)
+        public static void MeshCombine(this GameObject gameObject, LayerMask ignoreLayers, bool destroyObjects = false, params GameObject[] ignore)
         {
             // Set values to zero, wonky things happen to mesh when not centered about the origin
             var originalPosition = gameObject.transform.position;
@@ -18,11 +18,12 @@ namespace Utility
             gameObject.transform.localScale = Vector3.one;
 
             // Getting every component in children may begin to get costly with giant maps,
-            // shouldn't be an issue in this project
+            // shouldn't be an issue in this project as we have it planned
             var materials = new List<Material>();
             var combineInstanceLists = new List<List<CombineInstance>>();
             var meshFilters = gameObject.GetComponentsInChildren<MeshFilter>().Where(m =>
-                !ignore.Contains(m.gameObject) && !ignore.Any(i => m.transform.IsChildOf(i.transform))).ToArray();
+                !ignore.Contains(m.gameObject) && !ignore.Any(i => m.transform.IsChildOf(i.transform))
+                && ignoreLayers != (ignoreLayers | (1 << m.gameObject.layer))).ToArray();
 
             foreach (var meshFilter in meshFilters)
             {
