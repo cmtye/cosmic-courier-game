@@ -19,6 +19,7 @@ namespace Character_Scripts
         private Vector2 _moveDirectionInput;
 
         private GridSelector _gridSelector;
+        public GameObject currentlyHeld;
     
         private void Awake()
         {
@@ -62,8 +63,16 @@ namespace Character_Scripts
         {
             var selectedObject = _gridSelector.SelectedObject;
             if (selectedObject == null) return null;
+
+            if (selectedObject.GetComponent<Interactable>())
+            {
+                return selectedObject.GetComponent<Interactable>()?.Interact();
+            }
             
-            return selectedObject.GetComponent<Interactable>()?.Interact();
+            if (currentlyHeld)
+                GridManager.Instance.TryPlaceObject(currentlyHeld, selectedObject.transform.position);
+
+            return null;
         }
     }
 }

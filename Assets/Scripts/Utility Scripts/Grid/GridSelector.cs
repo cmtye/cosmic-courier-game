@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -21,6 +22,7 @@ namespace Utility_Scripts.Grid
         private GameObject _currHighlightMarker;
         private GameObject _prevObject;
         private Vector3 _prevCell;
+        private readonly Collider[] _collidersAbove = new Collider[10];
 
         public GameObject SelectedObject { get; private set; }
 
@@ -51,18 +53,25 @@ namespace Utility_Scripts.Grid
                 _prevCell = Vector3.negativeInfinity;
                 return;
             }
+            SelectedObject = hit.transform.gameObject;
+
+            var cellPosition = SelectedObject.transform.position;
+
+            // If there is no valid placement at this position, return
+            if (!CheckValidPlacement(cellPosition)) return;
             
             // Store selected cell and its position
             SelectedObject = hit.transform.gameObject;
-            var cellPosition = SelectedObject.transform.position;
+            cellPosition = SelectedObject.transform.position;
             if (cellPosition == _prevCell) return;
-            
+
             // Turn off previous interactable highlight on object if there was one
             if (_prevObject && !_currHighlightMarker)
             {
+                if (_prevObject.transform.position == cellPosition) return;
                 TryHighlightInteractable(_prevObject, false);
             }
-
+                
             if (interactableMask == (interactableMask | (1 << SelectedObject.layer)))
             {
                 // Destroy highlight marker since we're highlighting the object now
@@ -80,7 +89,46 @@ namespace Utility_Scripts.Grid
             }
             _prevCell = cellPosition;
             _prevObject = SelectedObject;
-            
+        }
+
+        private bool CheckValidPlacement(Vector3 cellPosition)
+        {
+            return CheckCellAbove(cellPosition);
+        }
+        private bool CheckCellAbove(Vector3 cellPosition)
+        {
+            var cellAbove = cellPosition;
+            cellAbove.y += 1;
+            var amountHit = Physics.OverlapSphereNonAlloc(cellAbove, 0.01f, _collidersAbove);
+            if (amountHit == 0)
+            {
+                return true;
+            }
+            for (var i = 0; i < amountHit; i++)
+            {
+                if (interactableMask == (interactableMask | (1 << _collidersAbove[i].gameObject.layer)))
+                {
+                    if (_prevObject && !_currHighlightMarker)
+                    {
+                        SelectedObject = _collidersAbove[i].gameObject;
+                        if (_prevObject.transform.position == cellAbove) return false;
+                        TryHighlightInteractable(_prevObject, false);
+                    }
+                    SelectedObject = _collidersAbove[i].gameObject;
+                    TryHighlightInteractable(SelectedObject, true);
+                    _prevObject = SelectedObject;
+
+                    if (!_currHighlightMarker) return false;
+                    Destroy(_currHighlightMarker);
+                    StopCoroutine(_transitionCoroutine);
+                    return false;
+                }
+            }
+
+            if (!_currHighlightMarker) return false;
+            Destroy(_currHighlightMarker);
+            StopCoroutine(_transitionCoroutine);
+            return false;
         }
 
         private void TryHighlightBlock(Vector3 cell)

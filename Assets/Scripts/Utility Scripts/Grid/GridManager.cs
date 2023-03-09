@@ -7,26 +7,60 @@ namespace Utility_Scripts.Grid
 {
     public class GridManager : MonoBehaviour
     {
-        private UnityEngine.Grid _levelGrid;
         private float _minTileY;
         private float _maxTileY;
+
+        private static GridManager _instance;
         
+        public static GridManager Instance => _instance;
+
         [SerializeField] private bool generateDownwards;
         [SerializeField] [InspectorButton(nameof(OnButtonClicked))] private string generateNewTileLayer;
         [SerializeField] private Tilemap[] tileLayers;
 
         private void Awake()
         {
-            _levelGrid = GetComponent<UnityEngine.Grid>();
+            if (_instance != null && _instance != this)
+                Destroy(gameObject);
+            else 
+                _instance = this;
             
             tileLayers = GetComponentsInChildren<Tilemap>();
             Array.Sort(tileLayers, YLevelComparison);
         }
 
-        private void Update()
+        // Try and place a given GameObject on the grid. The tile layers don't actually manage
+        // the GameObjects in their cells (thanks Unity), but we still make an effort to sort
+        // each object into it's respective layer. This many come in handy later with more
+        // inclusion of vertical maps or upgrading turrets
+        public bool TryPlaceObject(GameObject toPlace, Vector3 worldPosition)
         {
+            // Target position is on top of the selected object, so one unit up on the Y
+            var targetPosition = new Vector3(worldPosition.x, worldPosition.y + 1f, worldPosition.z);
+            foreach (var t in tileLayers)
+            {
+                // If the floor of the target's Y plus one is equal to the tiles layer's Y, the new object
+                // will be placed as a child of that layer
+                if (Math.Abs(t.transform.position.y - (Vector3Int.FloorToInt(targetPosition).y + 1)) < 0.0001)
+                {
+                    // If any child on that layer shares the target position, the "cell" is taken
+                    // This call may be expensive and unnecessary since each layer can be very large
+                    if (t.transform.Cast<Transform>().Any(child => child.position == targetPosition))
+                        return false;
+
+                    var layerExists = Instantiate(toPlace, targetPosition, toPlace.transform.rotation);
+                    layerExists.transform.SetParent(t.transform);
+                    return true;
+                }
+            }
+            // If a tile layer wasn't found, it means we've tried placing on the top most
+            // layer since we know that we can't place on the underside of a layer.
+            // We'll generate a new layer and assign the new object to it
+            GenerateNewLayer(false, false);
+            var layerDoesntExist = Instantiate(toPlace, targetPosition, toPlace.transform.rotation);
+            layerDoesntExist.transform.SetParent(tileLayers[^1].transform);
+            return true;
         }
-        
 
         // Generates a new tilemap layer. Can be called in editor or during runtime if a new
         // layer is required to place an object during gameplay
@@ -63,6 +97,7 @@ namespace Utility_Scripts.Grid
             
             tileLayers = GetComponentsInChildren<Tilemap>();
             Array.Sort(tileLayers, YLevelComparison);
+            
             if (inEditor) ResetHierarchyOrder();
         }
         
