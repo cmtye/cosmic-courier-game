@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Utility_Scripts.Grid;
@@ -6,17 +7,33 @@ namespace Utility_Scripts
 {
     public class PathManager : MonoBehaviour
     {
+        private enum Direction
+        {
+            Up,
+            Down,
+            Right,
+            Forward,
+            Left,
+            Backward
+        };
+
+        public Enum[] DirectionBias;
         public List<Transform> pathNodes;
-        
         [SerializeField] private GameObject pathStart;
         [SerializeField] private bool reverseDirection;
         private GameObject _pathEnd;
 
         // Typing will change when enemies are added
         private List<GameObject> _enemiesOnPath;
-    
+
         private void Awake()
         {
+            /*DirectionBias = (Enum[]) Enum.GetValues(typeof(Direction));
+            foreach (Direction d in DirectionBias)
+            {
+                Debug.Log(d);
+            }
+            
             pathNodes.Add(pathStart.transform);
             var pathFound = true;
 
@@ -64,6 +81,7 @@ namespace Utility_Scripts
             }
 
             _pathEnd = currNode.gameObject;
+        }*/
         }
 
         // Update is called once per frame

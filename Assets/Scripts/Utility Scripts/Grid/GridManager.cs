@@ -57,7 +57,7 @@ namespace Utility_Scripts.Grid
         {
             // If there is a block above the block we're trying to place onto, we can't
             // place there. This is redundancy as the selector handles this already.
-            if (CheckPosition(worldPosition, 1)) return false;
+            if (CheckCellInColumn(worldPosition, 1)) return false;
             
             // The instantiation position is Vector3 version of target position
             var instantiatePosition = worldPosition;
@@ -86,11 +86,11 @@ namespace Utility_Scripts.Grid
         }
 
         // Calculates if there is a block above the one at the given position
-        public GameObject CheckPosition(Vector3 worldPosition, int alterY)
+        public GameObject CheckCellInColumn(Vector3 worldPosition, int alterY)
         {
             var givenTileLayer = Vector3Int.FloorToInt(worldPosition).y + 1;
             var targetTileLayer = givenTileLayer + alterY;
-            if (_tileLayers.TryGetValue(givenTileLayer, out var layer))
+            if (_tileLayers.TryGetValue(targetTileLayer, out var layer))
             {
                 var givenPosition = new Vector2(worldPosition.x, worldPosition.z);
                 var target = layer.GetTile(givenPosition);

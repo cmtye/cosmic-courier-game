@@ -58,7 +58,7 @@ namespace Utility_Scripts.Grid
             if (hitPosition == _prevCell) return;
             
             // Select an object based on intractability and vertical height
-            var blockAbove = GridManager.Instance.CheckPosition(hitPosition, 1);
+            var blockAbove = GridManager.Instance.CheckCellInColumn(hitPosition, 1);
             if (blockAbove)
             {
                 // If the block above is not interactable, we don't need a marker and can
