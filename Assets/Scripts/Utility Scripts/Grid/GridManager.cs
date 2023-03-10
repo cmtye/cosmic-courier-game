@@ -57,7 +57,7 @@ namespace Utility_Scripts.Grid
         {
             // If there is a block above the block we're trying to place onto, we can't
             // place there. This is redundancy as the selector handles this already.
-            if (FindBlockAbove(worldPosition)) return false;
+            if (CheckPosition(worldPosition, 1)) return false;
             
             // The instantiation position is Vector3 version of target position
             var instantiatePosition = worldPosition;
@@ -86,22 +86,28 @@ namespace Utility_Scripts.Grid
         }
 
         // Calculates if there is a block above the one at the given position
-        public GameObject FindBlockAbove(Vector3 worldPosition)
+        public GameObject CheckPosition(Vector3 worldPosition, int alterY)
         {
-            var targetedTileLayer = Vector3Int.FloorToInt(worldPosition).y + 1;
-            var aboveTileLayer = targetedTileLayer + 1;
-            if (_tileLayers.TryGetValue(aboveTileLayer, out var layer))
+            var givenTileLayer = Vector3Int.FloorToInt(worldPosition).y + 1;
+            var targetTileLayer = givenTileLayer + alterY;
+            if (_tileLayers.TryGetValue(givenTileLayer, out var layer))
             {
-                var targetPosition = new Vector2(worldPosition.x, worldPosition.z);
-                var target = layer.GetTile(targetPosition);
+                var givenPosition = new Vector2(worldPosition.x, worldPosition.z);
+                var target = layer.GetTile(givenPosition);
 
                 return target ? target : null;
             }
-            // There is no layer above, generate a new one just in case
-            GenerateNewLayer(false, false);
+
+            // There is no layer here, generate new ones just in case
+            var downwards = (alterY < 0);
+            var absoluteDiff = Math.Abs(alterY);
+            
+            for (var i = absoluteDiff; i > 0; i--)
+            {
+                GenerateNewLayer(downwards, false);
+            }
             return null;
         }
-        
         // Generates a new tilemap and layer. Can be called in editor or during runtime if a new
         // layer is required to place a structure during gameplay
         private void GenerateNewLayer(bool downwards, bool inEditor)
