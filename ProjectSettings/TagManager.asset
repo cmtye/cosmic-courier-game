@@ -7,6 +7,7 @@ TagManager:
   - Sticky
   - Slippy
   - Normal
+  - Path
   layers:
   - Default
   - TransparentFX

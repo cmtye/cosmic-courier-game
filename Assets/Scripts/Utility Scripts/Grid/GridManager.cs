@@ -7,25 +7,23 @@ namespace Utility_Scripts.Grid
 {
     public class GridManager : MonoBehaviour
     {
-        // Minimum and maximum heights of the tile maps attached to this manager
-        private float _minTileY;
-        private float _maxTileY;
-
-        private static GridManager _instance;
-        
-        public static GridManager Instance => _instance;
+        public static GridManager Instance { get; private set; }
 
         [SerializeField] private bool generateDownwards;
         [SerializeField] [InspectorButton(nameof(OnButtonClicked))] private string generateNewTileLayer;
         [SerializeField] private Tilemap[] tileMaps;
         private Dictionary<int, TileLayer> _tileLayers;
+        
+        // Minimum and maximum heights of the tile maps attached to this manager
+        private float _minTileY;
+        private float _maxTileY;
 
         private void Awake()
         {
-            if (_instance != null && _instance != this)
+            if (Instance != null && Instance != this)
                 Destroy(gameObject);
             else 
-                _instance = this;
+                Instance = this;
             
             // Make sure our tile maps are in order in the case of developer error
             tileMaps = GetComponentsInChildren<Tilemap>();
@@ -57,7 +55,7 @@ namespace Utility_Scripts.Grid
         {
             // If there is a block above the block we're trying to place onto, we can't
             // place there. This is redundancy as the selector handles this already.
-            if (CheckCellInColumn(worldPosition, 1)) return false;
+            if (GetCellInColumn(worldPosition, 1)) return false;
             
             // The instantiation position is Vector3 version of target position
             var instantiatePosition = worldPosition;
@@ -86,7 +84,7 @@ namespace Utility_Scripts.Grid
         }
 
         // Calculates if there is a block above the one at the given position
-        public GameObject CheckCellInColumn(Vector3 worldPosition, int alterY)
+        public GameObject GetCellInColumn(Vector3 worldPosition, int alterY)
         {
             var givenTileLayer = Vector3Int.FloorToInt(worldPosition).y + 1;
             var targetTileLayer = givenTileLayer + alterY;
