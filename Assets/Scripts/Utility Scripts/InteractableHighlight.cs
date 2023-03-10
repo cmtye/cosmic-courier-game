@@ -7,7 +7,7 @@ namespace Utility_Scripts
     public class InteractableHighlight : MonoBehaviour
     {
         [SerializeField] private Color color = Color.white;
-    
+
         private List<Material> _materials;
         private static readonly int EmissionColor = Shader.PropertyToID("_EmissionColor");
 
@@ -40,4 +40,5 @@ namespace Utility_Scripts
             }
         }
     }
+
 }

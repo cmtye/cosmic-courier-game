@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -111,9 +110,14 @@ namespace Utility_Scripts.Grid
             _minTileY = 0;
             tileMaps = GetComponentsInChildren<Tilemap>();
             Array.Sort(tileMaps, YLevelComparison);
-            var emptyGrid = new Dictionary<Vector2, GameObject>();
-            var tileLayer = new TileLayer(emptyGrid);
-            
+
+            TileLayer tileLayer = null;
+            if (!inEditor)
+            {
+                var emptyGrid = new Dictionary<Vector2, GameObject>();
+                tileLayer = new TileLayer(emptyGrid);
+            }
+
             float newHeight;
             if (!downwards)
                 newHeight = _maxTileY + 1;
@@ -134,7 +138,8 @@ namespace Utility_Scripts.Grid
                 newLayer.AddComponent<CombineMesh>();
                 newLayer.transform.Translate(0, newHeight, 0);
                 newLayer.transform.SetParent(transform);
-                _tileLayers.Add((int) newHeight, tileLayer);
+                if (!inEditor)
+                    _tileLayers.Add((int) newHeight, tileLayer);
             }
             
             tileMaps = GetComponentsInChildren<Tilemap>();
