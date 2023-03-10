@@ -25,9 +25,11 @@ namespace Utility_Scripts
         
         // The directions we check for our next path block. The order is used to make
         // path generation deterministic and is exposed to allow per level altering.
-        private enum Direction { Up, Down, Right, Forward, Left, Backward }
-        public string[] directionBias= Enum.GetNames(typeof(Direction));
-
+        private enum Direction { Right, Forward, Left, Backward }
+        private enum Height { Up, Down, Level}
+        public string[] directionBias = Enum.GetNames(typeof(Direction));
+        public string[] heightBias = Enum.GetNames(typeof(Height));
+        
         private void Awake()
         {
             if (Instance != null && Instance != this)
@@ -53,35 +55,39 @@ namespace Utility_Scripts
                 // Reset path found and re-instantiate the visited list every iteration
                 pathFound = false;
                 var alreadyVisited = new List<Vector3>();
-                
-                foreach (var direction in directionBias)
+
+                foreach (var height in heightBias)
                 {
-                    // Check the current direction for a block tagged "Path"
-                    var nextNode = LookForPath(currPosition, direction, out pathFound);
-                    if (!pathFound) continue;
+                    foreach (var direction in directionBias)
+                    {
+                        // Check the current direction for a block tagged "Path"
+                        var nextNode = LookForPath(currPosition, direction, height, out pathFound);
+                        if (!pathFound) continue;
                     
-                    // If we find one, add its position to the dictionary if we haven't seen it yet. If we
-                    // have seen it already, hold onto it until every direction is checked for a fresh one
-                    var nextPosition = nextNode.transform.position;
-                    if (_pathNodes.ContainsKey(nextPosition))
-                    {
-                        _alreadyTraversed = true;
+                        // If we find one, add its position to the dictionary if we haven't seen it yet. If we
+                        // have seen it already, hold onto it until every direction is checked for a fresh one
+                        var nextPosition = nextNode.transform.position;
+                        if (_pathNodes.ContainsKey(nextPosition))
+                        {
+                            _alreadyTraversed = true;
                         
-                        alreadyVisited.Add(nextPosition);
-                        pathFound = false;
+                            alreadyVisited.Add(nextPosition);
+                            pathFound = false;
+                        }
+                        else
+                        {
+                            _alreadyTraversed = false;
+                        
+                            pathIndex++;
+                            nextPosition = nextNode.transform.position;
+                            currPosition = nextPosition;
+                        
+                            _pathNodes.Add(nextPosition, pathIndex);
+                            pathVectors.Add(nextPosition);
+                            break;
+                        }
                     }
-                    else
-                    {
-                        _alreadyTraversed = false;
-                        
-                        pathIndex++;
-                        nextPosition = nextNode.transform.position;
-                        currPosition = nextPosition;
-                        
-                        _pathNodes.Add(nextPosition, pathIndex);
-                        pathVectors.Add(nextPosition);
-                        break;
-                    }
+                    if (pathFound) break;
                 }
 
                 // If we made it here and multiple were already traversed, we have to determine which to
@@ -119,23 +125,13 @@ namespace Utility_Scripts
         }
         
         // Check the given direction for a block and return whether or not it is a block or a path
-        private GameObject LookForPath(Vector3 currPosition, string direction, out bool pathFound)
+        private GameObject LookForPath(Vector3 currPosition, string direction, string height, out bool pathFound)
         {
             var directionPosition = currPosition;
             switch (direction)
             {
                 // Up and down case will need to be reworked to work properly.
                 // Currently thinking a diagonal transition will be required.
-                case "Up":
-                {
-                    directionPosition.y += 1;
-                    break;
-                }
-                case "Down":
-                {
-                    directionPosition.y -= 1;
-                    break;
-                }
                 case "Right":
                 {
                     directionPosition.x += 1;
@@ -154,6 +150,25 @@ namespace Utility_Scripts
                 case "Backward":
                 {
                     directionPosition.z -= 1;
+                    break;
+                }
+            }
+
+            switch (height)
+            {
+                case "Up":
+                {
+                    directionPosition.y += 1;
+                    break;
+                }
+                case "Down":
+                {
+                    directionPosition.y -= 1;
+                    break;
+                }
+                case "Level":
+                {
+                    directionPosition.y += 0;
                     break;
                 }
             }
