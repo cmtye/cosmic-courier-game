@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 3711938563114314479}
   - component: {fileID: 2412627423573048316}
   m_Layer: 0
-  m_Name: Grass
-  m_TagString: Normal
+  m_Name: Mud
+  m_TagString: Sticky
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a73dd9269cdab7b46a735b2f58b162f4, type: 2}
+  - {fileID: 2100000, guid: 4d0e0afc07d4b704c8d245180dbccd76, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -35,7 +35,8 @@ namespace Character_Scripts
         }
         
         private void Update()
-        {  
+        {              
+            _characterMovement.UpdateFloorBehavior();
             _characterMovement.Move(_moveDirectionInput);
         }
     

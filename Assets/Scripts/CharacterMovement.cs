@@ -1,4 +1,4 @@
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Character_Scripts
@@ -23,6 +23,15 @@ namespace Character_Scripts
 
         // Reference to camera for euler angle calculation
         private Camera _camera;
+
+        // Determine behaviors for different floor types
+        // The Vector2s store <speed, moveSmoothing>
+        [SerializeField] private Vector2 normalFloorBehavior = new Vector2(5f, 0.1f);
+        [SerializeField] private Vector2 slippyFloorBehavior = new Vector2(7f, 0.5f);
+        [SerializeField] private Vector2 stickyFloorBehavior = new Vector2(3f, 0.05f);
+
+        private Dictionary<string, Vector2> floorBehaviorLookup;
+
         
         private void Awake()
         {
@@ -31,6 +40,32 @@ namespace Character_Scripts
             _camera = (Camera)FindObjectOfType(typeof(Camera));
 
             _gravity = 9.81f;
+
+            floorBehaviorLookup = new Dictionary<string, Vector2>{
+                {"Normal", normalFloorBehavior},
+                {"Slippy", slippyFloorBehavior},
+                {"Sticky", stickyFloorBehavior}};
+        }
+
+
+        public void UpdateFloorBehavior()
+        {
+            // Make a vector downward to get the tile below
+            var fwd = transform.TransformDirection(Vector3.down) * 1;
+
+            //Default to normal floor behavior if tag is not found
+            var floorBehavior = normalFloorBehavior;
+
+            // Check layers for a hit, return if nothing (can change valid layers as need be)
+            Debug.DrawRay(transform.position, fwd, Color.green);
+            if (Physics.Raycast(transform.position, fwd, out var hit, 1))
+            {
+                if(floorBehaviorLookup.TryGetValue(hit.transform.tag, out floorBehavior))
+                {
+                    speed = floorBehavior.x;
+                    moveSmoothing = floorBehavior.y;
+                }
+            }
         }
 
         // Takes in a 2D vector representing up and down movement, and
