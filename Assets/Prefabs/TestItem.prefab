@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 314649749107720874}
   - component: {fileID: 6801319416189219474}
   - component: {fileID: -1374105314929604025}
-  - component: {fileID: 8791993468904339699}
+  - component: {fileID: -5058118041388189782}
   m_Layer: 6
   m_Name: TestItem
   m_TagString: Untagged
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54492afbd2c38cd4aa06e923139954c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8791993468904339699
+--- !u!114 &-5058118041388189782
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,7 +120,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7509480547810710052}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de01c56d2f356f34d8a421d78bf1eef7, type: 3}
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0.1792453, g: 0.1792453, b: 0.1792453, a: 1}
+  outlineMode: 5
+  outlineColor: {r: 0.99215686, g: 0.6156863, b: 0, a: 1}
+  outlineWidth: 7
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

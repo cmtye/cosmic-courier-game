@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: dc8e313b6ed9dc247b6f7315a2941834
+guid: 5576c20f47938094883e0c443d756b2a
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,7 +7,7 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material
+      name: A3D_sample_stairs_dirt_material
     second: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   materials:
     materialImportMode: 2

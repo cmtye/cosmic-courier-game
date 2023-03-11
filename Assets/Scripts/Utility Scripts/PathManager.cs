@@ -25,10 +25,12 @@ namespace Utility_Scripts
         
         // The directions we check for our next path block. The order is used to make
         // path generation deterministic and is exposed to allow per level altering.
-        private enum Direction { Right, Forward, Left, Backward }
-        private enum Height { Up, Down, Level}
-        public string[] directionBias = Enum.GetNames(typeof(Direction));
-        public string[] heightBias = Enum.GetNames(typeof(Height));
+        private enum Direction { East, North, West, South }
+
+        private enum Height { Up, Down, Equal}
+
+        [SerializeField] private string[] directionBias = {"East", "North", "West", "South"};
+        [SerializeField] private string[] heightBias = {"Up", "Down", "Equal"};
         
         private void Awake()
         {
@@ -38,6 +40,7 @@ namespace Utility_Scripts
                 Instance = this;
             
             _pathNodes = new Dictionary<Vector3, int>();
+            
             GeneratePath();
         }
 
@@ -132,22 +135,22 @@ namespace Utility_Scripts
             {
                 // Up and down case will need to be reworked to work properly.
                 // Currently thinking a diagonal transition will be required.
-                case "Right":
+                case "East":
                 {
                     directionPosition.x += 1;
                     break;
                 }
-                case "Forward":
+                case "North":
                 {
                     directionPosition.z += 1;
                     break;
                 }
-                case "Left":
+                case "West":
                 {
                     directionPosition.x -= 1;
                     break;
                 }
-                case "Backward":
+                case "South":
                 {
                     directionPosition.z -= 1;
                     break;
@@ -166,7 +169,7 @@ namespace Utility_Scripts
                     directionPosition.y -= 1;
                     break;
                 }
-                case "Level":
+                case "Equal":
                 {
                     directionPosition.y += 0;
                     break;

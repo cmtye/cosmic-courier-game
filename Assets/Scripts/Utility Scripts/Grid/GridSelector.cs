@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Utility_Scripts.Grid
@@ -25,6 +26,8 @@ namespace Utility_Scripts.Grid
 
         // The object the player is currently selecting
         public GameObject SelectedObject { get; private set; }
+
+        private Dictionary<GameObject, OutlineHighlight> _cachedHighlights;
 
         private void FixedUpdate()
         {
@@ -123,12 +126,22 @@ namespace Utility_Scripts.Grid
         }
         
         // Toggles the highlight on an interactable using its attached script to alter its emission value
-        private void TryHighlightInteractable(GameObject target, bool highlight)
+        private void TryHighlightInteractable(GameObject target, bool isHighlighted)
         {
-            var interactableComponent = target.GetComponent<InteractableHighlight>();
-            if (interactableComponent)
+            _cachedHighlights ??= new Dictionary<GameObject, OutlineHighlight>();
+            
+            if (_cachedHighlights.TryGetValue(target, out var highlight))
             {
-                interactableComponent.ToggleHighlight(highlight);
+                highlight.enabled = isHighlighted;
+            }
+            else
+            {
+                var highlightComponent = target.GetComponent<OutlineHighlight>();
+                if (!highlightComponent) return;
+                
+                highlightComponent.enabled = isHighlighted;
+                _cachedHighlights.Add(target, highlightComponent);
+
             }
         }
         

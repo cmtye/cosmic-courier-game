@@ -62,7 +62,7 @@ namespace Utility_Scripts.Grid
             instantiatePosition.y += 1;
             
             var targetPosition = new Vector2(worldPosition.x, worldPosition.z);
-            var targetHeight = Vector3Int.FloorToInt(worldPosition).y + 2;
+            var targetHeight = Vector3Int.FloorToInt(worldPosition).y + 1;
 
             // Return false if there is no layer to hold this height. This is also redundancy
             // since the FindBlockAbove function already generates one when needed
@@ -86,7 +86,7 @@ namespace Utility_Scripts.Grid
         // Calculates if there is a block above the one at the given position
         public GameObject GetCellInColumn(Vector3 worldPosition, int alterY)
         {
-            var givenTileLayer = Vector3Int.FloorToInt(worldPosition).y + 1;
+            var givenTileLayer = Vector3Int.FloorToInt(worldPosition).y;
             var targetTileLayer = givenTileLayer + alterY;
             if (_tileLayers.TryGetValue(targetTileLayer, out var layer))
             {
