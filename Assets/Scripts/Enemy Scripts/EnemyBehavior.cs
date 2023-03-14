@@ -1,57 +1,52 @@
+using System.Collections;
+using System.Collections.Generic;
 using Enemy_Scripts.Spawning_Scripts;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Pool;
+using Utility_Scripts;
 
 namespace Enemy_Scripts
 {
     public class EnemyBehavior : MonoBehaviour
     {
-        /*public Vector3 CurrentPointPosition
-        private void Update()
+        [SerializeField] private float moveSpeed = 5;
+        private List<Vector3> _path;
+        private Coroutine _moveCoroutine;
+
+        private void Start()
         {
-            Move();
-            if (CurrentPointReached())
+            _path = PathManager.Instance.PathVectors;
+            StartCoroutine(MoveAlongPath());
+        }
+    
+        private IEnumerator MoveAlongPath()
+        {
+            for (var i = 0; i < _path.Count; i++)
             {
-                UpdateCurrentPointIndex();
+                _moveCoroutine= StartCoroutine(Moving(i));
+                yield return _moveCoroutine;
             }
+            EndPointReached();
         }
 
-        private void Move()
+        private IEnumerator Moving(int currentIndex)
         {
-            transform.position = Vector3.MoveTowards(transform.position, CurrentPointPosition, MoveSpeed * Time.deltaTime);
-        }
-
-        private bool CurrentPointReached()
-        {
-            var distanceToPoint = (transform.position - CurrentPointPosition).magnitude;
-            if (distanceToPoint < 0.1f)
+            var distanceToPoint = float.MaxValue;
+            while (distanceToPoint > 0.01f)
             {
-                _lastPointPosition = transform.position;
-                return true;
-            }
-            return false;
-            
-        }
-
-        private void UpdateCurrentPointIndex()
-        {
-            var lastWaypointIndex = Waypoint.Points.Length - 1;
-            if (_currentWaypointIndex < lastWaypointIndex)
-            {
-                _currentWaypointIndex++;
-            }
-            else
-            {
-                EndPointReached();
+                var position = transform.position;
+                position = Vector3.MoveTowards(position, _path[currentIndex] , moveSpeed * Time.deltaTime);
+                distanceToPoint = (position - _path[currentIndex]).magnitude;
+                transform.position = position;
+                yield return null;
             }
         }
 
         private void EndPointReached()
         {
-            OnEndReached?.Invoke(this);
-            _enemyHealth.ResetHealth();
-            ObjectPool.ReturnToPool(gameObject);
-        }*/
+            //OnEndReached?.Invoke(this);
+            //_enemyHealth.ResetHealth();
+            //ObjectPool.ReturnToPool(gameObject);
+        }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Enemy_Scripts
 {
-    public class HealthBehavior : MonoBehaviour
+    public class EnemyHealthBehavior : MonoBehaviour
     {
         public static Action<EnemyBehavior> OnEnemyKilled;
         public static Action<EnemyBehavior> OnEnemyHit;
@@ -15,7 +15,7 @@ namespace Enemy_Scripts
         [SerializeField] private float initialHealth = 10f;
         [SerializeField] private float maxHealth = 10f;
         
-        public float CurrentHealth { get; set; }
+        public float CurrentHealth { get; private set; }
 
         private Image _healthBar;
         private EnemyBehavior _enemy;
