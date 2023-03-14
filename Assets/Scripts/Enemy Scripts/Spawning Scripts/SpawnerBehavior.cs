@@ -5,11 +5,7 @@ namespace Enemy_Scripts.Spawning_Scripts
     [RequireComponent(typeof(ObjectPool))]
     public class SpawnerBehavior : MonoBehaviour
     {
-        [Header("Settings")] 
         [SerializeField] private int enemyCount = 10;
-        [SerializeField] private GameObject testGO;
-
-        [Header("Fixed Delay")] 
         [SerializeField] private float spawnDelay;
 
         private float _spawnTimer;

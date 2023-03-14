@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 namespace Enemy_Scripts
 {
+    [RequireComponent(typeof(EnemyBehavior))]
     public class EnemyHealthBehavior : MonoBehaviour
     {
-        public static Action<EnemyBehavior> OnEnemyKilled;
-        public static Action<EnemyBehavior> OnEnemyHit;
+        public static event Action<EnemyBehavior> OnEnemyKilled;
+        public static event Action<EnemyBehavior> OnEnemyHit;
         
         [SerializeField] private GameObject healthBarPrefab;
         [SerializeField] private Transform barTransform;
@@ -45,8 +46,8 @@ namespace Enemy_Scripts
         
         private void CreateHealthBar()
         {
-            var newBar = Instantiate(healthBarPrefab, barTransform.position, Quaternion.identity);
-            newBar.transform.SetParent(transform);
+            var newBar = Instantiate(healthBarPrefab, barTransform);
+            newBar.transform.SetParent(barTransform.transform);
             var container = newBar.GetComponent<EnemyHealthContainer>();
             _healthBar = container.FillAmountImage;
         }

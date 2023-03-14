@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Enemy_Scripts.Spawning_Scripts;
@@ -7,18 +8,43 @@ using Utility_Scripts;
 
 namespace Enemy_Scripts
 {
+    [RequireComponent(typeof(EnemyHealthBehavior))]
     public class EnemyBehavior : MonoBehaviour
     {
         [SerializeField] private float moveSpeed = 5;
+        [SerializeField] private GameObject dropTable;
+        [SerializeField] private AnimationCurve slowDownCurve;
         private List<Vector3> _path;
         private Coroutine _moveCoroutine;
 
+        private void OnEnable()
+        {
+            EnemyHealthBehavior.OnEnemyHit += HitStun;
+            EnemyHealthBehavior.OnEnemyKilled += DropResources;
+        }
+
+        private void OnDisable()
+        {
+            EnemyHealthBehavior.OnEnemyHit -= HitStun;
+            EnemyHealthBehavior.OnEnemyKilled -= DropResources;
+        }
+
+        private void DropResources(EnemyBehavior enemy)
+        {
+            Instantiate(dropTable, enemy.transform);
+        }
+        
+        private void HitStun(EnemyBehavior enemy)
+        {
+            enemy.moveSpeed -= 1;
+        }
+        
         private void Start()
         {
             _path = PathManager.Instance.PathVectors;
             StartCoroutine(MoveAlongPath());
         }
-    
+        
         private IEnumerator MoveAlongPath()
         {
             for (var i = 0; i < _path.Count; i++)
