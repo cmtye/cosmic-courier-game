@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Utility_Scripts;
+using Utility;
 
 public class Interactable : MonoBehaviour
 {

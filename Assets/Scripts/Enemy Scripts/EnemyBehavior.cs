@@ -2,9 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Enemy_Scripts.Spawning_Scripts;
+using Level_Scripts;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using Utility_Scripts;
 
 namespace Enemy_Scripts
 {
@@ -14,6 +14,7 @@ namespace Enemy_Scripts
         [SerializeField] private float moveSpeed = 5;
         [SerializeField] private GameObject dropTable;
         [SerializeField] private AnimationCurve slowDownCurve;
+        public EnemyHealthBehavior HealthBehavior { get; private set; }
         private List<Vector3> _path;
         private Coroutine _moveCoroutine;
 
@@ -42,6 +43,7 @@ namespace Enemy_Scripts
         private void Start()
         {
             _path = PathManager.Instance.PathVectors;
+            HealthBehavior = GetComponent<EnemyHealthBehavior>();
             StartCoroutine(MoveAlongPath());
         }
         
@@ -72,7 +74,7 @@ namespace Enemy_Scripts
         {
             //OnEndReached?.Invoke(this);
             //_enemyHealth.ResetHealth();
-            //ObjectPool.ReturnToPool(gameObject);
+            ObjectPool.ReturnToPool(gameObject);
         }
     }
 }

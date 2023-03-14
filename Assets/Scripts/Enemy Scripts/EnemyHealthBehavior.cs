@@ -45,7 +45,8 @@ namespace Enemy_Scripts
         
         private void CreateHealthBar()
         {
-            var newBar = Instantiate(healthBarPrefab, barTransform.position, Quaternion.identity, barTransform.transform);
+            var newBar = Instantiate(healthBarPrefab, barTransform.position, 
+                                               barTransform.rotation, barTransform.transform);
             var container = newBar.GetComponent<EnemyHealthContainer>();
             container.HealthBehavior = this;
         }

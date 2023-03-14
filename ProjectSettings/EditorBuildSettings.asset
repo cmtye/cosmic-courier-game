@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Path Generator Test.unity
+    path: Assets/Scenes/Tower and Enemies Test.unity
     guid: 92f647d4d9dd5114f840c4487b5d3c9d
   m_configObjects: {}

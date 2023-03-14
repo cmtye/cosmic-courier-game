@@ -1,8 +1,7 @@
-using Character_Scripts;
 using Enemy_Scripts;
+using Level_Scripts.Grid;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Utility_Scripts.Grid;
 
 [RequireComponent(typeof(CharacterMovement))]
 [RequireComponent(typeof(CharacterController))]

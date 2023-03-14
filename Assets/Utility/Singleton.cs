@@ -29,7 +29,10 @@ namespace Utility
             lock (Lock)
             {
                 if (_instance != null)
+                {
                     return _instance;
+                }
+                
                 var instances = FindObjectsOfType<T>();
                 var count = instances.Length;
                 if (count > 0)
