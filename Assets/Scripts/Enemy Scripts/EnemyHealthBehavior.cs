@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,8 +13,8 @@ namespace Enemy_Scripts
         [SerializeField] private GameObject healthBarPrefab;
         [SerializeField] private Transform barTransform;
         [SerializeField] private float initialHealth = 10f;
-        [SerializeField] private float maxHealth = 10f;
-        
+
+        public float MaxHealth { get; private set; }
         public float CurrentHealth { get; private set; }
 
         private Image _healthBar;
@@ -24,6 +23,7 @@ namespace Enemy_Scripts
 
         private void Start()
         {
+            MaxHealth = 10f;
             CreateHealthBar();
             CurrentHealth = initialHealth;
             _enemy = GetComponent<EnemyBehavior>();
@@ -39,20 +39,18 @@ namespace Enemy_Scripts
             }
             else
             {
-                UpdateHealthBar();
                 OnEnemyHit?.Invoke(_enemy);
             }
         }
         
         private void CreateHealthBar()
         {
-            var newBar = Instantiate(healthBarPrefab, barTransform);
-            newBar.transform.SetParent(barTransform.transform);
+            var newBar = Instantiate(healthBarPrefab, barTransform.position, Quaternion.identity, barTransform.transform);
             var container = newBar.GetComponent<EnemyHealthContainer>();
-            _healthBar = container.FillAmountImage;
+            container.HealthBehavior = this;
         }
 
-        private void UpdateHealthBar()
+        /*private void UpdateHealthBar()
         {
             if (_transitionCoroutine != null)
             {
@@ -63,15 +61,15 @@ namespace Enemy_Scripts
             {
                 _transitionCoroutine = StartCoroutine(UpdateHealth());
             }
-        }
+        }*/
         
-        private IEnumerator UpdateHealth()
+        /*private IEnumerator UpdateHealth()
         {
-            while(Math.Abs(_healthBar.fillAmount - CurrentHealth / maxHealth) > 0.0001f) {
-                _healthBar.fillAmount = Mathf.Lerp(_healthBar.fillAmount, CurrentHealth / maxHealth, Time.deltaTime * 10f);
+            while(Math.Abs(_healthBar.fillAmount - CurrentHealth / MaxHealth) > 0.0001f) {
+                _healthBar.fillAmount = Mathf.Lerp(_healthBar.fillAmount, CurrentHealth / MaxHealth, Time.deltaTime * 10f);
                 yield return null;
             }
-        }
+        }*/
 
         private void Die()
         {

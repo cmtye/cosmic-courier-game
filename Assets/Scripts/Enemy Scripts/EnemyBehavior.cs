@@ -36,7 +36,7 @@ namespace Enemy_Scripts
         
         private void HitStun(EnemyBehavior enemy)
         {
-            enemy.moveSpeed -= 1;
+            // Could be implemented as diminishing returns or as a towers unique ability
         }
         
         private void Start()

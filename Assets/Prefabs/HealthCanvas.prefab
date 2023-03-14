@@ -267,4 +267,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cef804d02a01724ea8fed0249efad6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fillAmountImage: {fileID: 2846274058255771255}

@@ -34018,8 +34018,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ee7f656af0f644281bb66c280fc85c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyCount: 10
-  spawnDelay: 2
+  enemyCount: 20
+  spawnDelay: 1
 --- !u!114 &1640451019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34033,7 +34033,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 6958277655355526180, guid: 636bae697fab46a438263d4935e8e4cc, type: 3}
-  poolSize: 10
+  poolSize: 20
 --- !u!4 &1640451020
 Transform:
   m_ObjectHideFlags: 0
@@ -37452,6 +37452,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentlyHeld: {fileID: 376404169695740028, guid: 1800d5c5ebe470e4d83681c4d0e9707a, type: 3}
+  temp: {fileID: 0}
 --- !u!143 &1802667378
 CharacterController:
   m_ObjectHideFlags: 0
