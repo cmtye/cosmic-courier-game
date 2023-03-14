@@ -2,15 +2,20 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Utility;
 
 namespace Utility_Scripts.Grid
 {
-    public class GridManager : MonoBehaviour
+    [RequireComponent(typeof(UnityEngine.Grid))]
+    public class GridManager : Singleton<GridManager>
     {
-        public static GridManager Instance { get; private set; }
-
-        [SerializeField] private bool generateDownwards;
+        [Space (20)]
         [SerializeField] [InspectorButton(nameof(OnButtonClicked))] private string generateNewTileLayer;
+        
+        [Tooltip("Check this box if you want to generate a new tilemap and layer below any existing ones")]
+        [SerializeField] private bool generateDownwards;
+        [Space(20)]
+        
         [SerializeField] private Tilemap[] tileMaps;
         private Dictionary<int, TileLayer> _tileLayers;
         
@@ -20,11 +25,6 @@ namespace Utility_Scripts.Grid
 
         private void Awake()
         {
-            if (Instance != null && Instance != this)
-                Destroy(gameObject);
-            else 
-                Instance = this;
-            
             // Make sure our tile maps are in order in the case of developer error
             tileMaps = GetComponentsInChildren<Tilemap>();
             Array.Sort(tileMaps, YLevelComparison);
@@ -47,6 +47,10 @@ namespace Utility_Scripts.Grid
                 var tileLayer = new TileLayer(grid);
                 _tileLayers.Add(tileMapHeight, tileLayer);
             }
+            
+            // The PathManager cannot generate a path until the GridManager is finished, so we call it here.
+            // Will potentially move this call elsewhere when it makes more sense
+            PathManager.Instance.GeneratePath();
         }
 
         // Try and place a given GameObject on the grid. The tile maps don't actually manage
@@ -54,10 +58,10 @@ namespace Utility_Scripts.Grid
         public bool TryPlaceObject(GameObject toPlace, Vector3 worldPosition)
         {
             // If there is a block above the block we're trying to place onto, we can't
-            // place there. This is redundancy as the selector handles this already.
+            // place there. This is redundancy as the selector should handle this already.
             if (GetCellInColumn(worldPosition, 1)) return false;
             
-            // The instantiation position is Vector3 version of target position
+            // The instantiation position is the Vector3 version of the target position
             var instantiatePosition = worldPosition;
             instantiatePosition.y += 1;
             
@@ -69,8 +73,8 @@ namespace Utility_Scripts.Grid
             if (!_tileLayers.TryGetValue(targetHeight, out var layer)) return false;
 
             // Instantiate our object at the appropriate position. Finds the tile map this object should belong
-            // to so it can add it as a child (ensures transform correctness).
-            // Finally, adds the GameObject and its position it to the tile layer dictionary
+            // to so it can be added as a child (ensures transform correctness).
+            // Finally, adds the GameObject and its position to the tile layer dictionary
             var placedObject = Instantiate(toPlace, instantiatePosition, toPlace.transform.rotation);
             foreach (var t in tileMaps)
             {
@@ -83,7 +87,8 @@ namespace Utility_Scripts.Grid
             return true;
         }
 
-        // Calculates if there is a block above the one at the given position
+        // Calculates if there is a block above the one at the given position, returning it if found
+        // Also manages creating new layers during runtime if need be.
         public GameObject GetCellInColumn(Vector3 worldPosition, int alterY)
         {
             var givenTileLayer = Vector3Int.FloorToInt(worldPosition).y;
@@ -106,6 +111,7 @@ namespace Utility_Scripts.Grid
             }
             return null;
         }
+        
         // Generates a new tilemap and layer. Can be called in editor or during runtime if a new
         // layer is required to place a structure during gameplay
         private void GenerateNewLayer(bool downwards, bool inEditor)

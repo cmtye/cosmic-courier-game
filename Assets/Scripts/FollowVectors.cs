@@ -11,7 +11,7 @@ public class FollowVectors : MonoBehaviour
     Coroutine MoveIE;
     private void Start()
     {
-        path = PathManager.Instance.pathVectors;
+        path = PathManager.Instance.PathVectors;
         StartCoroutine(moveObject());
         
     }

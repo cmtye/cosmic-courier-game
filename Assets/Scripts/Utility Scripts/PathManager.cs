@@ -1,22 +1,23 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using Utility;
 using Utility_Scripts.Grid;
 
 namespace Utility_Scripts
 {
-    public class PathManager : MonoBehaviour
+    public class PathManager : Singleton<PathManager>
     {
-        public static PathManager Instance { get; private set; }
-
         // The variables serve to hold the current levels pertinent path information
+        [Space (20)]
+        [Tooltip("The starting block of the path is provided by the developer as a starting point for the algorithm")]
         [SerializeField] private GameObject pathStart;
         private GameObject _pathEnd;
-        public List<Vector3> pathVectors;
+        public List<Vector3> PathVectors { get; private set; }
+        [Space (20)]
         
         // Use a dictionary for efficient, O(1) look ups while building the vector array
         // and a boolean for situations when we come back on an old tile
+        
         private Dictionary<Vector3, int> _pathNodes;
         private bool _alreadyTraversed;
 
@@ -25,34 +26,25 @@ namespace Utility_Scripts
         
         // The directions we check for our next path block. The order is used to make
         // path generation deterministic and is exposed to allow per level altering.
-        private enum Direction { East, North, West, South }
-
-        private enum Height { Up, Down, Equal}
-
+        [Header ("Path Generation Biases")]
+        [Tooltip("The ordering of the direction list determines which heading the algorithm will check first during generation")]
         [SerializeField] private string[] directionBias = {"East", "North", "West", "South"};
-        [SerializeField] private string[] heightBias = {"Up", "Down", "Equal"};
         
-        private void Awake()
+        [Tooltip("The ordering of the height list determines which layer the algorithm will check first during generation")]
+        [SerializeField] private string[] heightBias = {"Up", "Down", "Equal"};
+
+        public void GeneratePath()
         {
-            if (Instance != null && Instance != this)
-                Destroy(gameObject);
-            else 
-                Instance = this;
-            
+            PathVectors = new List<Vector3>();
             _pathNodes = new Dictionary<Vector3, int>();
             
-            GeneratePath();
-        }
-
-        private void GeneratePath()
-        {
             // The first node (pathStart) is given to us
             var pathFound = true;
             var pathIndex = 1;
             var currPosition = pathStart.transform.position;
             _pathNodes.Add(currPosition, pathIndex);
-            pathVectors.Add(currPosition);
-            
+            PathVectors.Add(currPosition);
+
             while (pathFound)
             {
                 // Reset path found and re-instantiate the visited list every iteration
@@ -86,7 +78,7 @@ namespace Utility_Scripts
                             currPosition = nextPosition;
                         
                             _pathNodes.Add(nextPosition, pathIndex);
-                            pathVectors.Add(nextPosition);
+                            PathVectors.Add(nextPosition);
                             break;
                         }
                     }
@@ -119,12 +111,13 @@ namespace Utility_Scripts
                 pathIndex++;
                 pathFound = true;
                 _pathNodes[leastRecentPosition] = pathIndex;
-                pathVectors.Add(leastRecentPosition);
+                PathVectors.Add(leastRecentPosition);
                 currPosition = leastRecentPosition;
 
             }
             // We always break out of the loop at the end block, store it for safe keeping
             _pathEnd = GridManager.Instance.GetCellInColumn(currPosition, 0);
+            
         }
         
         // Check the given direction for a block and return whether or not it is a block or a path
