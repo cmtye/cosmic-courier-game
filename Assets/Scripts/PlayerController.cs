@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private CharacterMovement _characterMovement;
     private CharacterController _characterController;
     private Vector2 _moveDirectionInput;
+    private ParticleController _particleController;
 
     private GridSelector _gridSelector;
     public GameObject currentlyHeld;
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
         _characterMovement = GetComponent<CharacterMovement>();
         _characterController = GetComponent<CharacterController>();
         _gridSelector = GetComponent<GridSelector>();
+        _particleController = GetComponent<ParticleController>();
 
         _controls = new PlayerInputActions();
         _controls.Player.Move.started += OnMovementInput;
@@ -31,9 +33,11 @@ public class PlayerController : MonoBehaviour
     }
         
     private void Update()
-    {              
+    {
         _characterMovement.UpdateFloorBehavior();
         _characterMovement.Move(_moveDirectionInput);
+        
+        _particleController.SetDustTrail(_moveDirectionInput.magnitude > 0);
     }
     
     private void OnMovementInput(InputAction.CallbackContext context)

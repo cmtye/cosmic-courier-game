@@ -25,6 +25,7 @@ public class CharacterMovement : MonoBehaviour
     // Determine behaviors for different floor types
     // The Vector2s store <speed, moveSmoothing>
     [SerializeField] private Vector2 normalFloorBehavior = new Vector2(5f, 0.1f);
+    [SerializeField] private Vector2 pathFloorBehavior = new Vector2(5f, 0.1f);
     [SerializeField] private Vector2 slippyFloorBehavior = new Vector2(7f, 0.5f);
     [SerializeField] private Vector2 stickyFloorBehavior = new Vector2(3f, 0.05f);
 
@@ -41,6 +42,7 @@ public class CharacterMovement : MonoBehaviour
 
         floorBehaviorLookup = new Dictionary<string, Vector2>{
             {"Normal", normalFloorBehavior},
+            {"Path", pathFloorBehavior},
             {"Slippy", slippyFloorBehavior},
             {"Sticky", stickyFloorBehavior}};
     }
