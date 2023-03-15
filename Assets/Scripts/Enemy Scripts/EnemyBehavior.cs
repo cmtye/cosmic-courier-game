@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 
 namespace Enemy_Scripts
 {
-    public enum Vulnerability 
+    public enum ElementalTypes 
     { 
         Standard,
         Solar, 
@@ -22,7 +22,7 @@ namespace Enemy_Scripts
     public class EnemyBehavior : MonoBehaviour
     {
         [SerializeField] private float moveSpeed = 5;
-        [SerializeField] private Vulnerability[] vulnerableTo = { Vulnerability.Standard };
+        [SerializeField] private ElementalTypes[] vulnerableTo = { ElementalTypes.Standard };
         [SerializeField] private GameObject itemDrop;
         // [SerializeField] private AnimationCurve slowDownCurve;
         
@@ -30,7 +30,7 @@ namespace Enemy_Scripts
         private Coroutine _pathCoroutine;
         private Coroutine _moveCoroutine;
 
-        public Vulnerability[] Vulnerabilities { get; private set; }
+        public ElementalTypes[] Vulnerabilities { get; private set; }
         
         private void Start()
         {

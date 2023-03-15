@@ -176,14 +176,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
-  immuneTo: 00000000
-  dropTable: {fileID: 0}
-  slowDownCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  vulnerableTo: 00000000
+  itemDrop: {fileID: 0}
 --- !u!114 &6613045112582604019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,6 +191,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBarPrefab: {fileID: 8827475580013122189, guid: 0bbc5c28ecdc3e948916f02b6c9b0f66, type: 3}
-  barTransform: {fileID: 5949697660490112332}
+  healthBarTransform: {fileID: 5949697660490112332}
   initialHealth: 10
   maxHealth: 10

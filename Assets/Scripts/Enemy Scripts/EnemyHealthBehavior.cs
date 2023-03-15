@@ -12,7 +12,7 @@ namespace Enemy_Scripts
         public static event Action<EnemyBehavior, EnemyHealthBehavior> OnEnemyHit;
         
         [SerializeField] private GameObject healthBarPrefab;
-        [SerializeField] private Transform barTransform;
+        [SerializeField] private Transform healthBarTransform;
         [SerializeField] private float initialHealth = 10f;
         [SerializeField] private float maxHealth = 10f;
 
@@ -30,10 +30,10 @@ namespace Enemy_Scripts
             _enemy = GetComponent<EnemyBehavior>();
         }
 
-        public void DealDamage(float damageReceived, Vulnerability damageType)
+        public void DealDamage(float damageReceived, ElementalTypes damageType)
         {
             // Vulnerability to normal attacks means vulnerability to everything
-            if (!_enemy.Vulnerabilities.Contains(Vulnerability.Standard))
+            if (!_enemy.Vulnerabilities.Contains(ElementalTypes.Standard))
             {
                 // Otherwise the enemy needs to be specifically vulnerable to be damaged
                 if (!_enemy.Vulnerabilities.Contains(damageType)) return;
@@ -53,8 +53,8 @@ namespace Enemy_Scripts
         
         private void CreateHealthBar()
         {
-            var newBar = Instantiate(healthBarPrefab, barTransform.position, 
-                                               barTransform.rotation, barTransform.transform);
+            var newBar = Instantiate(healthBarPrefab, healthBarTransform.position, 
+                                               healthBarTransform.rotation, healthBarTransform.transform);
             var container = newBar.GetComponent<EnemyHealthContainer>();
             container.HealthBehavior = this;
         }
