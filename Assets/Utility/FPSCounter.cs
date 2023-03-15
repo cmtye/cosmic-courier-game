@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Utility
 {
+    [RequireComponent(typeof(TextMeshProUGUI))]
     public class FPSCounter : MonoBehaviour
     {
         [SerializeField] private float timeBetweenUpdates;

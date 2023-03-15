@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,27 +5,33 @@ namespace Enemy_Scripts.Spawning_Scripts
 {
     public class ObjectPool : MonoBehaviour
     {
-        [SerializeField] private GameObject prefab;
-        [SerializeField] private int poolSize = 10;
         private List<GameObject> _pool;
         private GameObject _poolContainer;
+        private int _poolIndex;
+        
+        public static int ActiveInPool { get; private set; }
 
-        private void Awake()
+        public void CreatePool(string poolName)
         {
+            ActiveInPool = 0;
+            _poolIndex = 0;
             _pool = new List<GameObject>();
-            _poolContainer = new GameObject($"Pool - {prefab.name}");
-            CreatePool();
+            if (_poolContainer)
+                Destroy(_poolContainer);
+            
+            _poolContainer = new GameObject($"Pool - {poolName}");
         }
 
-        private void CreatePool()
+        public void AppendPool(GameObject prefab, int appendSize)
         {
-            for (var i = 0; i < poolSize; i++)
+            for (var i = 0; i < appendSize; i++)
             {
-                _pool.Add(CreateInstance());
+                _pool.Add(CreateInstance(prefab));
+                ActiveInPool++;
             }
         }
 
-        private GameObject CreateInstance()
+        private GameObject CreateInstance(GameObject prefab)
         {
             var newInstance = Instantiate(prefab, _poolContainer.transform);
             newInstance.SetActive(false);
@@ -35,24 +40,19 @@ namespace Enemy_Scripts.Spawning_Scripts
 
         public GameObject GetInstanceFromPool()
         {
-            for (var i = 0; i < _pool.Count; i++)
+            if (!_pool[_poolIndex].activeInHierarchy)
             {
-                if (!_pool[i].activeInHierarchy)
-                {
-                    return _pool[i];
-                }
+                var requestedInstance = _pool[_poolIndex];
+                _poolIndex++;
+                return requestedInstance;
             }
-            return CreateInstance();
+            return null;
         }
 
         public static void ReturnToPool(GameObject instance)
         {
-            instance.SetActive(false);
-        }
-
-        public static IEnumerator ReturnToPoolWithDelay(GameObject instance, float delay)
-        {
-            yield return new WaitForSeconds(delay);
+            // Maybe some way to make this variable non-static?
+            ActiveInPool--;
             instance.SetActive(false);
         }
     }

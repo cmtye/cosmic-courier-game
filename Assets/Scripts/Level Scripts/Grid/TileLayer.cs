@@ -5,6 +5,7 @@ namespace Level_Scripts.Grid
 {
     public class TileLayer
     {
+        // ReSharper disable once FieldCanBeMadeReadOnly.Local
         private Dictionary<Vector2, GameObject> _tileGrid;
 
         public TileLayer(Dictionary<Vector2, GameObject> grid)

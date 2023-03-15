@@ -10,6 +10,7 @@ namespace Level_Scripts.Grid
     public class GridManager : Singleton<GridManager>
     {
         [Space (20)]
+        // ReSharper disable once NotAccessedField.Local
         [SerializeField] [InspectorButton(nameof(OnButtonClicked))] private string generateNewTileLayer;
         
         [Tooltip("Check this box if you want to generate a new tilemap and layer below any existing ones")]

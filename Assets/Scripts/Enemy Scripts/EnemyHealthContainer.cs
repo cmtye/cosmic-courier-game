@@ -70,7 +70,7 @@ namespace Enemy_Scripts
         }
 
         // Health bars rotate towards cameras location. Gives 3D view of health bar.
-        private void AlignCamera()
+        /*private void AlignCamera()
         {
             if (!_mainCamera) return;
         
@@ -83,6 +83,6 @@ namespace Enemy_Scripts
             var rotation = Quaternion.LookRotation(forward, up);
             rotation *= Quaternion.Euler(0, 0, 90);
             transform.rotation = rotation;
-        }
+        }*/
     }
 }
