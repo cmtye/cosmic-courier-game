@@ -1,36 +1,44 @@
 using System;
+using System.Linq;
+using Enemy_Scripts.Spawning_Scripts;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Enemy_Scripts
 {
     [RequireComponent(typeof(EnemyBehavior))]
     public class EnemyHealthBehavior : MonoBehaviour
     {
-        public static event Action<EnemyBehavior> OnEnemyKilled;
-        public static event Action<EnemyBehavior> OnEnemyHit;
+        public static event Action<EnemyBehavior, EnemyHealthBehavior> OnEnemyKilled;
+        public static event Action<EnemyBehavior, EnemyHealthBehavior> OnEnemyHit;
         
         [SerializeField] private GameObject healthBarPrefab;
         [SerializeField] private Transform barTransform;
         [SerializeField] private float initialHealth = 10f;
+        [SerializeField] private float maxHealth = 10f;
 
         public float MaxHealth { get; private set; }
         public float CurrentHealth { get; private set; }
-
-        private Image _healthBar;
+        
         private EnemyBehavior _enemy;
         private Coroutine _transitionCoroutine;
 
         private void Start()
         {
-            MaxHealth = 10f;
-            CreateHealthBar();
+            MaxHealth = maxHealth;
             CurrentHealth = initialHealth;
+            CreateHealthBar();
             _enemy = GetComponent<EnemyBehavior>();
         }
 
-        public void DealDamage(float damageReceived)
+        public void DealDamage(float damageReceived, Vulnerability damageType)
         {
+            // Vulnerability to normal attacks means vulnerability to everything
+            if (!_enemy.Vulnerabilities.Contains(Vulnerability.Standard))
+            {
+                // Otherwise the enemy needs to be specifically vulnerable to be damaged
+                if (!_enemy.Vulnerabilities.Contains(damageType)) return;
+            }
+            
             CurrentHealth -= damageReceived;
             if (CurrentHealth <= 0)
             {
@@ -39,7 +47,7 @@ namespace Enemy_Scripts
             }
             else
             {
-                OnEnemyHit?.Invoke(_enemy);
+                OnEnemyHit?.Invoke(_enemy, this);
             }
         }
         
@@ -51,30 +59,10 @@ namespace Enemy_Scripts
             container.HealthBehavior = this;
         }
 
-        /*private void UpdateHealthBar()
-        {
-            if (_transitionCoroutine != null)
-            {
-                StopCoroutine(_transitionCoroutine);
-                _transitionCoroutine = StartCoroutine(UpdateHealth());
-            }
-            else
-            {
-                _transitionCoroutine = StartCoroutine(UpdateHealth());
-            }
-        }*/
-        
-        /*private IEnumerator UpdateHealth()
-        {
-            while(Math.Abs(_healthBar.fillAmount - CurrentHealth / MaxHealth) > 0.0001f) {
-                _healthBar.fillAmount = Mathf.Lerp(_healthBar.fillAmount, CurrentHealth / MaxHealth, Time.deltaTime * 10f);
-                yield return null;
-            }
-        }*/
-
         private void Die()
         {
-            OnEnemyKilled?.Invoke(_enemy);
+            OnEnemyKilled?.Invoke(_enemy, this);
+            ObjectPool.ReturnToPool(gameObject);
         }
     }
 }

@@ -176,6 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
+  immuneTo: 00000000
   dropTable: {fileID: 0}
   slowDownCurve:
     serializedVersion: 2
@@ -198,3 +199,4 @@ MonoBehaviour:
   healthBarPrefab: {fileID: 8827475580013122189, guid: 0bbc5c28ecdc3e948916f02b6c9b0f66, type: 3}
   barTransform: {fileID: 5949697660490112332}
   initialHealth: 10
+  maxHealth: 10

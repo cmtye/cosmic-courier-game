@@ -13,6 +13,7 @@ namespace Enemy_Scripts.Spawning_Scripts
         private int _wavesIndex;
 
         private ObjectPool _pool;
+        private WaitForSeconds _cacheWait;
 
         private void Start()
         {
@@ -47,9 +48,10 @@ namespace Enemy_Scripts.Spawning_Scripts
             var subWaves = waves[_wavesIndex].SubWaves;
             foreach (var subWave in subWaves)
             {
+                _cacheWait = new WaitForSeconds(subWave.spawnDelay);
                 for (var i = 0; i < subWave.spawnCount; i++)
                 {
-                    yield return new WaitForSeconds(subWave.spawnDelay);
+                    yield return _cacheWait;
                     SpawnEnemy();
                 }
             }
