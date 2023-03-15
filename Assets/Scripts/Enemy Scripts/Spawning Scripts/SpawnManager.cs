@@ -25,7 +25,7 @@ namespace Enemy_Scripts.Spawning_Scripts
         {
             if (_wavesIndex == waves.Length) return;
             // Potentially a better way to check current active in pool through events
-            if (ObjectPool.ActiveInPool != 0) return;
+            if (_pool.ActiveInPool != 0) return;
 
             _pool.CreatePool($"Wave {_wavesIndex + 1}");
             var subWaves = waves[_wavesIndex].SubWaves;
@@ -40,6 +40,7 @@ namespace Enemy_Scripts.Spawning_Scripts
         private void SpawnEnemy()
         {
             var newEnemy = _pool.GetInstanceFromPool();
+            newEnemy.GetComponent<EnemyBehavior>().parentPool = _pool;
             newEnemy.SetActive(true);
         }
         

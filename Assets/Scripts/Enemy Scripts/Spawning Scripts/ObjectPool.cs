@@ -9,7 +9,7 @@ namespace Enemy_Scripts.Spawning_Scripts
         private GameObject _poolContainer;
         private int _poolIndex;
         
-        public static int ActiveInPool { get; private set; }
+        public int ActiveInPool { get; private set; }
 
         public void CreatePool(string poolName)
         {
@@ -49,7 +49,7 @@ namespace Enemy_Scripts.Spawning_Scripts
             return null;
         }
 
-        public static void ReturnToPool(GameObject instance)
+        public void ReturnToPool(GameObject instance)
         {
             // Maybe some way to make this variable non-static?
             ActiveInPool--;

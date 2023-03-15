@@ -25,11 +25,10 @@ public class CharacterMovement : MonoBehaviour
     // Determine behaviors for different floor types
     // The Vector2s store <speed, moveSmoothing>
     [SerializeField] private Vector2 normalFloorBehavior = new Vector2(5f, 0.1f);
-    [SerializeField] private Vector2 pathFloorBehavior = new Vector2(5f, 0.1f);
     [SerializeField] private Vector2 slippyFloorBehavior = new Vector2(7f, 0.5f);
     [SerializeField] private Vector2 stickyFloorBehavior = new Vector2(3f, 0.05f);
 
-    private Dictionary<string, Vector2> floorBehaviorLookup;
+    private Dictionary<string, Vector2> _floorBehaviorLookup;
 
         
     private void Awake()
@@ -40,9 +39,7 @@ public class CharacterMovement : MonoBehaviour
 
         _gravity = 9.81f;
 
-        floorBehaviorLookup = new Dictionary<string, Vector2>{
-            {"Normal", normalFloorBehavior},
-            {"Path", pathFloorBehavior},
+        _floorBehaviorLookup = new Dictionary<string, Vector2>{
             {"Slippy", slippyFloorBehavior},
             {"Sticky", stickyFloorBehavior}};
     }
@@ -51,19 +48,25 @@ public class CharacterMovement : MonoBehaviour
     public void UpdateFloorBehavior()
     {
         // Make a vector downward to get the tile below
-        var fwd = transform.TransformDirection(Vector3.down) * 1;
+        var currTransform = transform;
+        var fwd = (currTransform).TransformDirection(Vector3.down) * 1;
 
         //Default to normal floor behavior if tag is not found
-        var floorBehavior = normalFloorBehavior;
 
         // Check layers for a hit, return if nothing (can change valid layers as need be)
-        Debug.DrawRay(transform.position, fwd, Color.green);
+        Debug.DrawRay(currTransform.position, fwd, Color.green);
         if (Physics.Raycast(transform.position, fwd, out var hit, 1))
         {
-            if(floorBehaviorLookup.TryGetValue(hit.transform.tag, out floorBehavior))
+            if(_floorBehaviorLookup.TryGetValue(hit.transform.tag, out var floorBehavior))
             {
                 speed = floorBehavior.x;
                 moveSmoothing = floorBehavior.y;
+            }
+            else
+            {
+                // Altering this code so that tags that aren't specified as special default to normal behavior
+                speed = normalFloorBehavior.x;
+                moveSmoothing = normalFloorBehavior.y;
             }
         }
     }

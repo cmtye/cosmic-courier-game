@@ -62,7 +62,7 @@ namespace Enemy_Scripts
         private void Die()
         {
             OnEnemyKilled?.Invoke(_enemy, this);
-            ObjectPool.ReturnToPool(gameObject);
+            _enemy.parentPool.ReturnToPool(gameObject);
         }
     }
 }

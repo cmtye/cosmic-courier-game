@@ -25,7 +25,8 @@ namespace Enemy_Scripts
         [SerializeField] private ElementalTypes[] vulnerableTo = { ElementalTypes.Standard };
         [SerializeField] private GameObject itemDrop;
         // [SerializeField] private AnimationCurve slowDownCurve;
-        
+
+        [HideInInspector] public ObjectPool parentPool;
         private List<Vector3> _path;
         private Coroutine _pathCoroutine;
         private Coroutine _moveCoroutine;
@@ -104,7 +105,7 @@ namespace Enemy_Scripts
             //_enemyHealth.ResetHealth();
             StopCoroutine(_moveCoroutine);
             StopCoroutine(_pathCoroutine);
-            ObjectPool.ReturnToPool(gameObject);
+            parentPool.ReturnToPool(gameObject);
         }
     }
 }
