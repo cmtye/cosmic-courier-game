@@ -7,6 +7,7 @@ namespace Enemy_Scripts.Spawning_Scripts
     public class SpawnManager : MonoBehaviour
     {
         [SerializeField] private WaveMap[] waves;
+        [SerializeField] private Transform spawnPoint;
         
         private float _spawnDelay;
         private float _spawnTimer;
@@ -17,6 +18,7 @@ namespace Enemy_Scripts.Spawning_Scripts
 
         private void Start()
         {
+            transform.position = spawnPoint.position;
             _wavesIndex = 0;
             _pool = GetComponent<ObjectPool>();
         }

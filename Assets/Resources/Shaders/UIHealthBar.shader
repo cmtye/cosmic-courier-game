@@ -4,7 +4,11 @@ Shader "UI/HealthBar" {
         _Fill ("Fill", float) = 0
     }
     SubShader {
-        Tags { "Queue"="Overlay" }
+        Tags 
+        { 
+            "Queue"="Overlay" 
+            "UniversalMaterialType" = "Lit"
+        }
         LOD 100
 
         Pass {

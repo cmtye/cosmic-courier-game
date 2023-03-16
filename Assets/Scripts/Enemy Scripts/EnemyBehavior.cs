@@ -27,6 +27,7 @@ namespace Enemy_Scripts
         // [SerializeField] private AnimationCurve slowDownCurve;
 
         [HideInInspector] public ObjectPool parentPool;
+        private EnemyHealthBehavior _healthBehavior;
         private List<Vector3> _path;
         private Coroutine _pathCoroutine;
         private Coroutine _moveCoroutine;
@@ -36,6 +37,7 @@ namespace Enemy_Scripts
         private void Start()
         {
             Vulnerabilities = vulnerableTo;
+            _healthBehavior = GetComponent<EnemyHealthBehavior>();
             _path = PathManager.Instance.PathVectors;
             _pathCoroutine = StartCoroutine(MoveAlongPath());
         }
@@ -52,12 +54,18 @@ namespace Enemy_Scripts
             EnemyHealthBehavior.OnEnemyKilled -= DropResources;
         }
 
-        private void DropResources(EnemyBehavior enemy, EnemyHealthBehavior health)
+        private void DropResources(EnemyBehavior enemy)
         {
-            StopCoroutine(_moveCoroutine);
-            StopCoroutine(_pathCoroutine);
+            if (enemy != this) return;
+            
+            StopCoroutine(enemy._moveCoroutine);
+            StopCoroutine(enemy._pathCoroutine);
 
-            if (!itemDrop) return;
+            if (!itemDrop)
+            {
+                enemy.parentPool.ReturnToPool(enemy.gameObject);
+                return;
+            }
             
             if (Random.value > 0.2)
             {
@@ -69,9 +77,10 @@ namespace Enemy_Scripts
                     continuedDropChance += 0.2;
                 }
             }
+            enemy.parentPool.ReturnToPool(enemy.gameObject);
         }
         
-        private void HitStun(EnemyBehavior enemy, EnemyHealthBehavior health)
+        private void HitStun(EnemyBehavior enemy)
         {
             // Could be implemented as diminishing returns or as a towers unique ability
         }
@@ -106,6 +115,11 @@ namespace Enemy_Scripts
             StopCoroutine(_moveCoroutine);
             StopCoroutine(_pathCoroutine);
             parentPool.ReturnToPool(gameObject);
+        }
+
+        public EnemyHealthBehavior GetHealth()
+        {
+            return _healthBehavior;
         }
     }
 }

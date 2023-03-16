@@ -8,6 +8,7 @@ TagManager:
   - Slippy
   - Normal
   - Path
+  - Enemy
   layers:
   - Default
   - TransparentFX

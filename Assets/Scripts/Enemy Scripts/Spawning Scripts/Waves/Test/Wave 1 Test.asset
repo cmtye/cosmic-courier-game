@@ -17,3 +17,11 @@ MonoBehaviour:
     enemyPrefab: {fileID: 6958277655355526180, guid: 636bae697fab46a438263d4935e8e4cc, type: 3}
     spawnCount: 10
     spawnDelay: 0.5
+  - subWaveTag: 5 Enemy 2
+    enemyPrefab: {fileID: 6958277655355526180, guid: 2f009ca9bc928cb4da65c87138351109, type: 3}
+    spawnCount: 5
+    spawnDelay: 0.25
+  - subWaveTag: 5 Enemy 3
+    enemyPrefab: {fileID: 6958277655355526180, guid: 490dc8e206ef1f94295a0051b3e61e3a, type: 3}
+    spawnCount: 5
+    spawnDelay: 2

@@ -35,7 +35,7 @@ public class CharacterMovement : MonoBehaviour
     {
         _characterController = GetComponent<CharacterController>();
 
-        _camera = (Camera)FindObjectOfType(typeof(Camera));
+        _camera = Camera.main;
 
         _gravity = 9.81f;
 

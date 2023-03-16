@@ -8,8 +8,8 @@ namespace Enemy_Scripts
     [RequireComponent(typeof(EnemyBehavior))]
     public class EnemyHealthBehavior : MonoBehaviour
     {
-        public static event Action<EnemyBehavior, EnemyHealthBehavior> OnEnemyKilled;
-        public static event Action<EnemyBehavior, EnemyHealthBehavior> OnEnemyHit;
+        public static event Action<EnemyBehavior> OnEnemyKilled;
+        public static event Action<EnemyBehavior> OnEnemyHit;
         
         [SerializeField] private GameObject healthBarPrefab;
         [SerializeField] private Transform healthBarTransform;
@@ -47,7 +47,7 @@ namespace Enemy_Scripts
             }
             else
             {
-                OnEnemyHit?.Invoke(_enemy, this);
+                OnEnemyHit?.Invoke(_enemy);
             }
         }
         
@@ -61,8 +61,7 @@ namespace Enemy_Scripts
 
         private void Die()
         {
-            OnEnemyKilled?.Invoke(_enemy, this);
-            _enemy.parentPool.ReturnToPool(gameObject);
+            OnEnemyKilled?.Invoke(_enemy);
         }
     }
 }

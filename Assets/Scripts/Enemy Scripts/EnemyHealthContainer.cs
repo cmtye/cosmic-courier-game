@@ -28,10 +28,10 @@ namespace Enemy_Scripts
             EnemyHealthBehavior.OnEnemyHit -= UpdateParams;
         }
 
-        private void UpdateParams(EnemyBehavior enemy, EnemyHealthBehavior enemyHealth)
+        private void UpdateParams(EnemyBehavior enemy)
         {
             // We can use the hit event to update the health parameters instead of Update to save cycles
-            if (HealthBehavior != enemyHealth) return;
+            if (HealthBehavior != enemy.GetHealth()) return;
             
             if (HealthBehavior.CurrentHealth <= HealthBehavior.MaxHealth) {
                 if (transform.childCount > 0) transform.GetChild(0).gameObject.SetActive(true);
