@@ -2,6 +2,7 @@ using Enemy_Scripts;
 using Level_Scripts.Grid;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Utility.Interaction;
 
 [RequireComponent(typeof(CharacterMovement))]
 [RequireComponent(typeof(CharacterController))]
