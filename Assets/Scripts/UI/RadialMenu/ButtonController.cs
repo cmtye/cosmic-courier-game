@@ -1,34 +1,37 @@
 using UnityEngine;
 using TMPro;
 
-public class ButtonContoller : MonoBehaviour
+namespace UI.RadialMenu
 {
-    public int ID;
-    private Animator _animator;
-    [SerializeField] private string itemName;
-    public TextMeshProUGUI itemText;
-    private bool _selected = false;
-
-
-    void Start()
+    public class ButtonContoller : MonoBehaviour
     {
-        _animator = GetComponent<Animator>();
-    }
+        public int ID;
+        private Animator _animator;
+        [SerializeField] private string itemName;
+        public TextMeshProUGUI itemText;
+        private bool _selected = false;
 
-    void Update()
-    {
 
-    }
+        void Start()
+        {
+            _animator = GetComponent<Animator>();
+        }
 
-    public void HoverEnter()
-    {
-        _animator.SetBool("Hover", true);
-        itemText.text = itemName;
-    }
+        void Update()
+        {
 
-    public void HoverExit()
-    {
-        _animator.SetBool("Hover", false);
-        itemText.text = itemName;
+        }
+
+        public void HoverEnter()
+        {
+            _animator.SetBool("Hover", true);
+            itemText.text = itemName;
+        }
+
+        public void HoverExit()
+        {
+            _animator.SetBool("Hover", false);
+            itemText.text = itemName;
+        }
     }
 }
