@@ -9071,6 +9071,7 @@ GameObject:
   - component: {fileID: 411030782}
   - component: {fileID: 411030784}
   - component: {fileID: 411030783}
+  - component: {fileID: 411030785}
   m_Layer: 5
   m_Name: ResourcesBar
   m_TagString: Untagged
@@ -9148,6 +9149,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 411030781}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &411030785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411030781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79c7d8f8ff8839447b8118c067a5d1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentValue: 0
+  maxValue: 10
 --- !u!1001 &411442578
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32121,6 +32136,7 @@ GameObject:
   - component: {fileID: 1455042494}
   - component: {fileID: 1455042496}
   - component: {fileID: 1455042495}
+  - component: {fileID: 1455042497}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -32198,6 +32214,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1455042493}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1455042497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455042493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79c7d8f8ff8839447b8118c067a5d1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentValue: 10
+  maxValue: 10
 --- !u!1001 &1456848445
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45896,6 +45926,7 @@ GameObject:
   - component: {fileID: 5962586172320262279}
   - component: {fileID: 7405509319540925267}
   - component: {fileID: 2048586244842013423}
+  - component: {fileID: 8827475581094836877}
   m_Layer: 5
   m_Name: DepositBar
   m_TagString: Untagged
@@ -45903,3 +45934,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8827475581094836877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8827475581094836876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79c7d8f8ff8839447b8118c067a5d1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentValue: 0
+  maxValue: 10
