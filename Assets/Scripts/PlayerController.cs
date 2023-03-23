@@ -68,6 +68,7 @@ public class PlayerController : MonoBehaviour
 
         if (selectedObject.GetComponent<Interactable>())
         {
+            Debug.Log("Trying to interact");
             return selectedObject.GetComponent<Interactable>()?.Interact();
         }
 
