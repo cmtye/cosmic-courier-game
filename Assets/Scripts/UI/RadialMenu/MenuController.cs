@@ -1,37 +1,74 @@
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System.Collections.Generic;
+using UnityEngine.InputSystem;
+using TMPro;
+
 
 namespace UI.RadialMenu
 {
     public class MenuController : MonoBehaviour
     {
-        public Ring Data;
+        private Ring Data;
         public RingPiece RingCakePiecePrefab;
         public float GapWidthDegree = 1f;
-        //public Action<string> callback;
         protected RingPiece[] Pieces;
-        protected MenuController Parent;
-        public string Path;
+        //protected MenuController Parent;
+
+        private TextMeshProUGUI _selectionText;
+
+        private int _numButtons;
+
+        void Awake()
+        {
+            _selectionText = transform.Find("Selection Text").gameObject.GetComponent<TextMeshProUGUI>();
+        }
 
         void Start()
         {
-            Display();
+            Pieces = new RingPiece[0];
+            SetText("");
+            SetActive(false);
         }
 
         void Update()
         {
-            
+            HandleMouse();
         }
 
-        void Display()
+
+        public void Setup(Ring ringData)
         {
-            var numButtons = Data.buttons.Length;
-            var stepLength = 360f / numButtons;
+            Reset();
+            Data = ringData;
+            _numButtons = Data.buttons.Length;
+            Generate();
+        }
+
+        public void SetActive(bool active)
+        {
+            gameObject.SetActive(active);
+        }
+
+
+        private void Reset()
+        {
+            foreach (var piece in Pieces)
+            {
+                Destroy(piece.gameObject);
+            }
+        }
+
+        private void Generate()
+        {
+            var stepLength = 360f / _numButtons;
             var iconDist = Vector3.Distance(RingCakePiecePrefab.Icon.transform.position, RingCakePiecePrefab.CakePiece.transform.position);
 
             //Position it
-            Pieces = new RingPiece[numButtons];
+            Pieces = new RingPiece[_numButtons];
 
-            for (int i = 0; i < numButtons; i++)
+            for (int i = 0; i < _numButtons; i++)
             {
                 Pieces[i] = Instantiate(RingCakePiecePrefab, transform);
                 // Set root element
@@ -39,7 +76,7 @@ namespace UI.RadialMenu
                 Pieces[i].transform.localRotation = Quaternion.identity;
 
                 // Set piece position
-                Pieces[i].CakePiece.fillAmount = 1f / numButtons - GapWidthDegree / 360f;
+                Pieces[i].CakePiece.fillAmount = 1f / _numButtons - GapWidthDegree / 360f;
                 Pieces[i].CakePiece.transform.localPosition = Vector3.zero;
                 Pieces[i].CakePiece.transform.localRotation = Quaternion.Euler(0, 0, -stepLength / 2f + GapWidthDegree / 2f + i * stepLength);
                 Pieces[i].CakePiece.color = new Color(1f, 1f, 1f, 0.5f);
@@ -48,8 +85,57 @@ namespace UI.RadialMenu
                 Pieces[i].Icon.transform.localPosition = Pieces[i].CakePiece.transform.localPosition + Quaternion.AngleAxis(i * stepLength, Vector3.forward) * Vector3.up * iconDist;
                 Pieces[i].Icon.sprite = Data.buttons[i].Icon;
 
+                // Set text 
+                Pieces[i].Text = Data.buttons[i].Text;
+
             }
         }
+
+        private void HandleMouse() 
+        {
+            var clicked = Mouse.current.leftButton.wasReleasedThisFrame;
+
+            Vector3 mousePosition = Mouse.current.position.ReadValue(); 
+            var stepLength = 360f / _numButtons;
+
+            var mouseAngle = ModuloAngle(Vector3.SignedAngle(Vector3.up, mousePosition - transform.position, Vector3.forward) + stepLength / 2f);
+            var outer = (mousePosition - transform.position).magnitude > 100;
+
+            var hoveredIndex = outer ? (int)(mouseAngle / stepLength) : -1;
+
+            for (int i = 0; i < _numButtons; i++)
+            {
+                if(i == hoveredIndex)
+                {
+                    Pieces[i].Recolor(true);
+                    SetText(Pieces[i].Text);
+                    if (clicked)
+                        Pieces[i].Execute();
+                }
+                else
+                    Pieces[i].Recolor(false);
+            }
+
+            if (!outer)
+            {
+                SetText("Cancel");
+            }
+            
+            // If click on the inside -> exit
+            if (!outer && clicked)
+            {
+                SetActive(false);
+            }
+        }
+
+        private void SetText(string text)
+        {
+            _selectionText.SetText(text);
+        }
+
+
+        private float ModuloAngle(float a) => (a + 360f) % 360f;
+
 
     }
 }
