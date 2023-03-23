@@ -1,23 +1,13 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Enemy_Scripts.Spawning_Scripts;
 using Level_Scripts;
+using Tower_Scripts;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using Random = UnityEngine.Random;
 
 namespace Enemy_Scripts
 {
-    public enum ElementalTypes 
-    { 
-        Standard,
-        Solar, 
-        Lunar, 
-        Storm, 
-        Arcane
-    }
-
     [RequireComponent(typeof(EnemyHealthBehavior))]
     public class EnemyBehavior : MonoBehaviour
     {

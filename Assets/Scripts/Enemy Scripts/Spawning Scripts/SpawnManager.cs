@@ -43,6 +43,7 @@ namespace Enemy_Scripts.Spawning_Scripts
         {
             var newEnemy = _pool.GetInstanceFromPool();
             newEnemy.GetComponent<EnemyBehavior>().parentPool = _pool;
+            newEnemy.transform.position = spawnPoint.position;
             newEnemy.SetActive(true);
         }
         

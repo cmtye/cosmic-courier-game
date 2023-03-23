@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using Enemy_Scripts.Spawning_Scripts;
+using Tower_Scripts;
 using UnityEngine;
 
 namespace Enemy_Scripts

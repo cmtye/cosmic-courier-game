@@ -43,7 +43,7 @@ namespace Level_Scripts
             var pathIndex = 1;
             var currPosition = pathStart.transform.position;
             _pathNodes.Add(currPosition, pathIndex);
-            PathVectors.Add(currPosition);
+            PathVectors.Add(new Vector3(currPosition.x,currPosition.y += 1, currPosition.z));
 
             while (pathFound)
             {
@@ -78,7 +78,8 @@ namespace Level_Scripts
                             currPosition = nextPosition;
                         
                             _pathNodes.Add(nextPosition, pathIndex);
-                            PathVectors.Add(nextPosition);
+                            
+                            PathVectors.Add(new Vector3(nextPosition.x,nextPosition.y += 1, nextPosition.z));
                             break;
                         }
                     }
@@ -111,7 +112,7 @@ namespace Level_Scripts
                 pathIndex++;
                 pathFound = true;
                 _pathNodes[leastRecentPosition] = pathIndex;
-                PathVectors.Add(leastRecentPosition);
+                PathVectors.Add(new Vector3(leastRecentPosition.x,leastRecentPosition.y += 1, leastRecentPosition.z));
                 currPosition = leastRecentPosition;
 
             }
