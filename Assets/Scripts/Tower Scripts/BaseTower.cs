@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Enemy_Scripts;
 using Tower_Scripts.Components;
 using UnityEngine;
@@ -71,96 +72,32 @@ namespace Tower_Scripts
 
         private void GetTargetEnemy()
         {
-            switch (towerData.info.targetType)
+            if (enemiesInRange.Count == 0)
             {
-                case TargetType.Close:
-                {
-                    if (enemiesInRange.Count == 0)
-                    {
-                        targetEnemy = null;
-                        break;
-                    }
-                    _targetDistance = float.MaxValue;
-                    
-                    foreach (var e in enemiesInRange)
-                    {
-                        if (!e) continue;
-                        
-                        var enemyDistance = Vector3.Distance(e.transform.position, transform.position);
-                        if (enemyDistance < _targetDistance)
-                        {
-                            targetEnemy = e;
-                            _targetDistance = enemyDistance;
-                        }
-                    }
-                    break;
-                }
-                case TargetType.Far:
-                {
-                    if (enemiesInRange.Count == 0)
-                    {
-                        targetEnemy = null;
-                        break;
-                    }
-                    _targetDistance = 0;
-
-                    foreach (var e in enemiesInRange)
-                    {
-                        if (!e) continue;
-                        var enemyDistance = Vector3.Distance(e.transform.position, transform.position);
-                        if (enemyDistance > _targetDistance)
-                        {
-                            targetEnemy = e;
-                            _targetDistance = enemyDistance;
-                        }
-                    }
-                    break;
-                }
-                case TargetType.Strong:
-                {
-                    if (enemiesInRange.Count == 0)
-                    {
-                        targetEnemy = null;
-                        break;
-                    }
-                    _targetHealth = 0;
-                    
-                    foreach (var e in enemiesInRange)
-                    {
-                        if (!e) continue;
-                        var enemyMaxHealth = e.GetHealth().MaxHealth;
-                        if (enemyMaxHealth > _targetHealth)
-                        {
-                            targetEnemy = e;
-                            _targetHealth = enemyMaxHealth;
-                        }
-                    }
-                    break;
-                }
-                case TargetType.Weak:
-                {
-                    if (enemiesInRange.Count == 0)
-                    {
-                        targetEnemy = null;
-                        break;
-                    }
-                    _targetHealth = float.MaxValue;
-                    
-                    foreach (var e in enemiesInRange)
-                    {
-                        if (!e) continue;
-                        var enemyCurrentHealth = e.GetHealth().CurrentHealth;
-                        if (enemyCurrentHealth < _targetHealth)
-                        {
-                            targetEnemy = e;
-                            _targetHealth = enemyCurrentHealth;
-                        }
-                    }
-                    break;
-                }
-                default:
-                    throw new ArgumentOutOfRangeException();
+                targetEnemy = null;
+                return;
             }
+
+            targetEnemy = towerData.info.targetType switch
+            {
+                TargetType.Close => enemiesInRange
+                    .Where(e => e)
+                    .OrderBy(e => Vector3.Distance(e.transform.position, transform.position))
+                    .FirstOrDefault(),
+                TargetType.Far => enemiesInRange
+                    .Where(e => e)
+                    .OrderByDescending(e => Vector3.Distance(e.transform.position, transform.position))
+                    .FirstOrDefault(),
+                TargetType.Strong => enemiesInRange
+                    .Where(e => e)
+                    .OrderByDescending(e => e.GetHealth().MaxHealth)
+                    .FirstOrDefault(),
+                TargetType.Weak => enemiesInRange
+                    .Where(e => e)
+                    .OrderBy(e => e.GetHealth().CurrentHealth)
+                    .FirstOrDefault(),
+                _ => throw new ArgumentOutOfRangeException()
+            };
         }
         private void OnTriggerEnter(Collider other)
         {

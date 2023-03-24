@@ -16,6 +16,6 @@ MonoBehaviour:
     towerTag: Test Tower
     towerRange: 4
     towerDamage: 2
-    attackTimer: 0.5
+    attackTimer: 0.2
     damageType: 0
     targetType: 2
