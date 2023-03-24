@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 985a37480650bd54bb8ce8b7d0ef5d8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 1
   vulnerableTo: 00000000
   itemDrop: {fileID: 0}
   parentPool: {fileID: 0}

@@ -1,3 +1,4 @@
+using System;
 using Enemy_Scripts;
 using Level_Scripts.Grid;
 using UnityEngine;
@@ -9,6 +10,8 @@ using Utility.Interaction;
 [RequireComponent(typeof(GridSelector))]
 public class PlayerController : MonoBehaviour
 {
+    public static event Action<GameObject> OnSlotChanged;
+    
     // The players movement and input variables.
     private PlayerInputActions _controls;
     private CharacterMovement _characterMovement;

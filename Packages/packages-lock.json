@@ -1,5 +1,21 @@
 {
   "dependencies": {
+    "com.andreadev3d.thumbcreator": {
+      "version": "https://github.com/AndreaDev3D/ThumbCreator.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "50b06d0f1fb6f018708fa0b7bd2db186cfa6bde1"
+    },
+    "com.siccity.gltfutility": {
+      "version": "https://github.com/siccity/gltfutility.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "2.0.0"
+      },
+      "hash": "96619fcd48ffe5c4ad122837a21601a6f7c20080"
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
@@ -104,6 +120,13 @@
     },
     "com.unity.mathematics": {
       "version": "1.2.6",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.nuget.newtonsoft-json": {
+      "version": "3.0.2",
       "depth": 1,
       "source": "registry",
       "dependencies": {},

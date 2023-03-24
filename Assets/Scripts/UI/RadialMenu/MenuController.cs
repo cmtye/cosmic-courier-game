@@ -17,6 +17,7 @@ namespace UI.RadialMenu
         //protected MenuController Parent;
 
         private TextMeshProUGUI _selectionText;
+        private RectTransform _rectTransform;
 
         private int _numButtons;
 
@@ -27,6 +28,7 @@ namespace UI.RadialMenu
 
         void Start()
         {
+            _rectTransform = GetComponent<RectTransform>();
             Pieces = new RingPiece[0];
             SetText("");
             SetActive(false);
@@ -77,7 +79,7 @@ namespace UI.RadialMenu
                 // Set piece position
                 Pieces[i].CakePiece.fillAmount = 1f / _numButtons - GapWidthDegree / 360f;
                 Pieces[i].CakePiece.transform.localPosition = Vector3.zero;
-                Pieces[i].CakePiece.transform.localRotation = Quaternion.Euler(0, 0, -stepLength / 2f + GapWidthDegree / 2f + i * stepLength);
+                Pieces[i].CakePiece.transform.localRotation = Quaternion.Euler(0, 0, -stepLength / 2f + GapWidthDegree / 2f + (i + 1) * stepLength);
                 Pieces[i].Recolor(false);
 
                 // Set icon position
@@ -99,8 +101,9 @@ namespace UI.RadialMenu
             Vector3 mousePosition = Mouse.current.position.ReadValue(); 
             var stepLength = 360f / _numButtons;
 
-            var mouseAngle = ModuloAngle(Vector3.SignedAngle(Vector3.up, mousePosition - transform.position, Vector3.forward) + stepLength / 2f);
-            var outer = (mousePosition - transform.position).magnitude > 100;
+            var transformPosition = transform.position;
+            var mouseAngle = ModuloAngle(Vector3.SignedAngle(Vector3.up, mousePosition - transformPosition, Vector3.forward) + stepLength / 2f);
+            var outer = (mousePosition - transformPosition).magnitude > transform.lossyScale.x * (_rectTransform.rect.width / 2.2);
 
             var hoveredIndex = outer ? (int)(mouseAngle / stepLength): -1;
 
