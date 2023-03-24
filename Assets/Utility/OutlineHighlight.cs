@@ -106,8 +106,9 @@ namespace Utility
     }
 
     private void OnEnable() {
-      foreach (var renderer in _renderers) {
+      _renderers = GetComponentsInChildren<Renderer>();
 
+      foreach (var renderer in _renderers) {
         // Append outline shaders
         var materials = renderer.sharedMaterials.ToList();
 
@@ -145,7 +146,6 @@ namespace Utility
 
     private void OnDisable() {
       foreach (var renderer in _renderers) {
-
         // Remove outline shaders
         var materials = renderer.sharedMaterials.ToList();
 
