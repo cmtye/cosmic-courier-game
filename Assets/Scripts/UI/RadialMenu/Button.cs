@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace UI.RadialMenu
@@ -8,8 +7,6 @@ namespace UI.RadialMenu
     {
         public string Text;
         public Sprite Icon;
-
-        // TODO: event?
-        public Action OnClick;
+        public GameEvent Event;
     }
 }

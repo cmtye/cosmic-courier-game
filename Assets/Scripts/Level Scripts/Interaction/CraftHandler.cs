@@ -33,11 +33,16 @@ namespace Utility.Interaction
                 var distanceToPlayer = Vector3.Distance (_player.transform.position, transform.position);
                 if (distanceToPlayer > distanceThreshold)
                 {
-                    _menu.SetActive(false);
+                    HideMenu();
                     yield break;
                 }
                 yield return new WaitForSeconds(.1f);
             }
+        }
+
+        public void HideMenu()
+        {
+            _menu.SetActive(false);
         }
 
     }

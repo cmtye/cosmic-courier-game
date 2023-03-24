@@ -10,7 +10,7 @@ namespace UI.RadialMenu
 {
     public class MenuController : MonoBehaviour
     {
-        private Ring Data;
+        private Ring _data;
         public RingPiece RingCakePiecePrefab;
         public float GapWidthDegree = 1f;
         protected RingPiece[] Pieces;
@@ -41,8 +41,8 @@ namespace UI.RadialMenu
         public void Setup(Ring ringData)
         {
             Reset();
-            Data = ringData;
-            _numButtons = Data.buttons.Length;
+            _data = ringData;
+            _numButtons = _data.buttons.Length;
             Generate();
         }
 
@@ -63,7 +63,6 @@ namespace UI.RadialMenu
         private void Generate()
         {
             var stepLength = 360f / _numButtons;
-            var iconDist = Vector3.Distance(RingCakePiecePrefab.Icon.transform.position, RingCakePiecePrefab.CakePiece.transform.position);
 
             //Position it
             Pieces = new RingPiece[_numButtons];
@@ -79,14 +78,16 @@ namespace UI.RadialMenu
                 Pieces[i].CakePiece.fillAmount = 1f / _numButtons - GapWidthDegree / 360f;
                 Pieces[i].CakePiece.transform.localPosition = Vector3.zero;
                 Pieces[i].CakePiece.transform.localRotation = Quaternion.Euler(0, 0, -stepLength / 2f + GapWidthDegree / 2f + i * stepLength);
-                Pieces[i].CakePiece.color = new Color(1f, 1f, 1f, 0.5f);
+                Pieces[i].Recolor(false);
 
                 // Set icon position
+                var iconDist = Vector3.Distance(RingCakePiecePrefab.Icon.transform.position, RingCakePiecePrefab.CakePiece.transform.position);
                 Pieces[i].Icon.transform.localPosition = Pieces[i].CakePiece.transform.localPosition + Quaternion.AngleAxis(i * stepLength, Vector3.forward) * Vector3.up * iconDist;
-                Pieces[i].Icon.sprite = Data.buttons[i].Icon;
+                Pieces[i].Icon.sprite = _data.buttons[i].Icon;
 
-                // Set text 
-                Pieces[i].Text = Data.buttons[i].Text;
+                // Set button data (text, icon, event) 
+                Debug.LogFormat("Setting piece {0} to button data {1}", i, _data.buttons[i].Text);
+                Pieces[i].SetButtonData(_data.buttons[i]);
 
             }
         }
@@ -101,19 +102,19 @@ namespace UI.RadialMenu
             var mouseAngle = ModuloAngle(Vector3.SignedAngle(Vector3.up, mousePosition - transform.position, Vector3.forward) + stepLength / 2f);
             var outer = (mousePosition - transform.position).magnitude > 100;
 
-            var hoveredIndex = outer ? (int)(mouseAngle / stepLength) : -1;
+            var hoveredIndex = outer ? (int)(mouseAngle / stepLength): -1;
 
             for (int i = 0; i < _numButtons; i++)
             {
+                Pieces[i].Recolor(false);
                 if(i == hoveredIndex)
                 {
+                    Debug.LogFormat("Setting button {0} to selected", i);
                     Pieces[i].Recolor(true);
-                    SetText(Pieces[i].Text);
+                    SetText(Pieces[i].GetText());
                     if (clicked)
                         Pieces[i].Execute();
                 }
-                else
-                    Pieces[i].Recolor(false);
             }
 
             if (!outer)

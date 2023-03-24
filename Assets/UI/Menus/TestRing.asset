@@ -15,3 +15,4 @@ MonoBehaviour:
   buttons:
   - {fileID: 11400000, guid: a0c8187c404dc294083482b5c2dea1ae, type: 2}
   - {fileID: 11400000, guid: 8760bd36db0f28a47b5387fb34cfdef9, type: 2}
+  - {fileID: 11400000, guid: 8760bd36db0f28a47b5387fb34cfdef9, type: 2}

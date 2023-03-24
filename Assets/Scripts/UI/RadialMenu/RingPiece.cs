@@ -5,30 +5,37 @@ namespace UI.RadialMenu
 {
     public class RingPiece : MonoBehaviour
     {
-        public Image Icon;
+
         public Image CakePiece;
 
-        public string Text;
+        private Button _button;
 
-        private Color _selectedColor = new Color(1f, 1f, 1f, 0.75f);
-        private Color _baseColor = new Color(1f, 1f, 1f, 0.5f);
+        public Image Icon;
 
 
-        void Start() 
-        {
-        }
+        private Color _selectedColor = new Color(1f, 1f, 1f, 0.4f);
+        private Color _baseColor = new Color(1f, 1f, 1f, 0.8f);
+
 
         public void Recolor(bool selected)
         {
             CakePiece.color = selected ? _selectedColor : _baseColor;
         }
 
+        public string GetText()
+        {
+            return _button.Text;
+        }
+
+        public void SetButtonData(Button button)
+        {
+            _button = button;
+        }
 
         public void Execute()
         {
-
+            _button.Event.Raise();
         }
-
 
     }
 }

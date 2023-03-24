@@ -8676,6 +8676,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9002588319824804569, guid: 6eb22d4a99f1f4e4fa8e4ad3e3f0206c, type: 3}
   m_PrefabInstance: {fileID: 421145293}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &434121798 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1493197873841214691, guid: 0238e4e68d4ecb94bb295ec97668f86b, type: 3}
+  m_PrefabInstance: {fileID: 1249102625}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &434121801 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1493197873841214620, guid: 0238e4e68d4ecb94bb295ec97668f86b, type: 3}
+  m_PrefabInstance: {fileID: 1249102625}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434121798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14fdd413897b15948abe9100cfb8e93b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &434121805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434121798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1fb15405e1d8cb4aa874ff3dc0d66a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 7c10089c6079fc240b783f57794b75cd, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 434121801}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: FooButtonTest
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1001 &436378650
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35063,6 +35107,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9002588319824804569, guid: 6eb22d4a99f1f4e4fa8e4ad3e3f0206c, type: 3}
   m_PrefabInstance: {fileID: 1695324321}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1695383486 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7509480547810710052, guid: 7576ac56e0269864c949751f9590a847, type: 3}
+  m_PrefabInstance: {fileID: 915263700}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1695383487 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1564035845470499137, guid: 7576ac56e0269864c949751f9590a847, type: 3}
+  m_PrefabInstance: {fileID: 915263700}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695383486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7309e484f00f98e4999c719f98755a1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1695383493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695383486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1fb15405e1d8cb4aa874ff3dc0d66a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 7c10089c6079fc240b783f57794b75cd, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1695383487}
+        m_TargetAssemblyTypeName: Utility.Interaction.CraftHandler, Assembly-CSharp
+        m_MethodName: HideMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1001 &1696496818
 PrefabInstance:
   m_ObjectHideFlags: 0

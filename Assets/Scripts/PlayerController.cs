@@ -68,7 +68,6 @@ public class PlayerController : MonoBehaviour
 
         if (selectedObject.GetComponent<Interactable>())
         {
-            Debug.Log("Trying to interact");
             return selectedObject.GetComponent<Interactable>()?.Interact();
         }
 
@@ -85,5 +84,10 @@ public class PlayerController : MonoBehaviour
         }
 
         return null;
+    }
+
+    public void FooButtonTest()
+    {
+        Debug.Log("The player controller knows about the foo button being pressed");
     }
 }
