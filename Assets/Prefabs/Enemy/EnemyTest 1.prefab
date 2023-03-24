@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4945854951367050579}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.515, y: 1.823, z: -0.27999973}
+  m_LocalPosition: {x: 0.515, y: 0.116, z: -0.27999973}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -194,7 +194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   vulnerableTo: 00000000
-  itemDrop: {fileID: 0}
+  itemDrop: {fileID: 7038474301894313620, guid: 4045b647723f033418a099907401e5a2, type: 3}
   parentPool: {fileID: 0}
 --- !u!114 &6613045112582604019
 MonoBehaviour:

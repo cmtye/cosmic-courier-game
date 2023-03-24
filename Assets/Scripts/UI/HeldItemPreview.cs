@@ -1,24 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HeldItemPreview : MonoBehaviour
+namespace UI
 {
-    [SerializeField] private GameObject temp;
-
-    private Texture2D temp2d;
-    // Start is called before the first frame update
-    void Start()
+    public class HeldItemPreview : MonoBehaviour
     {
-        temp2d = AssetPreview.GetAssetPreview(temp);
-        gameObject.GetComponentInChildren<RawImage>().texture = temp2d;
-    }
+        private RawImage _rawImage;
+        [SerializeField] private Texture2D held;
+        [SerializeField] private Texture2D empty;
+        // Start is called before the first frame update
+        private void Awake()
+        {
+            _rawImage = GetComponent<RawImage>();
+            _rawImage.texture = empty;
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void OnEnable()
+        {
+            PlayerController.OnSlotChanged += ChangeVisual;
+        }
+
+        private void OnDisable()
+        {
+            PlayerController.OnSlotChanged -= ChangeVisual;
+        }
+
+        private void ChangeVisual(GameObject newHeld)
+        {
+            _rawImage.texture = newHeld ? held : empty;
+        }
     }
 }

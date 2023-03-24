@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Enemy_Scripts.Spawning_Scripts;
 using Level_Scripts;
 using Tower_Scripts;
+using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -59,7 +60,7 @@ namespace Enemy_Scripts
             
             if (Random.value > 0.2)
             {
-                Instantiate(itemDrop, enemy.transform);
+                Instantiate(itemDrop, enemy.transform.position, quaternion.identity);
                 var continuedDropChance = 0.2;
                 while (Random.value > continuedDropChance)
                 {

@@ -9,6 +9,8 @@ TagManager:
   - Normal
   - Path
   - Enemy
+  - Item
+  - Rotating
   layers:
   - Default
   - TransparentFX

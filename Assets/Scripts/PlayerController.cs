@@ -35,7 +35,12 @@ public class PlayerController : MonoBehaviour
         _controls.Player.Move.performed += OnMovementInput;
         _controls.Player.Interact.performed += OnInteractInput;
     }
-        
+
+    private void Start()
+    {
+        OnSlotChanged?.Invoke(currentlyHeld);
+    }
+
     private void Update()
     {
         _characterMovement.UpdateFloorBehavior();
@@ -76,8 +81,17 @@ public class PlayerController : MonoBehaviour
 
         if (currentlyHeld)
         {
+            if (currentlyHeld.CompareTag("Item"))
+            {
+                currentlyHeld.transform.SetParent(null);
+                currentlyHeld = null;
+                OnSlotChanged?.Invoke(null);
+                return null;
+            }
             if (GridManager.Instance.TryPlaceObject(currentlyHeld, selectedObject.transform.position))
             {
+                currentlyHeld = null;
+                OnSlotChanged?.Invoke(null);
                 _gridSelector.ResetPreviousCell();
             }
             else
@@ -92,5 +106,18 @@ public class PlayerController : MonoBehaviour
     public void FooButtonTest()
     {
         Debug.Log("The player controller knows about the foo button being pressed");
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Item"))
+        {
+            if (!currentlyHeld)
+            {
+                currentlyHeld = other.gameObject;
+                currentlyHeld.transform.SetParent(transform);
+                OnSlotChanged?.Invoke(currentlyHeld);
+            }
+        }
     }
 }
