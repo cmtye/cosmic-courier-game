@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour
 
     private GridSelector _gridSelector;
     public GameObject currentlyHeld;
+    [SerializeField] private Transform holdPoint;
+
+    public Transform respawnPoint;
 
     private void Awake()
     {
@@ -85,6 +88,15 @@ public class PlayerController : MonoBehaviour
             if (currentlyHeld.CompareTag("Item"))
             {
                 currentlyHeld.transform.SetParent(null);
+
+                var heldRigidbody = currentlyHeld.GetComponent<Rigidbody>();
+                heldRigidbody.useGravity = true;
+                heldRigidbody.constraints = RigidbodyConstraints.None;
+                
+                var hoverDirection = (_gridSelector.SelectedObject.transform.position - transform.position).normalized;
+                hoverDirection.y += 0.2f;
+                heldRigidbody.AddForce(hoverDirection * 300f);
+                
                 currentlyHeld = null;
                 OnSlotChanged?.Invoke(null);
                 return null;
@@ -111,12 +123,19 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Item"))
+        if (other.gameObject.CompareTag("Item"))
         {
             if (!currentlyHeld)
             {
                 currentlyHeld = other.gameObject;
                 currentlyHeld.transform.SetParent(transform);
+                
+                currentlyHeld.transform.position = holdPoint.position;
+                
+                var heldRigidbody = currentlyHeld.GetComponent<Rigidbody>();
+                heldRigidbody.useGravity = false;
+                heldRigidbody.constraints = RigidbodyConstraints.FreezeAll;
+                
                 OnSlotChanged?.Invoke(currentlyHeld);
             }
         }

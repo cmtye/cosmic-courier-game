@@ -8,9 +8,8 @@ namespace UI
     public class HeldItemPreview : MonoBehaviour
     {
         private RawImage _rawImage;
-        [SerializeField] private Texture2D held;
         [SerializeField] private Texture2D empty;
-        // Start is called before the first frame update
+
         private void Awake()
         {
             _rawImage = GetComponent<RawImage>();
@@ -29,7 +28,10 @@ namespace UI
 
         private void ChangeVisual(GameObject newHeld)
         {
-            _rawImage.texture = newHeld ? held : empty;
+            if (!newHeld) _rawImage.texture = empty;
+            
+            var iconContainer = newHeld.GetComponent<IconUI>();
+            _rawImage.texture = iconContainer.icon;
         }
     }
 }

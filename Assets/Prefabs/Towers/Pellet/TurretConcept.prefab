@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: -7864960961607416754}
   - component: {fileID: 3009537099760739874}
   - component: {fileID: 48465815}
+  - component: {fileID: 4322800291329475597}
   m_Layer: 6
   m_Name: TurretConcept
   m_TagString: Untagged
@@ -145,6 +146,19 @@ MonoBehaviour:
   enemiesInRange: []
   targetEnemy: {fileID: 0}
   attackCooldown: 0
+--- !u!114 &4322800291329475597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376404169695740028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8f25a93405a8bc45b339e21ade94134, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 2800000, guid: ec277f8740274ff47a5cf5f4e5cd755e, type: 3}
 --- !u!1 &8697729034052941989
 GameObject:
   m_ObjectHideFlags: 0
