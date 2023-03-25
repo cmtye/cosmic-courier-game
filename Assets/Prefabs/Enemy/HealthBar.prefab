@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2925079706686251161}
   - component: {fileID: 4646159916329250224}
   - component: {fileID: 4734949004959445903}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 7405509318476122962}
   - component: {fileID: 2048586243759336174}
   - component: {fileID: 8949581807329369651}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}

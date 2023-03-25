@@ -4,6 +4,7 @@ using System.Linq;
 using Enemy_Scripts;
 using Tower_Scripts.Components;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace Tower_Scripts
 {
@@ -28,6 +29,7 @@ namespace Tower_Scripts
         public List<TowerComponent> towerComponents;
         public TowerData towerData;
         private CapsuleCollider _rangeCollider;
+        private DecalProjector _decalProjector;
         public Transform firingPoint;
         
         public List<EnemyBehavior> enemiesInRange;
@@ -49,14 +51,32 @@ namespace Tower_Scripts
         public void UpdateTowerData(TowerData data)
         {
             towerData = data;
-            _rangeCollider.radius = towerData.info.towerRange;
+
+            if (_rangeCollider)
+            {
+                _rangeCollider.radius = towerData.info.towerRange;
+            }
+
+            if (_decalProjector)
+            {
+                _decalProjector.size = new Vector3(towerData.info.towerRange * 2, towerData.info.towerRange * 2, 4);
+            }
         }
         
         private void OnEnable()
         {
             EnableComponents();
             _rangeCollider = GetComponent<CapsuleCollider>();
-            _rangeCollider.radius = towerData.info.towerRange;
+            if (_rangeCollider)
+            {
+                _rangeCollider.radius = towerData.info.towerRange;
+            }
+
+            _decalProjector = GetComponentInChildren<DecalProjector>();
+            if (_decalProjector)
+            {
+                _decalProjector.size = new Vector3(towerData.info.towerRange * 2, towerData.info.towerRange * 2, 4);
+            }
             attackCooldown = towerData.info.attackTimer;
         }
 

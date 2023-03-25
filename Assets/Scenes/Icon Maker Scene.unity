@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 136597534}
   - component: {fileID: 136597533}
   - component: {fileID: 136597537}
-  - component: {fileID: 136597536}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -209,32 +208,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &136597536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 136597532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d109aa393c3c3c048a8bcd8815f6ae77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RotationX: 40
-  RotationY: 206
-  RotationZ: 0
-  isCameraOrthographic: 1
-  CameraBackgroundColor: {r: 0, g: 0, b: 0, a: 0}
-  CameraX: -1
-  CameraY: -2
-  CameraZ: -7
-  Filename: PelletIcon
-  ExportFile: 0
-  ResolutionWidth: 512
-  ResolutionHeight: 512
-  FrameResolution: 16
-  FrameRate: 1
 --- !u!114 &136597537
 MonoBehaviour:
   m_ObjectHideFlags: 0

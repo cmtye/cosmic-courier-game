@@ -1,6 +1,7 @@
 using System;
 using Enemy_Scripts;
 using Level_Scripts.Grid;
+using Level_Scripts.Interaction;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Utility.Interaction;

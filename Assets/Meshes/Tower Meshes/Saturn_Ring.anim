@@ -72,7 +72,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: bone
+    path: Body/planetCore
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -475,7 +475,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: ring/hexadecagon
+    path: RingContainer/ring
   m_CompressedRotationCurves: []
   m_EulerCurves: []
   m_PositionCurves: []

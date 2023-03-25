@@ -144,8 +144,8 @@ namespace Utility
                         continue;
                     }
 
-                    Destroy(meshFilters[i].GetComponent<MeshRenderer>());
-                    Destroy(meshFilters[i]);
+                    DestroyImmediate(meshFilters[i].GetComponent<MeshRenderer>());
+                    DestroyImmediate(meshFilters[i]);
                 }
             }
 

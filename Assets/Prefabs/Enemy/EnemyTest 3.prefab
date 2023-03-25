@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5949697660490112332}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: BarPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 6958277654904578401}
   - component: {fileID: 7565635986906431806}
   - component: {fileID: 3678751106731757591}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 6958277655355526182}
   - component: {fileID: 6958277655355526185}
   - component: {fileID: 6613045112582604019}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: EnemyTest 3
   m_TagString: Enemy
   m_Icon: {fileID: 0}

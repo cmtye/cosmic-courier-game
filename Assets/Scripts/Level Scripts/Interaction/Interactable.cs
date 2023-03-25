@@ -1,20 +1,31 @@
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
+using Utility;
+using Utility.Interaction;
 
-namespace Utility.Interaction {
+namespace Level_Scripts.Interaction {
 
     [RequireComponent(typeof(InteractionHandler))]
     [RequireComponent(typeof(OutlineHighlight))]
     public class Interactable : MonoBehaviour
     {
-        private OutlineHighlight _outlineHighlight;
+        public OutlineHighlight OutlineHighlight { get; private set; }
+        public DecalProjector DecalProjector { get; private set; }
+        
         private InteractionHandler _handler;
         private void Start()
         {
-            _outlineHighlight = GetComponent<OutlineHighlight>();
+            OutlineHighlight = GetComponent<OutlineHighlight>();
+            DecalProjector = GetComponentInChildren<DecalProjector>();
             _handler = GetComponent<InteractionHandler>();
-            if (_outlineHighlight)
+            if (OutlineHighlight)
             {
-                _outlineHighlight.enabled = false;
+                OutlineHighlight.enabled = false;
+            }
+
+            if (DecalProjector)
+            {
+                DecalProjector.enabled = false;
             }
         }
 

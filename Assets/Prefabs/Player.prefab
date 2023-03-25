@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1493197873841214620}
   - component: {fileID: 1493197873841214621}
   - component: {fileID: 1493197873841214690}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4315729293641899545}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 5407643608613621464}
   - component: {fileID: 5407643608613621465}
   - component: {fileID: 5407643608613621470}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 5407643609165701590}
   - component: {fileID: 5407643609165701591}
   - component: {fileID: 5407643609165701588}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -360,7 +360,7 @@ GameObject:
   - component: {fileID: 3565338168062493537}
   - component: {fileID: 3565338168062493543}
   - component: {fileID: 3565338168062493542}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FX_DustTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5068,7 +5068,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1683302017163787983}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Particle Systems
   m_TagString: Untagged
   m_Icon: {fileID: 0}

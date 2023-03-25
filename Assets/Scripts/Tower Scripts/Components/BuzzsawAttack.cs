@@ -28,8 +28,11 @@ namespace Tower_Scripts.Components
             {
                 if (t.CompareTag("Rotating"))
                 {
-                    t.rotation =
-                        Quaternion.LookRotation((tower.targetEnemy.transform.position - tower.firingPoint.position).normalized);
+                    // Quaternions are weird, hard coded for saturn ring but should probably fix
+                    var lookRotation =
+                        Quaternion.LookRotation((tower.firingPoint.position - tower.targetEnemy.transform.position).normalized);
+                    lookRotation *= Quaternion.Euler(0, 90, 0);
+                    t.rotation = lookRotation;
                 }
             }
             foreach (var e in tower.enemiesInRange)

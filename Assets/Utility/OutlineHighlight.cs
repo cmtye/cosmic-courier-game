@@ -77,10 +77,10 @@ namespace Utility
     [SerializeField, HideInInspector]
     private List<ListVector3> bakeValues = new List<ListVector3>();
 
-    private Renderer[] _renderers;
+    private List<Renderer> _renderers;
     private Material _outlineMaskMaterial;
     private Material _outlineFillMaterial;
-
+    
     private bool _needsUpdate;
     private static readonly int ZTest = Shader.PropertyToID("_ZTest");
     private static readonly int Width = Shader.PropertyToID("_OutlineWidth");
@@ -89,7 +89,7 @@ namespace Utility
     private void Awake() {
 
       // Cache renderers
-      _renderers = GetComponentsInChildren<Renderer>();
+      _renderers = GetComponentsInChildren<Renderer>().ToList();
 
       // Instantiate outline materials
       _outlineMaskMaterial = Instantiate(Resources.Load<Material>(@"Materials/OutlineMask"));
@@ -106,16 +106,14 @@ namespace Utility
     }
 
     private void OnEnable() {
-      _renderers = GetComponentsInChildren<Renderer>();
-
-      foreach (var renderer in _renderers) {
+      foreach (var r in _renderers) {
         // Append outline shaders
-        var materials = renderer.sharedMaterials.ToList();
+        var materials = r.sharedMaterials.ToList();
 
         materials.Add(_outlineMaskMaterial);
         materials.Add(_outlineFillMaterial);
 
-        renderer.materials = materials.ToArray();
+        r.materials = materials.ToArray();
       }
     }
 
@@ -145,14 +143,14 @@ namespace Utility
     }
 
     private void OnDisable() {
-      foreach (var renderer in _renderers) {
+      foreach (var r in _renderers) {
         // Remove outline shaders
-        var materials = renderer.sharedMaterials.ToList();
+        var materials = r.sharedMaterials.ToList();
 
         materials.Remove(_outlineMaskMaterial);
         materials.Remove(_outlineFillMaterial);
 
-        renderer.materials = materials.ToArray();
+        r.materials = materials.ToArray();
       }
     }
 

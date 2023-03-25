@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Level_Scripts.Interaction;
 using UnityEngine;
 using Utility;
 
@@ -27,7 +28,7 @@ namespace Level_Scripts.Grid
         // The object the player is currently selecting
         public GameObject SelectedObject { get; private set; }
 
-        private Dictionary<GameObject, OutlineHighlight> _cachedHighlights;
+        private Dictionary<GameObject, Interactable> _cachedInteractables;
 
         private void FixedUpdate()
         {
@@ -128,19 +129,27 @@ namespace Level_Scripts.Grid
         // Toggles the highlight on an interactable using its attached script to alter its emission value
         private void TryHighlightInteractable(GameObject target, bool isHighlighted)
         {
-            _cachedHighlights ??= new Dictionary<GameObject, OutlineHighlight>();
+            _cachedInteractables ??= new Dictionary<GameObject, Interactable>();
             
-            if (_cachedHighlights.TryGetValue(target, out var highlight))
+            if (_cachedInteractables.TryGetValue(target, out var interactable))
             {
-                highlight.enabled = isHighlighted;
+                interactable.OutlineHighlight.enabled = isHighlighted;
+                if (interactable.DecalProjector)
+                {
+                    interactable.DecalProjector.enabled = isHighlighted;
+                }
             }
             else
             {
-                var highlightComponent = target.GetComponent<OutlineHighlight>();
-                if (!highlightComponent) return;
+                var interactableComponent = target.GetComponent<Interactable>();
+                if (!interactableComponent) return;
                 
-                highlightComponent.enabled = isHighlighted;
-                _cachedHighlights.Add(target, highlightComponent);
+                interactableComponent.OutlineHighlight.enabled = isHighlighted;
+                if (interactableComponent.DecalProjector)
+                {
+                    interactableComponent.DecalProjector.enabled = isHighlighted;
+                }
+                _cachedInteractables.Add(target, interactableComponent);
 
             }
         }
