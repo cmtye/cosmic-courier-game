@@ -17,8 +17,19 @@ public class DepositBehavior : MonoBehaviour
         _materialBlock = new MaterialPropertyBlock();
     }
 
-    private void Update()
+    private void Start()
     {
+        UpdateParams();
+    }
+
+    public void SetMax(int value)
+    {
+        maxValue = (float)value;
+    }
+
+    public void SetCurrent(int value)
+    {
+        currentValue = (float)value;
         UpdateParams();
     }
 

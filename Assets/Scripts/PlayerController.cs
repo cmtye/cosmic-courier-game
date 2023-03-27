@@ -4,6 +4,7 @@ using Level_Scripts.Grid;
 using Level_Scripts.Interaction;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 using Utility.Interaction;
 
 [RequireComponent(typeof(CharacterMovement))]
@@ -114,6 +115,32 @@ public class PlayerController : MonoBehaviour
         }
 
         return null;
+    }
+
+    public GameObject TakeHeldItem(GameObject caller)
+    {
+        var item = currentlyHeld;
+        var targetPosition = caller.transform.position;
+        var duration = .2f;
+        currentlyHeld.transform.SetParent(caller.transform);
+        StartCoroutine(MoveToPosition(currentlyHeld, targetPosition, duration));
+
+        currentlyHeld = null;
+        OnSlotChanged?.Invoke(null);
+        return item;
+    }
+
+
+    private IEnumerator MoveToPosition(GameObject toMove, Vector3 position, float timeToMove)
+    {
+        var currentPosition = toMove.transform.position;
+        var t = 0f;
+        while(t < 1)
+        {
+            t += Time.deltaTime / timeToMove;
+            toMove.transform.position = Vector3.Lerp(currentPosition, position, t);
+            yield return null;
+        }
     }
 
     public void FooButtonTest()

@@ -28,7 +28,11 @@ namespace UI
 
         private void ChangeVisual(GameObject newHeld)
         {
-            if (!newHeld) _rawImage.texture = empty;
+            if (!newHeld) 
+            {
+                _rawImage.texture = empty;
+                return;
+            }
             
             var iconContainer = newHeld.GetComponent<IconUI>();
             _rawImage.texture = iconContainer.icon;
