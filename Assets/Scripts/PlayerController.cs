@@ -94,8 +94,8 @@ public class PlayerController : MonoBehaviour
                 heldRigidbody.constraints = RigidbodyConstraints.None;
                 
                 var hoverDirection = (_gridSelector.SelectedObject.transform.position - transform.position).normalized;
-                hoverDirection.y += 0.2f;
-                heldRigidbody.AddForce(hoverDirection * 300f);
+                hoverDirection.y += 0.3f;
+                heldRigidbody.AddForce(hoverDirection * 500f);
                 
                 currentlyHeld = null;
                 OnSlotChanged?.Invoke(null);
