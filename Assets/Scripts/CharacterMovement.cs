@@ -116,7 +116,8 @@ public class CharacterMovement : MonoBehaviour
         // Translate our 2D movement vector into a 3D vector with gravity.
         var moveVector = new Vector3(_input.x * speed, _gravityVelocity, _input.z * speed);
         _currentVelocity = moveVector;
-            
+
+        Physics.SyncTransforms();
         // Use built in character controller to move the character in our desired direction.
         _characterController.Move(_currentVelocity * Time.deltaTime);
     }

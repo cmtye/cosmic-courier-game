@@ -1,9 +1,9 @@
 using UnityEngine;
 
-namespace Utility.Interaction
+namespace Level_Scripts.Interaction
 {
-    abstract public class InteractionHandler : MonoBehaviour
+    public abstract class InteractionHandler : MonoBehaviour
     {
-        public abstract GameObject Handle();
+        public abstract GameObject Handle(PlayerController player);
     }
 }

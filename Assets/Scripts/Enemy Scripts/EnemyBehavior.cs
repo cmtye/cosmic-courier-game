@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Enemy_Scripts.Spawning_Scripts;
@@ -12,6 +13,8 @@ namespace Enemy_Scripts
     [RequireComponent(typeof(EnemyHealthBehavior))]
     public class EnemyBehavior : MonoBehaviour
     {
+        public static event Action<int> OnEndReached;
+        
         [SerializeField] private float moveSpeed = 5;
         [SerializeField] private ElementalTypes[] vulnerableTo = { ElementalTypes.Standard };
         [SerializeField] private GameObject itemDrop;
@@ -101,8 +104,7 @@ namespace Enemy_Scripts
 
         private void EndPointReached()
         {
-            //OnEndReached?.Invoke(this);
-            //_enemyHealth.ResetHealth();
+            OnEndReached?.Invoke(1);
             StopCoroutine(_moveCoroutine);
             StopCoroutine(_pathCoroutine);
             parentPool.ReturnToPool(gameObject);

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace UI
 {
-    public class DepositBehavior : MonoBehaviour
+    public class PatienceBehavior : MonoBehaviour
     {
         private static readonly int Fill = Shader.PropertyToID("_Fill");
         private MaterialPropertyBlock _materialBlock;

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UI.RadialMenu;
 using System.Collections;
+using Level_Scripts.Interaction;
 
 namespace Utility.Interaction
 {
@@ -10,27 +11,26 @@ namespace Utility.Interaction
         public float distanceThreshold;
 
         private MenuController _menu;
-        private GameObject _player;
 
-        void Start()
+        private void Start()
         {
+            // We should find a way to find the canvas without Find, both for safety and for multiplayer compatability.
             _menu = GameObject.Find("Canvas").transform.GetChild(0).GetComponent<MenuController>();
-            _player =  GameObject.Find("Player");
         }
 
-        public override GameObject Handle()
+        public override GameObject Handle(PlayerController player)
         {
             _menu.Setup(ringData);
             _menu.SetActive(true);
-            StartCoroutine(HideMenuIfFar());
+            StartCoroutine(HideMenuIfFar(player.gameObject));
             return null;
         }
 
-        private IEnumerator HideMenuIfFar()
+        private IEnumerator HideMenuIfFar(GameObject player)
         {
             for(;;)
             {
-                var distanceToPlayer = Vector3.Distance (_player.transform.position, transform.position);
+                var distanceToPlayer = Vector3.Distance (player.transform.position, transform.position);
                 if (distanceToPlayer > distanceThreshold)
                 {
                     HideMenu();

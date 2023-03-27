@@ -119,6 +119,7 @@ namespace Tower_Scripts
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
+        
         private void OnTriggerEnter(Collider other)
         {
             if (!other.CompareTag("Enemy")) return;

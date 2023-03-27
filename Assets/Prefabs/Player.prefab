@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14fdd413897b15948abe9100cfb8e93b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentlyHeld: {fileID: 3611579088151073385, guid: b0ec93749c3ef3644a76192442627f7a, type: 3}
+  currentlyHeld: {fileID: 5620321665923549744, guid: 15e504c2811b8d04c8afb84244e29464, type: 3}
   holdPoint: {fileID: 680274958}
   respawnPoint: {fileID: 0}
 --- !u!114 &1493197873841214621

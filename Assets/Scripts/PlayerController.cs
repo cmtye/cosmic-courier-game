@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
 
         if (selectedObject.GetComponent<Interactable>())
         {
-            return selectedObject.GetComponent<Interactable>()?.Interact();
+            return selectedObject.GetComponent<Interactable>()?.Interact(this);
         }
 
         if (currentlyHeld)

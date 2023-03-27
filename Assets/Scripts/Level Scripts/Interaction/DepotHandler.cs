@@ -1,36 +1,24 @@
 using UnityEngine;
-using System.Collections;
+using Utility;
+using Utility.Interaction;
 
-namespace Utility.Interaction
+namespace Level_Scripts.Interaction
 {
     public class DepotHandler : InteractionHandler
     {
-
-        private PlayerController _playerController;
-        private GameManager _manager;
-
-        void Start()
+        public override GameObject Handle(PlayerController player)
         {
-            _playerController =  GameObject.Find("Player").GetComponent<PlayerController>();
-            _manager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        }
-
-        public override GameObject Handle()
-        {
-            if(_playerController.currentlyHeld?.CompareTag("Item") == true)
+            if (player.currentlyHeld != null && player.currentlyHeld.CompareTag("Item"))
             {
                 // Take from the player 
-                var item = _playerController.TakeHeldItem(gameObject);
+                var item = player.TakeHeldItem(gameObject);
 
                 // Increment deposit count by item value
                 var value = item.GetComponent<ItemController>().GetValue();
-                _manager.Deposit(value);
+                GameManager.Instance.Deposit(value);
                 Destroy(item, 1);
             }
             return null;
         }
-
-
-
     }
 }

@@ -29,9 +29,9 @@ namespace Level_Scripts.Interaction {
             }
         }
 
-        public GameObject Interact()
+        public GameObject Interact(PlayerController player)
         {
-            return _handler.Handle();
+            return _handler.Handle(player);
         }
 
     }
