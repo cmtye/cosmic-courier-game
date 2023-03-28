@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private GridSelector _gridSelector;
     public GameObject currentlyHeld;
     [SerializeField] private Transform holdPoint;
+    private Collider _lastHeld;
 
     public Transform respawnPoint;
 
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         OnSlotChanged?.Invoke(currentlyHeld);
+        _lastHeld = null;
     }
 
     private void Update()
@@ -89,15 +91,16 @@ public class PlayerController : MonoBehaviour
             if (currentlyHeld.CompareTag("Item"))
             {
                 currentlyHeld.transform.SetParent(null);
-
+                
                 var heldRigidbody = currentlyHeld.GetComponent<Rigidbody>();
                 heldRigidbody.useGravity = true;
                 heldRigidbody.constraints = RigidbodyConstraints.None;
                 
                 var hoverDirection = (_gridSelector.SelectedObject.transform.position - transform.position).normalized;
-                hoverDirection.y += 0.3f;
-                heldRigidbody.AddForce(hoverDirection * 500f);
-                
+                var horizontalForce = hoverDirection.normalized * 5f;
+                var verticalForce = Vector3.up * 3f;
+                heldRigidbody.AddForce(horizontalForce + verticalForce, ForceMode.Impulse);
+
                 currentlyHeld = null;
                 OnSlotChanged?.Invoke(null);
                 return null;
@@ -148,23 +151,29 @@ public class PlayerController : MonoBehaviour
         Debug.Log("The player controller knows about the foo button being pressed");
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
+    {
+        CheckForItem(other);
+    }
+
+    private void CheckForItem(Collider other)
     {
         if (other.gameObject.CompareTag("Item"))
         {
-            if (!currentlyHeld)
-            {
-                currentlyHeld = other.gameObject;
-                currentlyHeld.transform.SetParent(transform);
+            if (currentlyHeld) return;
+            if (other == _lastHeld) return;
+
+            _lastHeld = other;
+            currentlyHeld = other.gameObject;
+            currentlyHeld.transform.SetParent(transform);
                 
-                currentlyHeld.transform.position = holdPoint.position;
+            currentlyHeld.transform.position = holdPoint.position;
                 
-                var heldRigidbody = currentlyHeld.GetComponent<Rigidbody>();
-                heldRigidbody.useGravity = false;
-                heldRigidbody.constraints = RigidbodyConstraints.FreezeAll;
+            var heldRigidbody = currentlyHeld.GetComponent<Rigidbody>();
+            heldRigidbody.useGravity = false;
+            heldRigidbody.constraints = RigidbodyConstraints.FreezeAll;
                 
-                OnSlotChanged?.Invoke(currentlyHeld);
-            }
+            OnSlotChanged?.Invoke(currentlyHeld);
         }
     }
 }
