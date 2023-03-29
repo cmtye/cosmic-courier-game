@@ -1,7 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using TMPro;
 
@@ -88,7 +85,6 @@ namespace UI.RadialMenu
                 Pieces[i].Icon.sprite = _data.buttons[i].Icon;
 
                 // Set button data (text, icon, event) 
-                Debug.LogFormat("Setting piece {0} to button data {1}", i, _data.buttons[i].Text);
                 Pieces[i].SetButtonData(_data.buttons[i]);
 
             }
@@ -112,7 +108,6 @@ namespace UI.RadialMenu
                 Pieces[i].Recolor(false);
                 if(i == hoveredIndex)
                 {
-                    Debug.LogFormat("Setting button {0} to selected", i);
                     Pieces[i].Recolor(true);
                     SetText(Pieces[i].GetText());
                     if (clicked)

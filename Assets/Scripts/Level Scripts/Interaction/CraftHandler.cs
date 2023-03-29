@@ -10,39 +10,31 @@ namespace Utility.Interaction
         public Ring ringData;
         public float distanceThreshold;
 
-        private MenuController _menu;
-
-        private void Start()
-        {
-            // We should find a way to find the canvas without Find, both for safety and for multiplayer compatability.
-            _menu = GameObject.Find("Canvas").transform.GetChild(0).GetComponent<MenuController>();
-        }
-
         public override GameObject Handle(PlayerController player)
         {
-            _menu.Setup(ringData);
-            _menu.SetActive(true);
-            StartCoroutine(HideMenuIfFar(player.gameObject));
+            player.GetMenu().Setup(ringData);
+            player.GetMenu().SetActive(true);
+            StartCoroutine(HideMenuIfFar(player));
             return null;
         }
 
-        private IEnumerator HideMenuIfFar(GameObject player)
+        private IEnumerator HideMenuIfFar(PlayerController player)
         {
             for(;;)
             {
-                var distanceToPlayer = Vector3.Distance (player.transform.position, transform.position);
+                var distanceToPlayer = Vector3.Distance (player.gameObject.transform.position, transform.position);
                 if (distanceToPlayer > distanceThreshold)
                 {
-                    HideMenu();
+                    HideMenu(player);
                     yield break;
                 }
                 yield return new WaitForSeconds(.1f);
             }
         }
 
-        public void HideMenu()
+        public void HideMenu(PlayerController player)
         {
-            _menu.SetActive(false);
+            player.GetMenu().SetActive(false);
         }
 
     }

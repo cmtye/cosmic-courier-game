@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 using Utility.Interaction;
+using UI.RadialMenu;
 
 [RequireComponent(typeof(CharacterMovement))]
 [RequireComponent(typeof(CharacterController))]
@@ -29,6 +30,8 @@ public class PlayerController : MonoBehaviour
     private Coroutine _pickupCoroutine;
 
     public Transform respawnPoint;
+
+    [SerializeField] private GameObject _playerRadial;
 
     private void Awake()
     {
@@ -206,4 +209,10 @@ public class PlayerController : MonoBehaviour
         StopCoroutine(_pickupCoroutine);
         _lastHeld = null;
     }
+
+    public MenuController GetMenu()
+    {
+        return _playerRadial.GetComponent<MenuController>();
+    }
+
 }
