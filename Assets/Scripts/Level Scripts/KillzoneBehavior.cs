@@ -11,6 +11,10 @@ namespace Level_Scripts
             {
                 StartCoroutine(RespawnSequence(other.gameObject));
             }
+            else if (other.CompareTag("Item"))
+            {
+                Destroy(other.gameObject);
+            }
         }
 
         private IEnumerator RespawnSequence(GameObject player)
