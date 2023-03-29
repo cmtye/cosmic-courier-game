@@ -42700,13 +42700,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1c2b824acc00f740a0f21f6d4249378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  persistent: 1
-  depotAmount: 0
+  persistent: 0
   depotGoal: 10
-  patienceAmount: 0
   patienceMax: 10
-  depositBehavior: {fileID: 8827475581094836877}
-  patienceBehavior: {fileID: 1455042497}
+  depositBar: {fileID: 8827475581094836877}
+  patienceBar: {fileID: 1455042497}
 --- !u!1001 &1979003365
 PrefabInstance:
   m_ObjectHideFlags: 0

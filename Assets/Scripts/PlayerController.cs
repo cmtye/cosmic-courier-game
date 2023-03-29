@@ -22,9 +22,11 @@ public class PlayerController : MonoBehaviour
     private ParticleController _particleController;
 
     private GridSelector _gridSelector;
+    
     public GameObject currentlyHeld;
     [SerializeField] private Transform holdPoint;
     private Collider _lastHeld;
+    private Coroutine _pickupCoroutine;
 
     public Transform respawnPoint;
 
@@ -79,45 +81,38 @@ public class PlayerController : MonoBehaviour
     private GameObject AttemptInteract()
     {
         var selectedObject = _gridSelector.SelectedObject;
-        if (selectedObject == null) return null;
+        if (selectedObject == null)
+        {
+            if (currentlyHeld.CompareTag("Item"))
+                ThrowItem(false);
+            
+            return null;
+        }
 
         if (selectedObject.GetComponent<Interactable>())
         {
             return selectedObject.GetComponent<Interactable>()?.Interact(this);
         }
 
-        if (currentlyHeld)
+        if (!currentlyHeld) return null;
+        
+        if (currentlyHeld.CompareTag("Item"))
         {
-            if (currentlyHeld.CompareTag("Item"))
-            {
-                currentlyHeld.transform.SetParent(null);
-                
-                var heldRigidbody = currentlyHeld.GetComponent<Rigidbody>();
-                heldRigidbody.useGravity = true;
-                heldRigidbody.constraints = RigidbodyConstraints.None;
-                
-                var hoverDirection = (_gridSelector.SelectedObject.transform.position - transform.position).normalized;
-                var horizontalForce = hoverDirection.normalized * 5f;
-                var verticalForce = Vector3.up * 3f;
-                heldRigidbody.AddForce(horizontalForce + verticalForce, ForceMode.Impulse);
-
-                currentlyHeld = null;
-                OnSlotChanged?.Invoke(null);
-                return null;
-            }
-            if (GridManager.Instance.TryPlaceObject(currentlyHeld, selectedObject.transform.position))
-            {
-                currentlyHeld = null;
-                OnSlotChanged?.Invoke(null);
-                _gridSelector.ResetPreviousCell();
-            }
-            else
-            {
-                Debug.Log("Cannot place currently held object here");
-            }
+            ThrowItem(true);
+            return null;
         }
-
+        if (GridManager.Instance.TryPlaceObject(currentlyHeld, selectedObject.transform.position))
+        {
+            currentlyHeld = null;
+            OnSlotChanged?.Invoke(null);
+            _gridSelector.ResetPreviousCell();
+        }
+        else
+        {
+            Debug.Log("Cannot place currently held object here");
+        }
         return null;
+        
     }
 
     public GameObject TakeHeldItem(GameObject caller)
@@ -156,15 +151,41 @@ public class PlayerController : MonoBehaviour
         CheckForItem(other);
     }
 
-    private void CheckForItem(Collider other)
+    private void ThrowItem(bool blockSelected)
     {
-        if (other.gameObject.CompareTag("Item"))
-        {
-            if (currentlyHeld) return;
-            if (other == _lastHeld) return;
+        currentlyHeld.transform.SetParent(null);
+                
+        var heldRigidbody = currentlyHeld.GetComponent<Rigidbody>();
+        heldRigidbody.useGravity = true;
+        heldRigidbody.constraints = RigidbodyConstraints.None;
 
-            _lastHeld = other;
-            currentlyHeld = other.gameObject;
+        var currentPosition = transform.position;
+        var hoverDirection = blockSelected ? 
+            (_gridSelector.SelectedObject.transform.position - currentPosition).normalized 
+            : transform.TransformDirection(Vector3.forward).normalized;
+        
+        var horizontalForce = hoverDirection.normalized * 5f;
+        var verticalForce = Vector3.up * 3f;
+        heldRigidbody.AddForce(horizontalForce + verticalForce, ForceMode.Impulse);
+
+        currentlyHeld = null;
+        if (_pickupCoroutine == null)
+            _pickupCoroutine = StartCoroutine(PickupWait(0.75f));
+        else
+        {
+            StopCoroutine(_pickupCoroutine);
+            _pickupCoroutine = StartCoroutine(PickupWait(0.75f));
+        }
+        OnSlotChanged?.Invoke(null);
+    }
+    private void CheckForItem(Collider collided)
+    {
+        if (collided.gameObject.CompareTag("Item"))
+        {
+            if (currentlyHeld || collided == _lastHeld) return;
+
+            _lastHeld = collided;
+            currentlyHeld = collided.gameObject;
             currentlyHeld.transform.SetParent(transform);
                 
             currentlyHeld.transform.position = holdPoint.position;
@@ -175,5 +196,14 @@ public class PlayerController : MonoBehaviour
                 
             OnSlotChanged?.Invoke(currentlyHeld);
         }
+    }
+
+    private IEnumerator PickupWait(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        if (currentlyHeld) yield break;
+        
+        StopCoroutine(_pickupCoroutine);
+        _lastHeld = null;
     }
 }
