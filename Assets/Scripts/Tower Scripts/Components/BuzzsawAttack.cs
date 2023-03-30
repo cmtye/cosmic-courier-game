@@ -13,7 +13,7 @@ namespace Tower_Scripts.Components
 
             foreach (Transform t in tower.gameObject.transform)
             {
-                if (t.gameObject.name != "Body") continue;
+                if (t.gameObject.name != "Body(Clone)") continue;
                 
                 foreach (Transform r in t.gameObject.transform)
                 {
@@ -42,7 +42,7 @@ namespace Tower_Scripts.Components
             {
                 foreach (Transform t in tower.gameObject.transform)
                 {
-                    if (t.gameObject.name != "Body") continue;
+                    if (!t.CompareTag("TowerBody")) continue;
 
                     foreach (Transform r in t.gameObject.transform)
                     {
@@ -56,9 +56,23 @@ namespace Tower_Scripts.Components
             {
                 // Quaternions are weird, hard coded for saturn ring but should probably fix
                 var lookRotation =
-                    Quaternion.LookRotation((tower.firingPoint.position - tower.targetEnemy.transform.position).normalized);
+                    Quaternion.LookRotation((tower.FiringPoint.position - tower.targetEnemy.transform.position).normalized);
                 lookRotation *= Quaternion.Euler(0, 90, 0);
-                rotator.rotation = lookRotation;
+                if (rotator) rotator.rotation = lookRotation;
+                else
+                {
+                    foreach (Transform t in tower.gameObject.transform)
+                    {
+                        if (!t.CompareTag("TowerBody")) continue;
+
+                        foreach (Transform r in t.gameObject.transform)
+                        {
+                            if (!r.CompareTag("Rotating")) continue;
+                            _rotatingObjects[tower] = r;
+                            break;
+                        }
+                    }
+                }
             }
 
             foreach (var e in tower.enemiesInRange)

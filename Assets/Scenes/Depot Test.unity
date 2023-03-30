@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -19855,6 +19855,8 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+  needsUpdate: 1
+  needsRender: 0
 --- !u!23 &876812899
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -25544,6 +25546,8 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+  needsUpdate: 1
+  needsRender: 0
 --- !u!23 &1119246715
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -40628,6 +40632,8 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+  needsUpdate: 1
+  needsRender: 0
 --- !u!23 &1823526153
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -41550,6 +41556,8 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+  needsUpdate: 1
+  needsRender: 0
 --- !u!23 &1858335312
 MeshRenderer:
   m_ObjectHideFlags: 0

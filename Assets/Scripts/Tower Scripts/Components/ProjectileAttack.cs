@@ -30,7 +30,7 @@ namespace Tower_Scripts.Components
 
             tower.transform.rotation =
                 Quaternion.LookRotation((tower.targetEnemy.transform.position - tower.transform.position).normalized);
-            var projectile = Instantiate(projectilePrefab, tower.firingPoint.position, Quaternion.identity);
+            var projectile = Instantiate(projectilePrefab, tower.FiringPoint.position, Quaternion.identity);
             var projectileBehavior = projectile.GetComponent<ProjectileBehavior>();
             projectileBehavior.target = tower.targetEnemy;
             projectileBehavior.SetParams(projectileSpeed, towerInfo.towerDamage, towerInfo.damageType, damageDistance);

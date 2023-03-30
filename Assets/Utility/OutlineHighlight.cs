@@ -9,6 +9,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Tower_Scripts;
 using UnityEngine;
 
 namespace Utility
@@ -31,7 +32,7 @@ namespace Utility
       get => outlineMode;
       set {
         outlineMode = value;
-        _needsUpdate = true;
+        needsUpdate = true;
       }
     }
 
@@ -39,7 +40,7 @@ namespace Utility
       get => outlineColor;
       set {
         outlineColor = value;
-        _needsUpdate = true;
+        needsUpdate = true;
       }
     }
 
@@ -47,7 +48,7 @@ namespace Utility
       get => outlineWidth;
       set {
         outlineWidth = value;
-        _needsUpdate = true;
+        needsUpdate = true;
       }
     }
 
@@ -81,7 +82,8 @@ namespace Utility
     private Material _outlineMaskMaterial;
     private Material _outlineFillMaterial;
     
-    private bool _needsUpdate;
+    public bool needsUpdate;
+    public bool needsRender;
     private static readonly int ZTest = Shader.PropertyToID("_ZTest");
     private static readonly int Width = Shader.PropertyToID("_OutlineWidth");
     private static readonly int OutlineColor1 = Shader.PropertyToID("_OutlineColor");
@@ -102,11 +104,13 @@ namespace Utility
       LoadSmoothNormals();
 
       // Apply material properties immediately
-      _needsUpdate = true;
+      needsUpdate = true;
     }
 
-    private void OnEnable() {
+    private void OnEnable()
+    {
       foreach (var r in _renderers) {
+        if (!r) continue;
         // Append outline shaders
         var materials = r.sharedMaterials.ToList();
 
@@ -117,10 +121,31 @@ namespace Utility
       }
     }
 
+    private void RegenerateRenderers()
+    {
+      // The renderers may have changed, so grab the new renderers and make new smooth normals for them
+      _renderers = GetComponentsInChildren<Renderer>().ToList();
+      LoadSmoothNormals();
+      needsUpdate = true;
+      
+      foreach (var r in _renderers) {
+        if (!r) continue;
+        // Append outline shaders
+        var materials = r.sharedMaterials.ToList();
+
+        // The material may already be present, so check for it first before adding
+        if (!materials.Contains(_outlineMaskMaterial)) materials.Add(_outlineMaskMaterial);
+        if (!materials.Contains(_outlineFillMaterial)) materials.Add(_outlineFillMaterial);
+
+        r.materials = materials.ToArray();
+      }
+      needsRender = false;
+      
+    }
     private void OnValidate() {
 
       // Update material properties
-      _needsUpdate = true;
+      needsUpdate = true;
 
       // Clear cache when baking is disabled or corrupted
       if (!precomputeOutline && bakeKeys.Count != 0 || bakeKeys.Count != bakeValues.Count) {
@@ -136,14 +161,16 @@ namespace Utility
 
     private void Update()
     {
-      if (!_needsUpdate) return;
-      
-      _needsUpdate = false;
+      if (needsRender) RegenerateRenderers();
+      if (!needsUpdate) return;
+
+      needsUpdate = false;
       UpdateMaterialProperties();
     }
 
     private void OnDisable() {
       foreach (var r in _renderers) {
+        if (!r) continue;
         // Remove outline shaders
         var materials = r.sharedMaterials.ToList();
 

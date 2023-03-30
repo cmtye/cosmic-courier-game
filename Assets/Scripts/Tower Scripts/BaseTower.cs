@@ -6,6 +6,7 @@ using Tower_Scripts.Components;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using Level_Scripts.Interaction;
+using Utility;
 
 
 namespace Tower_Scripts
@@ -28,6 +29,7 @@ namespace Tower_Scripts
     }
     public class BaseTower : MonoBehaviour
     {
+        private OutlineHighlight _towerHighlight;
         public UpgradeMap towerUpgrades;
         private int _upgradeIndex;
         public List<TowerComponent> towerComponents;
@@ -35,7 +37,7 @@ namespace Tower_Scripts
         
         private CapsuleCollider _rangeCollider;
         private DecalProjector _decalProjector;
-        public Transform firingPoint;
+        public Transform FiringPoint { get; private set; }
 
         private Animation _animationHolder;
         private string[] _animationClips;
@@ -63,20 +65,31 @@ namespace Tower_Scripts
             towerData = towerUpgrades.Upgrades[_upgradeIndex].tierStats;
             towerComponents = towerUpgrades.Upgrades[_upgradeIndex].tierComponents;
             var tempBody = _towerBody;
-            _towerBody = Instantiate(towerUpgrades.Upgrades[_upgradeIndex].tierVisuals, transform);
+            var visuals = towerUpgrades.Upgrades[_upgradeIndex].tierVisuals;
+            _towerBody = Instantiate(visuals, transform);
+            _towerBody.name = "Body";
+            foreach (Transform t in _towerBody.transform)
+            {
+                if (t.name == "FiringPoint")
+                {
+                    FiringPoint = t;
+                }
+            }
             Destroy(tempBody);
+            _animationHolder.clip = _animationHolder.GetClip(_animationClips[_upgradeIndex]);
             _animationHolder.Play(_animationClips[_upgradeIndex]);
+
+
+            if (_towerHighlight)
+            {
+                _towerHighlight.needsRender = true;
+            }
+            
             EnableComponents();
 
-            if (_rangeCollider)
-            {
-                _rangeCollider.radius = towerData.info.towerRange;
-            }
-
-            if (_decalProjector)
-            {
-                _decalProjector.size = new Vector3(towerData.info.towerRange * 2, towerData.info.towerRange * 2, 4);
-            }
+            if (_rangeCollider) _rangeCollider.radius = towerData.info.towerRange;
+            if (_decalProjector) _decalProjector.size = new Vector3(towerData.info.towerRange * 2, towerData.info.towerRange * 2, 4);
+            
             attackCooldown = towerData.info.attackTimer;
             _upgradeIndex++;
         }
@@ -84,7 +97,9 @@ namespace Tower_Scripts
         private void OnEnable()
         {
             _rangeCollider = GetComponent<CapsuleCollider>();
+            _decalProjector = GetComponentInChildren<DecalProjector>();
             _animationHolder = GetComponent<Animation>();
+            _towerHighlight = GetComponent<OutlineHighlight>();
             _animationClips = new string[4];
 
             var clipAmount = 0;
@@ -96,7 +111,7 @@ namespace Tower_Scripts
             
             foreach (Transform t in transform)
             {
-                if (t.gameObject.name == "Body") _towerBody = t.gameObject;
+                if (t.CompareTag("TowerBody")) _towerBody = t.gameObject;
             }
             IncrementTowerTier();
 
@@ -169,6 +184,7 @@ namespace Tower_Scripts
 
         private void Upgrade(PlayerController player, InteractionHandler handler)
         { 
+            if (handler.gameObject != gameObject) return;
             IncrementTowerTier();
         }
     }
