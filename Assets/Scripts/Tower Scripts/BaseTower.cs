@@ -5,6 +5,8 @@ using Enemy_Scripts;
 using Tower_Scripts.Components;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using Level_Scripts.Interaction;
+
 
 namespace Tower_Scripts
 {
@@ -78,6 +80,13 @@ namespace Tower_Scripts
                 _decalProjector.size = new Vector3(towerData.info.towerRange * 2, towerData.info.towerRange * 2, 4);
             }
             attackCooldown = towerData.info.attackTimer;
+
+            UpgradeEvent.OnTowerUpgrade += Upgrade;
+        }
+
+        private void OnDisable()
+        {
+            UpgradeEvent.OnTowerUpgrade -= Upgrade;
         }
 
         private void Update()
@@ -136,6 +145,13 @@ namespace Tower_Scripts
             {
                 enemiesInRange.Remove(enemy);
             }
+        }
+
+        private void Upgrade(PlayerController player, InteractionHandler handler)
+        {
+            //if (handler.gameObject != this) return;
+
+            Debug.Log("Handle upgrading here");
         }
     }
 }

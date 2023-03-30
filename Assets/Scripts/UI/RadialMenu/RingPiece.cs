@@ -1,5 +1,6 @@
 using UnityEngine.UI;
 using UnityEngine;
+using Level_Scripts.Interaction;
 
 namespace UI.RadialMenu
 {
@@ -32,9 +33,9 @@ namespace UI.RadialMenu
             _button = button;
         }
 
-        public void Execute()
+        public void Execute(PlayerController player, InteractionHandler handler)
         {
-            _button.Event.Raise();
+            _button.Event.Raise(player, handler);
         }
 
     }

@@ -74,11 +74,13 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         _controls.Enable();
+        PickupEvent.OnTowerPickup += PickupTower;
     }
         
     private void OnDisable()
     {
         _controls.Disable();
+        PickupEvent.OnTowerPickup -= PickupTower;
     }
 
     private GameObject AttemptInteract()
@@ -106,6 +108,7 @@ public class PlayerController : MonoBehaviour
         }
         if (GridManager.Instance.TryPlaceObject(currentlyHeld, selectedObject.transform.position))
         {
+            Destroy(currentlyHeld);
             currentlyHeld = null;
             OnSlotChanged?.Invoke(null);
             _gridSelector.ResetPreviousCell();
@@ -213,6 +216,22 @@ public class PlayerController : MonoBehaviour
     public MenuController GetMenu()
     {
         return _playerRadial.GetComponent<MenuController>();
+    }
+
+    private void PickupTower(PlayerController player, InteractionHandler handler)
+    {
+        if (player != this) return;
+
+        if (!currentlyHeld)
+        {
+            currentlyHeld = handler.gameObject;
+            currentlyHeld.transform.position = holdPoint.position;
+            currentlyHeld.transform.rotation = holdPoint.rotation;
+            currentlyHeld.transform.localScale = holdPoint.localScale;
+            currentlyHeld.transform.SetParent(holdPoint);
+
+            OnSlotChanged?.Invoke(currentlyHeld);
+        }
     }
 
 }

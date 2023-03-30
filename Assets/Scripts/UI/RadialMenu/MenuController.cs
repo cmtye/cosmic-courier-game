@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using Level_Scripts.Interaction;
 
 
 namespace UI.RadialMenu
@@ -8,6 +9,9 @@ namespace UI.RadialMenu
     public class MenuController : MonoBehaviour
     {
         private Ring _data;
+
+        private PlayerController _player;
+        private InteractionHandler _handler;
         public RingPiece RingCakePiecePrefab;
         public float GapWidthDegree = 1f;
         protected RingPiece[] Pieces;
@@ -37,10 +41,12 @@ namespace UI.RadialMenu
         }
 
 
-        public void Setup(Ring ringData)
+        public void Setup(Ring ringData, PlayerController player, InteractionHandler handler)
         {
             Reset();
             _data = ringData;
+            _player = player;
+            _handler = handler;
             _numButtons = _data.buttons.Length;
             Generate();
         }
@@ -57,6 +63,9 @@ namespace UI.RadialMenu
             {
                 Destroy(piece.gameObject);
             }
+
+            _player = null;
+            _handler = null;
         }
 
         private void Generate()
@@ -111,7 +120,7 @@ namespace UI.RadialMenu
                     Pieces[i].Recolor(true);
                     SetText(Pieces[i].GetText());
                     if (clicked)
-                        Pieces[i].Execute();
+                        Pieces[i].Execute(_player, _handler);
                 }
             }
 
@@ -120,8 +129,8 @@ namespace UI.RadialMenu
                 SetText("Cancel");
             }
             
-            // If click on the inside -> exit
-            if (!outer && clicked)
+            // If click -> exit
+            if (clicked)
             {
                 SetActive(false);
             }

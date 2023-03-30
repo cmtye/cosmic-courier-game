@@ -243,10 +243,11 @@ GameObject:
   - component: {fileID: 5620321665923549753}
   - component: {fileID: 5620321665923549758}
   - component: {fileID: 5620321665923549754}
-  - component: {fileID: 5620321665923549734}
   - component: {fileID: 5620321665923549735}
   - component: {fileID: 5620321665923549755}
   - component: {fileID: 5620321665923549756}
+  - component: {fileID: 406627309}
+  - component: {fileID: 406627317}
   m_Layer: 6
   m_Name: RingedTowerTier1
   m_TagString: Untagged
@@ -338,20 +339,6 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &5620321665923549734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5620321665923549744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7309e484f00f98e4999c719f98755a1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ringData: {fileID: 0}
-  distanceThreshold: 0
 --- !u!114 &5620321665923549735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,6 +385,32 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &406627309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5620321665923549744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6fe11d9c12112544974e7252afa0316, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ringData: {fileID: 11400000, guid: f1e4e248a7a439e4a8157086aa7fe572, type: 2}
+  distanceThreshold: 2
+--- !u!114 &406627317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5620321665923549744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1fb15405e1d8cb4aa874ff3dc0d66a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5620321666034436092
 GameObject:
   m_ObjectHideFlags: 0

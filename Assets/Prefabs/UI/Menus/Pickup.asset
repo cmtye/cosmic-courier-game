@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0630838f0c698c0499cbbebe02817f86, type: 3}
-  m_Name: PickupButton
+  m_Script: {fileID: 11500000, guid: 74cf92f0f35a79043a1eb5f544544649, type: 3}
+  m_Name: Pickup
   m_EditorClassIdentifier: 
-  Text: Pick Up
-  Icon: {fileID: 21300000, guid: 602b72d4617c3694aa94419fc1b68e04, type: 3}
-  Event: {fileID: 11400000, guid: 9ce183ca72f31fa4692e96a61a2af6f8, type: 2}

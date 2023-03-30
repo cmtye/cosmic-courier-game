@@ -12,7 +12,7 @@ namespace Utility.Interaction
 
         public override GameObject Handle(PlayerController player)
         {
-            player.GetMenu().Setup(ringData);
+            player.GetMenu().Setup(ringData, player, this);
             player.GetMenu().SetActive(true);
             StartCoroutine(HideMenuIfFar(player));
             return null;

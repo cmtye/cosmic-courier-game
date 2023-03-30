@@ -7,6 +7,6 @@ namespace UI.RadialMenu
     {
         public string Text;
         public Sprite Icon;
-        public GameEvent Event;
+        public InteractionEvent Event;
     }
 }

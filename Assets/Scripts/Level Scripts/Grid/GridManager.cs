@@ -58,6 +58,10 @@ namespace Level_Scripts.Grid
         // the GameObjects in their cells (thanks Unity), so we add them to tile layer dictionary's
         public bool TryPlaceObject(GameObject toPlace, Vector3 worldPosition)
         {
+            // Reset scale of the object to place 
+            toPlace.transform.rotation = Quaternion.identity;
+            toPlace.transform.localScale = Vector3.one;
+
             // If there is a block above the block we're trying to place onto, we can't
             // place there. This is redundancy as the selector should handle this already.
             if (GetCellInColumn(worldPosition, 1)) return false;

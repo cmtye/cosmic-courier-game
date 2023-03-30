@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UI.RadialMenu;
 using Level_Scripts.Interaction;
@@ -15,7 +14,7 @@ namespace Utility.Interaction
 
         public override GameObject Handle(PlayerController player)
         {
-            player.GetMenu().Setup(ringData);
+            player.GetMenu().Setup(ringData, player, this);
             player.GetMenu().SetActive(true);
             StartCoroutine(HideMenuIfFar(player));
             return null;
@@ -39,12 +38,5 @@ namespace Utility.Interaction
         {
             player.GetMenu().SetActive(false);
         }
-
-
-        public void Pickup()
-        {
-            Debug.Log("The pick up button was pressed");
-        }
-
     }
 }
