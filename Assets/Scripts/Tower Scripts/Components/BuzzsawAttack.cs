@@ -13,9 +13,13 @@ namespace Tower_Scripts.Components
 
             foreach (Transform t in tower.gameObject.transform)
             {
-                if (t.CompareTag("Rotating"))
+                if (t.gameObject.name != "Body") continue;
+                
+                foreach (Transform r in t.gameObject.transform)
                 {
-                    _rotatingObjects[tower] = t;
+                    if (!r.CompareTag("Rotating")) continue;
+                    _rotatingObjects[tower] = r;
+                    break;
                 }
             }
         }
@@ -34,13 +38,29 @@ namespace Tower_Scripts.Components
                 return;
             }
 
-            var rotator = _rotatingObjects[tower];
-            // Quaternions are weird, hard coded for saturn ring but should probably fix
-            var lookRotation =
-                Quaternion.LookRotation((tower.firingPoint.position - tower.targetEnemy.transform.position).normalized);
-            lookRotation *= Quaternion.Euler(0, 90, 0);
-            rotator.rotation = lookRotation;
-            
+            if (!_rotatingObjects.TryGetValue(tower, out var rotator))
+            {
+                foreach (Transform t in tower.gameObject.transform)
+                {
+                    if (t.gameObject.name != "Body") continue;
+
+                    foreach (Transform r in t.gameObject.transform)
+                    {
+                        if (!r.CompareTag("Rotating")) continue;
+                        _rotatingObjects[tower] = r;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                // Quaternions are weird, hard coded for saturn ring but should probably fix
+                var lookRotation =
+                    Quaternion.LookRotation((tower.firingPoint.position - tower.targetEnemy.transform.position).normalized);
+                lookRotation *= Quaternion.Euler(0, 90, 0);
+                rotator.rotation = lookRotation;
+            }
+
             foreach (var e in tower.enemiesInRange)
                 e.GetHealth().DealDamage(towerInfo.towerDamage, towerInfo.damageType);
 

@@ -22,5 +22,10 @@ namespace Level_Scripts.Grid
         {
             return _tileGrid.TryGetValue(position, out var tile) ? tile : null;
         }
+
+        public bool RemoveTile(Vector2 position)
+        {
+            return _tileGrid.Remove(position);
+        }
     }
 }

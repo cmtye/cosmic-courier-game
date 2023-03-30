@@ -10,12 +10,11 @@ namespace Utility.Interaction
         public Ring ringData;
         public float distanceThreshold;
 
-        public override GameObject Handle(PlayerController player)
+        public override void Handle(PlayerController player)
         {
             player.GetMenu().Setup(ringData, player, this);
             player.GetMenu().SetActive(true);
             StartCoroutine(HideMenuIfFar(player));
-            return null;
         }
 
         private IEnumerator HideMenuIfFar(PlayerController player)

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Enemy_Scripts.Spawning_Scripts
 {
-    [CreateAssetMenu(fileName = "WaveMapTemplate.asset", menuName = "WaveMaps/WaveMap Template")]
+    [CreateAssetMenu(fileName = "WaveMapTemplate.asset", menuName = "WaveMap")]
     public class WaveMap : ScriptableObject
     {
         [Serializable]

@@ -4,6 +4,6 @@ namespace Level_Scripts.Interaction
 {
     public abstract class InteractionHandler : MonoBehaviour
     {
-        public abstract GameObject Handle(PlayerController player);
+        public abstract void Handle(PlayerController player);
     }
 }

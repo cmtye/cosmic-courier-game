@@ -58,40 +58,56 @@ namespace Level_Scripts.Grid
         // the GameObjects in their cells (thanks Unity), so we add them to tile layer dictionary's
         public bool TryPlaceObject(GameObject toPlace, Vector3 worldPosition)
         {
+            var isPrefab = toPlace.gameObject.scene.name == null;
             // Reset scale of the object to place 
-            toPlace.transform.rotation = Quaternion.identity;
-            toPlace.transform.localScale = Vector3.one;
+            if (!isPrefab)
+            {
+                toPlace.transform.SetParent(null);
+                toPlace.transform.rotation = Quaternion.identity;
+            }
 
             // If there is a block above the block we're trying to place onto, we can't
             // place there. This is redundancy as the selector should handle this already.
             if (GetCellInColumn(worldPosition, 1)) return false;
             
-            // The instantiation position is the Vector3 version of the target position
-            var instantiatePosition = worldPosition;
-            instantiatePosition.y += 1;
-            
-            var targetPosition = new Vector2(worldPosition.x, worldPosition.z);
-            var targetHeight = Vector3Int.FloorToInt(worldPosition).y + 1;
-
             // Return false if there is no layer to hold this height. This is also redundancy
             // since the FindBlockAbove function already generates one when needed
+            var targetPosition = new Vector2(worldPosition.x, worldPosition.z);
+            var targetHeight = Vector3Int.FloorToInt(worldPosition).y + 1;
             if (!_tileLayers.TryGetValue(targetHeight, out var layer)) return false;
 
-            // Instantiate our object at the appropriate position. Finds the tile map this object should belong
+            // Instantiate/move our object at the appropriate position. Finds the tile map this object should belong
             // to so it can be added as a child (ensures transform correctness).
             // Finally, adds the GameObject and its position to the tile layer dictionary
-            var placedObject = Instantiate(toPlace, instantiatePosition, toPlace.transform.rotation);
+            GameObject placedObject = null;
+            var instantiatePosition = worldPosition + Vector3.up;
+            
+            if (isPrefab) placedObject = Instantiate(toPlace, instantiatePosition, toPlace.transform.rotation);
+            else toPlace.transform.position = instantiatePosition;
+            
             foreach (var t in tileMaps)
             {
-                if ((int) t.transform.position.y == targetHeight)
-                {
-                    placedObject.transform.SetParent(t.transform);
-                }
+                if ((int) t.transform.position.y != targetHeight) continue;
+                
+                if (isPrefab) placedObject.transform.SetParent(t.transform);
+                else toPlace.transform.SetParent(t.transform);
+                break;
             }
-            layer.AddTile(targetPosition, placedObject);
+
+            layer.AddTile(targetPosition, placedObject ? placedObject : toPlace);
             return true;
         }
 
+        // Try and remove a tile at the given world position
+        public bool TryRemoveObject(Vector3 worldPosition)
+        {
+            var targetPosition = new Vector2(worldPosition.x, worldPosition.z);
+            var targetHeight = Vector3Int.FloorToInt(worldPosition).y;
+
+            // Return false if there is no layer at this position or if there was no tile to remove
+            return _tileLayers.TryGetValue(targetHeight, out var layer) && layer.RemoveTile(targetPosition);
+        }
+        
         // Calculates if there is a block above the one at the given position, returning it if found
         // Also manages creating new layers during runtime if need be.
         public GameObject GetCellInColumn(Vector3 worldPosition, int alterY)

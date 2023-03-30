@@ -6,12 +6,12 @@ namespace Level_Scripts.Interaction
 {
     public class StorageHandler : InteractionHandler
     {
-        public override GameObject Handle(PlayerController player)
+        public override void Handle(PlayerController player)
         {
             if (player.currentlyHeld != null && player.currentlyHeld.CompareTag("Item"))
             {
                 // Take from the player 
-                var item = player.TakeHeldItem(gameObject);
+                var item = player.TransferHeldItem(gameObject);
 
                 // TODO: different types of resources?
                 // Increment stored amount by item value
@@ -19,7 +19,6 @@ namespace Level_Scripts.Interaction
                 GameManager.Instance.Store(value);
                 Destroy(item, 1);
             }
-            return null;
         }
     }
 }

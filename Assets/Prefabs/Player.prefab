@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 680274957}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.844, z: 0}
+  m_LocalPosition: {x: 0, y: 0.61, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,7 +45,6 @@ GameObject:
   - component: {fileID: 1493197873841214620}
   - component: {fileID: 1493197873841214621}
   - component: {fileID: 1493197873841214690}
-  - component: {fileID: 434121805}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -61,8 +60,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1493197873841214691}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -9.44, y: 1.01, z: -1.2}
-  m_LocalScale: {x: 0.65528, y: 0.65528, z: 0.65528}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4315729293641899545}
@@ -102,13 +101,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1
-  m_Radius: 0.5
+  m_Height: 0.5
+  m_Radius: 0.4
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.01
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0.03, y: 0.06, z: 0.15}
 --- !u!114 &1493197873841214620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,10 +120,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14fdd413897b15948abe9100cfb8e93b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  holdTransform: {fileID: 680274958}
   currentlyHeld: {fileID: 5620321665923549744, guid: 15e504c2811b8d04c8afb84244e29464, type: 3}
-  holdPoint: {fileID: 680274958}
+  playerRadial: {fileID: 4905169716881538910}
   respawnPoint: {fileID: 0}
-  _playerRadial: {fileID: 4905169716881538910}
 --- !u!114 &1493197873841214621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,34 +158,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dustTrail: {fileID: 3565338168062493543}
---- !u!114 &434121805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1493197873841214691}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1fb15405e1d8cb4aa874ff3dc0d66a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 7c10089c6079fc240b783f57794b75cd, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1493197873841214620}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: FooButtonTest
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
 --- !u!1 &2788105060701628530
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,8 +182,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2788105060701628530}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: -0.638584, y: -0.15189561, z: -1.2880012}
-  m_LocalScale: {x: 1.5260651, y: 1.5260652, z: 1.5260658}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5407643608613621471}
@@ -247,7 +218,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5407643608613621468}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -0.41845134, y: 0.099534154, z: -0.84400135}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.65528, y: 0.65528, z: 0.65528}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -344,7 +315,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5407643609165701594}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -0.41845134, y: 0.19127333, z: -1.1323245}
+  m_LocalPosition: {x: 0, y: 0, z: -0.234}
   m_LocalScale: {x: 0.66940236, y: 0.19071533, z: 0.28658727}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -440,7 +411,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5407643609976517141}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -0.42696956, y: -0.18485737, z: -0.4770445}
+  m_LocalPosition: {x: -0.422, y: -0.051, z: -0.579}
   m_LocalScale: {x: 1, y: 1, z: 1.6530585}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5137,7 +5108,7 @@ GameObject:
   - component: {fileID: 3454923975194137547}
   - component: {fileID: 8728489516316977005}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Personal Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

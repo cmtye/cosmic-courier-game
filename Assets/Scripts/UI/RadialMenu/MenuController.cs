@@ -22,12 +22,12 @@ namespace UI.RadialMenu
 
         private int _numButtons;
 
-        void Awake()
+        private void Awake()
         {
             _selectionText = transform.Find("Selection Text").gameObject.GetComponent<TextMeshProUGUI>();
         }
 
-        void Start()
+        private void Start()
         {
             _rectTransform = GetComponent<RectTransform>();
             Pieces = new RingPiece[0];
@@ -35,7 +35,7 @@ namespace UI.RadialMenu
             SetActive(false);
         }
 
-        void Update()
+        private void Update()
         {
             HandleMouse();
         }

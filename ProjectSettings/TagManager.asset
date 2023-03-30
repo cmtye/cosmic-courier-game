@@ -10,6 +10,7 @@ TagManager:
   - Path
   - Enemy
   - Rotating
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Interactable
   - Unstackable
   - Entity
-  - Item
+  - 
   - Player
   - 
   - 
