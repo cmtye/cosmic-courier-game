@@ -6,12 +6,16 @@ using Utility;
 
 public class GameManager : Singleton<GameManager>
 {
+
+    private int _storedAmount = 0;
+
     private int _depotAmount = 0;
     [SerializeField] private int depotGoal = 0;
 
     private int _patienceAmount;
     [SerializeField] private int patienceMax;
     
+    [SerializeField] private StorageBehavior storageDisplay;
     [SerializeField] private DepositBehavior depositBar;
     [SerializeField] private PatienceBehavior patienceBar;
 
@@ -29,6 +33,20 @@ public class GameManager : Singleton<GameManager>
         _depotAmount += value;
         depositBar.SetCurrent(_depotAmount);
         CheckForSuccess();
+    }
+
+    public void Store(int value)
+    {
+        _storedAmount += value;
+        storageDisplay.SetCurrent(_storedAmount);
+    }
+
+    public bool Spend(int value)
+    {
+        if (value > _storedAmount) return false;
+
+        _storedAmount += value;
+        return true;
     }
 
     private void LosePatience(int value)
