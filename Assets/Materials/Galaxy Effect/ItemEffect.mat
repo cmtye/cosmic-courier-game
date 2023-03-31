@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: OphiEffect
+  m_Name: ItemEffect
   m_Shader: {fileID: -6465566751694194690, guid: bc3e038a8d18eed4fa5b2aac5702ced2, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -38,7 +38,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Cubemap_89E137DB:
-        m_Texture: {fileID: 8900000, guid: e51824a8da3b84ec486142f1680ed6c2, type: 3}
+        m_Texture: {fileID: 8900000, guid: c6ffe1f9b280fc44986ee4bc2e541c96, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -99,12 +99,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Vector1_1B19E5E6: 109.5
-    - Vector1_3A83997D: 1
-    - Vector1_6A505907: 3.44
-    - Vector1_767F2B2D: 0.04
-    - Vector1_A15033D2: 1.45
-    - Vector1_E6B832D7: 12.18
+    - Vector1_1B19E5E6: 49.67
+    - Vector1_3A83997D: 0.2
+    - Vector1_6A505907: 3
+    - Vector1_767F2B2D: 2.1
+    - Vector1_A15033D2: 1.8
+    - Vector1_E6B832D7: 18.72
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -134,11 +134,11 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Color_1A1AF88E: {r: 1, g: 1, b: 1, a: 1}
-    - Color_3FCEB46F: {r: 1, g: 1, b: 1, a: 1}
-    - Color_E16A9C64: {r: 0.42533696, g: 0.4198113, b: 1, a: 1}
+    - Color_3FCEB46F: {r: 0.7440108, g: 0.41960788, b: 1, a: 1}
+    - Color_E16A9C64: {r: 0.46433878, g: 0.15263437, b: 0.9245283, a: 1}
     - Vector2_17D7AD93: {r: 0, g: -0.2, b: 0, a: 0}
     - Vector2_37905506: {r: 0, g: 0.2, b: 0, a: 0}
-    - Vector3_3EA0E406: {r: 0.1, g: 0, b: 0, a: 0}
+    - Vector3_3EA0E406: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

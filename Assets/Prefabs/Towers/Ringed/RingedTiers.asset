@@ -23,3 +23,8 @@ MonoBehaviour:
     tierComponents:
     - {fileID: 11400000, guid: bf77d78ecd663b847920a0943fda1ba9, type: 2}
     tierVisuals: {fileID: 229620803470965157, guid: 233fb6efef59e024bb3f020a92bc9852, type: 3}
+  - upgradeTag: Tier 3
+    tierStats: {fileID: 11400000, guid: 1f2277ff889bfc8418c029bf95b93d3c, type: 2}
+    tierComponents:
+    - {fileID: 11400000, guid: bf77d78ecd663b847920a0943fda1ba9, type: 2}
+    tierVisuals: {fileID: 856122491875478911, guid: cad599c07a54d4bc8ad920f68ce54883, type: 3}
