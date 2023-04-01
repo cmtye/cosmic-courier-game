@@ -2,13 +2,11 @@ using UnityEngine;
 
 public class ItemController : MonoBehaviour
 {
-
-    [SerializeField]
-    private int _value = 1;
-
+    [SerializeField] private int value = 1;
+    public bool canPickup = true;
     public int GetValue()
     {
-        return _value;
+        return value;
     }
 
 }

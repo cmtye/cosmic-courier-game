@@ -23,9 +23,7 @@ public class PlayerController : MonoBehaviour
     // The players item/tower holding variables
     [SerializeField] private Transform holdTransform;
     public GameObject currentlyHeld;
-    private Collider _lastHeldCollider;
-    private Coroutine _pickupCoroutine;
-    
+
     // The players variables that interact with the world or towers
     [SerializeField] private GameObject playerRadial;
     public Transform respawnPoint;
@@ -47,7 +45,6 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         OnSlotChanged?.Invoke(currentlyHeld);
-        _lastHeldCollider = null;
     }
 
     private void Update()
@@ -56,6 +53,7 @@ public class PlayerController : MonoBehaviour
         _characterMovement.Move(_moveDirectionInput);
         
         _particleController.SetDustTrail(_moveDirectionInput.magnitude > 0);
+        _gridSelector.PlayerHoldingItem = currentlyHeld;
     }
     
     private void AttemptInteract()
@@ -131,10 +129,10 @@ public class PlayerController : MonoBehaviour
 
         // Reset currentlyHeld to null and start the coroutine to wait before allowing the player to pick up
         // the same object
+        var item = currentlyHeld.GetComponent<ItemController>();
+        item.canPickup = false;
         currentlyHeld = null;
-        if (_pickupCoroutine != null)
-            StopCoroutine(_pickupCoroutine);
-        _pickupCoroutine = StartCoroutine(PickupWaitCoroutine(0.75f));
+        StartCoroutine(PickupWaitCoroutine(item, 0.75f));
         
         // Invoke event to signal that the slot has changed
         OnSlotChanged?.Invoke(null);
@@ -144,8 +142,9 @@ public class PlayerController : MonoBehaviour
     {
         if (!currentlyHeld.CompareTag("Item")) return null;
         
-        // Store a reference to the currently held object
+        // Store a reference to the currently held object and make it so we can't pick it up again
         var item = currentlyHeld;
+        item.GetComponent<ItemController>().canPickup = false;
         
         // Set the held object's parent to the target object and start moving the object towards the target position
         var targetPosition = caller.transform.position;
@@ -184,16 +183,16 @@ public class PlayerController : MonoBehaviour
         OnSlotChanged?.Invoke(currentlyHeld);
     }
 
-    private void RecieveTower(PlayerController player, InteractionHandler handler, GameObject recieved)
+    private void ReceiveTower(PlayerController player, InteractionHandler handler, GameObject received)
     {
         // If the player is not the target player or an object is already being held, we can't pickup
         if (player != this || currentlyHeld) return;
 
         // If we cannot spend the cost of the tower, we can't craft
-        if (!GameManager.Instance.Spend(recieved.GetComponent<BaseTower>().Cost)) return;
+        if (!GameManager.Instance.Spend(received.GetComponent<BaseTower>().Cost)) return;
 
         // Instantiate a new tower
-        var tower = Instantiate(recieved);
+        var tower = Instantiate(received);
 
         // Set the currently held object to the tower and update its position, rotation, and parent
         var towerHoldPoint = holdTransform.position + Vector3.up * 0.5f;
@@ -215,10 +214,10 @@ public class PlayerController : MonoBehaviour
         if (!collided.gameObject.CompareTag("Item")) return;
         
         // If an object is already being held or the collided object is the last held object, we can't pickup
-        if (currentlyHeld || collided == _lastHeldCollider) return;
-
+        if (currentlyHeld) return;
+        if (!collided.GetComponent<ItemController>().canPickup) return;
+        
         // Set the currently held object to the collided object and update its position and constraints
-        _lastHeldCollider = collided;
         currentlyHeld = collided.gameObject;
         currentlyHeld.transform.SetParent(transform);
         currentlyHeld.transform.position = holdTransform.position;
@@ -231,16 +230,10 @@ public class PlayerController : MonoBehaviour
         OnSlotChanged?.Invoke(currentlyHeld);
     }
     
-    private IEnumerator PickupWaitCoroutine(float seconds)
+    private IEnumerator PickupWaitCoroutine(ItemController item, float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        
-        // If an object is currently being held, exit the method
-        if (currentlyHeld) yield break;
-        
-        // If an object is not being held, reset the _lastHeld variable to null so we can pick up the last item again
-        StopCoroutine(_pickupCoroutine);
-        _lastHeldCollider = null;
+        item.canPickup = true;
     }
     
     private IEnumerator MoveToPosition(GameObject toMove, Vector3 position, float timeToMove)
@@ -269,14 +262,14 @@ public class PlayerController : MonoBehaviour
     {
         _controls.Enable();
         PickupEvent.OnTowerPickup += PickupTower;
-        CraftEvent.OnTowerCraft += RecieveTower;
+        CraftEvent.OnTowerCraft += ReceiveTower;
     }
         
     private void OnDisable()
     {
         _controls.Disable();
         PickupEvent.OnTowerPickup -= PickupTower;
-        CraftEvent.OnTowerCraft -= RecieveTower;
+        CraftEvent.OnTowerCraft -= ReceiveTower;
     }
     
     public MenuController GetMenu() { return playerRadial.GetComponent<MenuController>(); }

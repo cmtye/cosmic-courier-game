@@ -21,12 +21,17 @@ namespace Level_Scripts.Grid
         [SerializeField] private LayerMask interactableMask;
         
         // Variables to keep track of the selectors previous state
+        [SerializeField] private Material transparentMaterial;
+        private Material _opaqueMaterial;
+        private OutlineHighlight _outlineHighlight;
         private GameObject _currHighlightMarker;
+        private Renderer _currHighlightRenderer;
         private GameObject _prevObject;
         private Vector3 _prevCell;
 
-        // The object the player is currently selecting
+        // The object the player is currently selecting and if they're holding an item
         public GameObject SelectedObject { get; private set; }
+        public bool PlayerHoldingItem { private get; set; }
 
         private Dictionary<GameObject, Interactable> _cachedInteractables;
 
@@ -57,8 +62,9 @@ namespace Level_Scripts.Grid
                 return;
             }
             
-            // If we're not looking at a new position, no need to alter the selection/highlight
+            // If we're not looking at a new position, no need to alter the selection/highlight much
             var hitPosition = hit.transform.position;
+            if (_currHighlightMarker) UpdateMarkerTransparency();
             if (hitPosition == _prevCell) return;
             
             // Select an object based on intractability and vertical height
@@ -69,6 +75,7 @@ namespace Level_Scripts.Grid
                 // set the previous cell position so we don't do another calculation next call
                 if (!CheckInteractable(blockAbove))
                 {
+                    SelectedObject = null;
                     DestroyMarker();
                     _prevCell = hitPosition;
                     return;
@@ -85,7 +92,7 @@ namespace Level_Scripts.Grid
             // Turn off previous interactable highlight on last object if there is one
             if (_prevObject)
                 TryHighlightInteractable(_prevObject, false);
-
+            
             if (CheckInteractable(SelectedObject))
             {
                 // Destroy highlight marker since we're highlighting the object now
@@ -123,6 +130,10 @@ namespace Level_Scripts.Grid
             {
                 // Increase position by a bit over half a block to show marker over top of the target
                 _currHighlightMarker = Instantiate(highlighterPrefab, highlightPosition, highlighterPrefab.transform.rotation);
+                _currHighlightRenderer = _currHighlightMarker.GetComponent<Renderer>();
+                _outlineHighlight = _currHighlightMarker.GetComponent<OutlineHighlight>();
+                if (!_opaqueMaterial) _opaqueMaterial = _currHighlightRenderer.material;
+
             }
         }
         
@@ -181,7 +192,21 @@ namespace Level_Scripts.Grid
         {
             return interactableMask == (interactableMask | (1 << block.gameObject.layer));
         }
-        
+
+        // Sets the marker to be slightly transparent if the player isn't holding anything
+        private void UpdateMarkerTransparency()
+        {
+            if (!PlayerHoldingItem && _currHighlightRenderer.material != transparentMaterial)
+            {
+                _currHighlightRenderer.material = transparentMaterial;
+                _outlineHighlight.enabled = false;
+            }
+            else
+            {
+                _currHighlightRenderer.material = _opaqueMaterial;
+                _outlineHighlight.enabled = true;
+            }
+        }
         // Resets the location of the previously selected cell. Used both when we're not looking
         // at anything and also when we place something since we have to recalculate what we're selecting
         public void ResetPreviousCell()

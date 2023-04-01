@@ -194,7 +194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1
   vulnerableTo: 00000000
-  itemDrop: {fileID: 7038474301894313620, guid: 4045b647723f033418a099907401e5a2, type: 3}
+  itemDrop: {fileID: 885441889811427027, guid: 5ace47e62b3d8d04c80114ffd610e971, type: 3}
   parentPool: {fileID: 0}
 --- !u!114 &6613045112582604019
 MonoBehaviour:

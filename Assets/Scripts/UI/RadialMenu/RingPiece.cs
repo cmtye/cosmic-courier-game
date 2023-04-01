@@ -14,8 +14,8 @@ namespace UI.RadialMenu
         public Image Icon;
 
 
-        private Color _selectedColor = new Color(1f, 1f, 1f, 0.4f);
-        private Color _baseColor = new Color(1f, 1f, 1f, 0.8f);
+        private Color _selectedColor = new (.01f, .36f, .61f, 0.6f);
+        private Color _baseColor = new (0f, 0f, 0f, 0.7f);
 
 
         public void Recolor(bool selected)

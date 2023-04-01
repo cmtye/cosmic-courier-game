@@ -30,6 +30,9 @@ namespace UI.RadialMenu
         private void Start()
         {
             _rectTransform = GetComponent<RectTransform>();
+            foreach (Transform t in transform)
+                t.gameObject.SetActive(true);
+            
             Pieces = new RingPiece[0];
             SetText("");
             SetActive(false);
