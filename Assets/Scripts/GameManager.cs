@@ -45,7 +45,8 @@ public class GameManager : Singleton<GameManager>
     {
         if (value > _storedAmount) return false;
 
-        _storedAmount += value;
+        _storedAmount -= value;
+        storageDisplay.SetCurrent(_storedAmount);
         return true;
     }
 

@@ -183,6 +183,31 @@ public class PlayerController : MonoBehaviour
         // Invoke event to signal that the slot has changed
         OnSlotChanged?.Invoke(currentlyHeld);
     }
+
+    private void RecieveTower(PlayerController player, InteractionHandler handler, GameObject recieved)
+    {
+        // If the player is not the target player or an object is already being held, we can't pickup
+        if (player != this || currentlyHeld) return;
+
+        // If we cannot spend the cost of the tower, we can't craft
+        if (!GameManager.Instance.Spend(recieved.GetComponent<BaseTower>().Cost)) return;
+
+        // Instantiate a new tower
+        var tower = Instantiate(recieved);
+
+        // Set the currently held object to the tower and update its position, rotation, and parent
+        var towerHoldPoint = holdTransform.position + Vector3.up * 0.5f;
+        currentlyHeld = tower;
+        currentlyHeld.transform.SetPositionAndRotation(towerHoldPoint, holdTransform.rotation);
+        currentlyHeld.transform.localScale = Vector3.one;
+        currentlyHeld.transform.SetParent(holdTransform);
+
+        // Turn the towers abilities off while being held
+        currentlyHeld.GetComponent<BaseTower>().IsDisabled = true;
+        
+        // Invoke event to signal that the slot has changed
+        OnSlotChanged?.Invoke(currentlyHeld);
+    }
     
     private void HandleItemCollision(Collider collided)
     {
@@ -244,12 +269,14 @@ public class PlayerController : MonoBehaviour
     {
         _controls.Enable();
         PickupEvent.OnTowerPickup += PickupTower;
+        CraftEvent.OnTowerCraft += RecieveTower;
     }
         
     private void OnDisable()
     {
         _controls.Disable();
         PickupEvent.OnTowerPickup -= PickupTower;
+        CraftEvent.OnTowerCraft -= RecieveTower;
     }
     
     public MenuController GetMenu() { return playerRadial.GetComponent<MenuController>(); }

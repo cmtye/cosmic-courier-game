@@ -52,6 +52,8 @@ namespace Tower_Scripts
         public float attackCooldown;
         public bool IsDisabled { private get; set; }
 
+        public int Cost;
+
         private void EnableComponents()
         {
             foreach (var c in towerComponents)

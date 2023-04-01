@@ -130,6 +130,8 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+  needsUpdate: 1
+  needsRender: 0
 --- !u!114 &7632671070151298237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,5 +144,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7309e484f00f98e4999c719f98755a1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ringData: {fileID: 11400000, guid: d2fa3c85c69b3e44cb7623ea97527896, type: 2}
+  ringData: {fileID: 11400000, guid: 75fc5a4b9bbb975438db479d349902e8, type: 2}
   distanceThreshold: 2

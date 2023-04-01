@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0630838f0c698c0499cbbebe02817f86, type: 3}
-  m_Name: FooButton
+  m_Script: {fileID: 11500000, guid: 347c8e1526f60594ca48d745edab170f, type: 3}
+  m_Name: CraftRinged
   m_EditorClassIdentifier: 
-  Text: FooText
-  Icon: {fileID: 21300000, guid: 02800fb9cff14da47a04572790384d8b, type: 3}
-  Event: {fileID: 11400000, guid: 7c10089c6079fc240b783f57794b75cd, type: 2}
+  Tower: {fileID: 5620321665923549744, guid: 15e504c2811b8d04c8afb84244e29464, type: 3}
