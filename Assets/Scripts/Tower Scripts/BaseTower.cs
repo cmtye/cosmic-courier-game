@@ -31,7 +31,6 @@ namespace Tower_Scripts
     {
         private OutlineHighlight _towerHighlight;
         public UpgradeMap towerUpgrades;
-        private int _upgradeIndex;
         public List<TowerComponent> towerComponents;
         public TowerData towerData;
         
@@ -62,12 +61,12 @@ namespace Tower_Scripts
             }
         }
 
-        private void IncrementTowerTier()
+        private void SetTowerTier(int upgradeIndex)
         {
-            towerData = towerUpgrades.Upgrades[_upgradeIndex].tierStats;
-            towerComponents = towerUpgrades.Upgrades[_upgradeIndex].tierComponents;
+            towerData = towerUpgrades.Upgrades[upgradeIndex].tierStats;
+            towerComponents = towerUpgrades.Upgrades[upgradeIndex].tierComponents;
             var tempBody = _towerBody;
-            var visuals = towerUpgrades.Upgrades[_upgradeIndex].tierVisuals;
+            var visuals = towerUpgrades.Upgrades[upgradeIndex].tierVisuals;
             _towerBody = Instantiate(visuals, transform);
             _towerBody.name = "Body";
             foreach (Transform t in _towerBody.transform)
@@ -78,8 +77,8 @@ namespace Tower_Scripts
                 }
             }
             Destroy(tempBody);
-            _animationHolder.clip = _animationHolder.GetClip(_animationClips[_upgradeIndex]);
-            _animationHolder.Play(_animationClips[_upgradeIndex]);
+            _animationHolder.clip = _animationHolder.GetClip(_animationClips[upgradeIndex]);
+            _animationHolder.Play(_animationClips[upgradeIndex]);
 
 
             if (_towerHighlight)
@@ -93,7 +92,6 @@ namespace Tower_Scripts
             if (_decalProjector) _decalProjector.size = new Vector3(towerData.info.towerRange * 2, towerData.info.towerRange * 2, 4);
             
             attackCooldown = towerData.info.attackTimer;
-            _upgradeIndex++;
         }
         
         private void OnEnable()
@@ -115,7 +113,7 @@ namespace Tower_Scripts
             {
                 if (t.CompareTag("TowerBody")) _towerBody = t.gameObject;
             }
-            IncrementTowerTier();
+            SetTowerTier(0);
 
             UpgradeEvent.OnTowerUpgrade += Upgrade;
         }
@@ -184,10 +182,16 @@ namespace Tower_Scripts
             }
         }
 
-        private void Upgrade(PlayerController player, InteractionHandler handler)
+        // The upgrade index is equivalent to the tier minus one, besides 3A and 3B which are index 2 and 3 respectively
+        private void Upgrade(PlayerController player, InteractionHandler handler, int upgradeIndex)
         { 
+            // Only upgrade the tower instance accessed by the player
             if (handler.gameObject != gameObject) return;
-            IncrementTowerTier();
+            
+            // Cannot upgrade outside of the predefined tower bounds
+            if (upgradeIndex > 3) return;
+            
+            SetTowerTier(upgradeIndex);
         }
     }
 }
