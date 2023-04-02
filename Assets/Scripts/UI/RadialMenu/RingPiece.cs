@@ -1,6 +1,7 @@
 using UnityEngine.UI;
 using UnityEngine;
 using Level_Scripts.Interaction;
+using TMPro;
 
 namespace UI.RadialMenu
 {
@@ -10,6 +11,8 @@ namespace UI.RadialMenu
         public Image CakePiece;
 
         private Button _button;
+
+        public TextMeshProUGUI Tooltip;
 
         public Image Icon;
 
@@ -26,6 +29,12 @@ namespace UI.RadialMenu
         public string GetText()
         {
             return _button.Text;
+        }
+
+
+        public void ShowTooltip(bool show)
+        {
+            Tooltip.enabled = show;
         }
 
         public void SetButtonData(Button button)

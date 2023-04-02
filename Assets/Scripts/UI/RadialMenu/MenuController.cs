@@ -15,9 +15,14 @@ namespace UI.RadialMenu
         public RingPiece RingCakePiecePrefab;
         public float GapWidthDegree = 1f;
         protected RingPiece[] Pieces;
+
         //protected MenuController Parent;
 
         private TextMeshProUGUI _selectionText;
+
+        //public Vector3 _tooltipPosition;
+        //public TextMeshProUGUI _tooltipText;
+
         private RectTransform _rectTransform;
 
         private int _numButtons;
@@ -25,6 +30,8 @@ namespace UI.RadialMenu
         private void Awake()
         {
             _selectionText = transform.Find("Selection Text").gameObject.GetComponent<TextMeshProUGUI>();
+            //_tooltipText = transform.Find("Tooltip").gameObject.GetComponent<TextMeshProUGUI>();
+            //_tooltipPosition = transform.Find("Tooltip").gameObject.transform.position;
         }
 
         private void Start()
@@ -93,12 +100,16 @@ namespace UI.RadialMenu
 
                 // Set icon position
                 var iconDist = Vector3.Distance(RingCakePiecePrefab.Icon.transform.position, RingCakePiecePrefab.CakePiece.transform.position);
-                Pieces[i].Icon.transform.localPosition = Pieces[i].CakePiece.transform.localPosition + Quaternion.AngleAxis(i * stepLength, Vector3.forward) * Vector3.up * iconDist;
+                var iconLocation = Pieces[i].CakePiece.transform.localPosition + Quaternion.AngleAxis(i * stepLength, Vector3.forward) * Vector3.up * iconDist;
+                Pieces[i].Icon.transform.localPosition = iconLocation;
                 Pieces[i].Icon.sprite = _data.buttons[i].Icon;
 
                 // Set button data (text, icon, event) 
                 Pieces[i].SetButtonData(_data.buttons[i]);
 
+                // Set tooltip position
+                Pieces[i].Tooltip.transform.localPosition = iconLocation + Vector3.down * 10;
+                Pieces[i].Tooltip.GetComponent<TextMeshProUGUI>().SetText(_data.buttons[i].Tooltip);
             }
         }
 
@@ -118,10 +129,13 @@ namespace UI.RadialMenu
             for (int i = 0; i < _numButtons; i++)
             {
                 Pieces[i].Recolor(false);
+                Pieces[i].ShowTooltip(false);
                 if(i == hoveredIndex)
                 {
                     Pieces[i].Recolor(true);
                     SetText(Pieces[i].GetText());
+                    Pieces[i].ShowTooltip(true);
+                    //SetTooltip(mousePosition, Pieces[i].GetTooltip());
                     if (clicked)
                         Pieces[i].Execute(_player, _handler);
                 }
@@ -129,6 +143,7 @@ namespace UI.RadialMenu
 
             if (!outer)
             {
+                //SetTooltip(mousePosition, "");
                 SetText("Cancel");
             }
             
@@ -142,6 +157,12 @@ namespace UI.RadialMenu
         private void SetText(string text)
         {
             _selectionText.SetText(text);
+        }
+
+        private void SetTooltip(Vector3 position, string text)
+        {
+            //_tooltipPosition = position;
+            //_tooltipText.SetText(text);
         }
 
 

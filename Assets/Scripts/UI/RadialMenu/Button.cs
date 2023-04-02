@@ -6,6 +6,7 @@ namespace UI.RadialMenu
     public class Button : ScriptableObject
     {
         public string Text;
+        public string Tooltip;
         public Sprite Icon;
         public InteractionEvent Event;
     }

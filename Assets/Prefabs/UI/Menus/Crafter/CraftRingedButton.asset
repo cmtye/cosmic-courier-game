@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: CraftRingedButton
   m_EditorClassIdentifier: 
   Text: Ringed Tower
+  Tooltip: Costs 5 stardust
   Icon: {fileID: 21300000, guid: f4660d02029a70648bc0ee291a55147f, type: 3}
   Event: {fileID: 11400000, guid: 984922f9082f48b43b397628db2ff83a, type: 2}
