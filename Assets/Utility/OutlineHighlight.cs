@@ -218,9 +218,13 @@ namespace Utility
           continue;
         }
 
+        var smoothNormals = new List<Vector3>();
         // Retrieve or generate smooth normals
-        var index = bakeKeys.IndexOf(meshFilter.sharedMesh);
-        var smoothNormals = (index >= 0) ? bakeValues[index].data : SmoothNormals(meshFilter.sharedMesh);
+        if (meshFilter.sharedMesh)
+        {
+          var index = bakeKeys.IndexOf(meshFilter.sharedMesh);
+          smoothNormals = (index >= 0) ? bakeValues[index].data : SmoothNormals(meshFilter.sharedMesh);
+        }
 
         // Store smooth normals in UV3
         meshFilter.sharedMesh.SetUVs(3, smoothNormals);

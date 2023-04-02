@@ -6,6 +6,7 @@ using Tower_Scripts.Components;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using Level_Scripts.Interaction;
+using UI;
 using Utility;
 
 
@@ -30,6 +31,7 @@ namespace Tower_Scripts
     public class BaseTower : MonoBehaviour
     {
         private OutlineHighlight _towerHighlight;
+        private IconUI _iconUI;
         public UpgradeMap towerUpgrades;
         public List<TowerComponent> towerComponents;
         public TowerData towerData;
@@ -69,6 +71,7 @@ namespace Tower_Scripts
             var visuals = towerUpgrades.Upgrades[upgradeIndex].tierVisuals;
             _towerBody = Instantiate(visuals, transform);
             _towerBody.name = "Body";
+            _iconUI.icon = towerUpgrades.Upgrades[upgradeIndex].tierIcon;
             foreach (Transform t in _towerBody.transform)
             {
                 if (t.name == "FiringPoint")
@@ -100,6 +103,7 @@ namespace Tower_Scripts
             _decalProjector = GetComponentInChildren<DecalProjector>();
             _animationHolder = GetComponent<Animation>();
             _towerHighlight = GetComponent<OutlineHighlight>();
+            _iconUI = GetComponent<IconUI>();
             _animationClips = new string[4];
 
             var clipAmount = 0;

@@ -2,14 +2,15 @@ using System;
 using Enemy_Scripts;
 using UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Utility;
 
 public class GameManager : Singleton<GameManager>
 {
 
-    private int _storedAmount = 0;
+    private int _storedAmount;
 
-    private int _depotAmount = 0;
+    private int _depotAmount;
     [SerializeField] private int depotGoal = 0;
 
     private int _patienceAmount;
@@ -18,6 +19,9 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private StorageBehavior storageDisplay;
     [SerializeField] private DepositBehavior depositBar;
     [SerializeField] private PatienceBehavior patienceBar;
+    [SerializeField] private GameObject gamePausedCanvas;
+    [SerializeField] private GameObject gameLostCanvas;
+    [SerializeField] private GameObject gameWonCanvas;
 
     private void Start()
     {
@@ -32,7 +36,7 @@ public class GameManager : Singleton<GameManager>
     {
         _depotAmount += value;
         depositBar.SetCurrent(_depotAmount);
-        CheckForSuccess();
+        CheckStageStatus();
     }
 
     public void Store(int value)
@@ -54,19 +58,63 @@ public class GameManager : Singleton<GameManager>
     {
         _patienceAmount -= value;
         patienceBar.SetCurrent(_patienceAmount);
-        CheckForLoss();
+        CheckStageStatus();
     }
 
-    private void CheckForSuccess()
+    private void CheckStageStatus()
     {
         if (_depotAmount >= depotGoal)
+        {
             Debug.Log("STAGE COMPLETE");
+            //gamePausedCanvas.SetActive(false);
+            gameLostCanvas.SetActive(false);
+            gameWonCanvas.SetActive(true);
+            ToggleFreeze();
+            return;
+        }
+
+        if (_patienceAmount <= 0)
+        {
+            Debug.Log("LOST STAGE");
+            //gamePausedCanvas.SetActive(false);
+            gameWonCanvas.SetActive(false);
+            gameLostCanvas.SetActive(true);
+            ToggleFreeze();
+        }
     }
 
-    private void CheckForLoss()
+    public void ToggleFreeze()
     {
-        if (_patienceAmount <= 0)
-            Debug.Log("LOST STAGE");
+        if (Time.timeScale != 0)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            Time.timeScale = 1;
+        }
+    }
+    
+    public void LoadMainMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(0);
+    }
+
+    public void LoadNextLevel()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+    
+    public void ReloadCurrentScene()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     
     private void OnEnable()

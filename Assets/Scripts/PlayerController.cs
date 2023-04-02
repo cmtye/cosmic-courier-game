@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        OnSlotChanged?.Invoke(currentlyHeld);
+        InvokeSlotChange(currentlyHeld);
     }
 
     private void Update()
@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
                     if (towerComponent) currentlyHeld.GetComponent<BaseTower>().IsDisabled = false;
 
                     currentlyHeld = null;
-                    OnSlotChanged?.Invoke(null);
+                    InvokeSlotChange(currentlyHeld);
                     _gridSelector.ResetPreviousCell();
                     return;
                 }
@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(PickupWaitCoroutine(item, 0.75f));
         
         // Invoke event to signal that the slot has changed
-        OnSlotChanged?.Invoke(null);
+        InvokeSlotChange(currentlyHeld);
     }
     
     public GameObject TransferHeldItem(GameObject caller)
@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour
 
         // Reset the currently held object and invoke the OnSlotChanged event
         currentlyHeld = null;
-        OnSlotChanged?.Invoke(null);
+        InvokeSlotChange(currentlyHeld);
         
         // Return the previously held object
         return item;
@@ -180,7 +180,7 @@ public class PlayerController : MonoBehaviour
         currentlyHeld.GetComponent<BaseTower>().IsDisabled = true;
         
         // Invoke event to signal that the slot has changed
-        OnSlotChanged?.Invoke(currentlyHeld);
+        InvokeSlotChange(currentlyHeld);
     }
 
     private void ReceiveTower(PlayerController player, InteractionHandler handler, GameObject received)
@@ -205,7 +205,7 @@ public class PlayerController : MonoBehaviour
         currentlyHeld.GetComponent<BaseTower>().IsDisabled = true;
         
         // Invoke event to signal that the slot has changed
-        OnSlotChanged?.Invoke(currentlyHeld);
+        InvokeSlotChange(currentlyHeld);
     }
     
     private void HandleItemCollision(Collider collided)
@@ -227,7 +227,7 @@ public class PlayerController : MonoBehaviour
         heldRigidbody.constraints = RigidbodyConstraints.FreezeAll;
             
         // Invoke event to signal that the slot has changed
-        OnSlotChanged?.Invoke(currentlyHeld);
+        InvokeSlotChange(currentlyHeld);
     }
     
     private IEnumerator PickupWaitCoroutine(ItemController item, float seconds)
@@ -246,6 +246,11 @@ public class PlayerController : MonoBehaviour
             toMove.transform.position = Vector3.Lerp(currentPosition, position, t);
             yield return null;
         }
+    }
+    
+    public void InvokeSlotChange(GameObject held)
+    {
+        OnSlotChanged?.Invoke(held);
     }
     
     public void FooButtonTest()

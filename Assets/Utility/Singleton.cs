@@ -11,7 +11,7 @@ namespace Utility
     private static readonly object Lock = new();
 
     [SerializeField]
-    private bool persistent = true;
+    private bool persistent;
     #endregion
 
     #region  Properties

@@ -199,6 +199,7 @@ GameObject:
   - component: {fileID: 1651038241686963347}
   - component: {fileID: 6909943957322300652}
   - component: {fileID: 4623463728610712408}
+  - component: {fileID: 3142383587681555113}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -215,16 +216,16 @@ RectTransform:
   m_GameObject: {fileID: 7809499523737599318}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5.0186324, y: 3.3021383, z: 14.667}
+  m_LocalScale: {x: 10.136404, y: 3.9269376, z: 14.667}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1018399519840369655}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6909943957322300652
 CanvasRenderer:
@@ -264,3 +265,15 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &3142383587681555113
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7809499523737599318}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

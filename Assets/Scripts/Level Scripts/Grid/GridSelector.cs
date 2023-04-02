@@ -56,6 +56,8 @@ namespace Level_Scripts.Grid
                 // the currently selected selected object to reflect it
                 SelectedObject = null;
                 DestroyMarker();
+                if (_prevObject)
+                    TryHighlightInteractable(_prevObject, false);
 
                 // Reset previously selected cell since there is no cell in front of the player
                 ResetPreviousCell();
@@ -77,6 +79,8 @@ namespace Level_Scripts.Grid
                 {
                     SelectedObject = null;
                     DestroyMarker();
+                    if (_prevObject)
+                        TryHighlightInteractable(_prevObject, false);
                     _prevCell = hitPosition;
                     return;
                 }

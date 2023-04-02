@@ -17,7 +17,8 @@ namespace Tower_Scripts
             public TowerData tierStats;
             public List<TowerComponent> tierComponents;
             public GameObject tierVisuals;
-            
+            public Texture2D tierIcon;
+
         }
 
         [SerializeField] private Upgrade[] upgrades;

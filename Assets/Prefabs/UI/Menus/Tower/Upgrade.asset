@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcb1c0c2d999ce845a5f87cbd31ee8e9, type: 3}
   m_Name: Upgrade
   m_EditorClassIdentifier: 
+  upgradeIndex: 2

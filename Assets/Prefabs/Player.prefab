@@ -145,6 +145,7 @@ MonoBehaviour:
   interactableMask:
     serializedVersion: 2
     m_Bits: 64
+  transparentMaterial: {fileID: 2100000, guid: 47bdf2e9d2f4b0f4ea40695394372ca5, type: 2}
 --- !u!114 &1493197873841214690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,7 +254,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bf2902fc58f65a7419f9e7391527ab74, type: 2}
+  - {fileID: 2100000, guid: 47ac83a9835474dfda87b691dfc7b43f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5107,6 +5108,7 @@ GameObject:
   - component: {fileID: 4848726006372459581}
   - component: {fileID: 3454923975194137547}
   - component: {fileID: 8728489516316977005}
+  - component: {fileID: 954668928010750077}
   m_Layer: 5
   m_Name: Personal Canvas
   m_TagString: Untagged
@@ -5152,9 +5154,9 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 1
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &3454923975194137547
 MonoBehaviour:
@@ -5196,6 +5198,14 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!222 &954668928010750077
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5856624408415850367}
+  m_CullTransparentMesh: 1
 --- !u!1 &6885132463227826244
 GameObject:
   m_ObjectHideFlags: 0

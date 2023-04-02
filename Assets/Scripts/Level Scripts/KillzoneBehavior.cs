@@ -1,10 +1,12 @@
 using System.Collections;
+using UI;
 using UnityEngine;
 
 namespace Level_Scripts
 {
     public class KillzoneBehavior : MonoBehaviour
     {
+        private PlayerController _lastDroppedPlayer;
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
@@ -21,7 +23,9 @@ namespace Level_Scripts
         {
             yield return new WaitForSeconds(3);
             
-            var respawn = player.GetComponent<PlayerController>().respawnPoint;
+            _lastDroppedPlayer = player.GetComponent<PlayerController>();
+            var respawn = _lastDroppedPlayer.respawnPoint;
+            _lastDroppedPlayer.InvokeSlotChange(null);
             player.transform.position = respawn.position;
             player.transform.rotation = respawn.rotation;
 
