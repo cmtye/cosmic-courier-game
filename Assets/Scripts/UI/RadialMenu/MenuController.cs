@@ -20,9 +20,6 @@ namespace UI.RadialMenu
 
         private TextMeshProUGUI _selectionText;
 
-        //public Vector3 _tooltipPosition;
-        //public TextMeshProUGUI _tooltipText;
-
         private RectTransform _rectTransform;
 
         private int _numButtons;
@@ -30,8 +27,6 @@ namespace UI.RadialMenu
         private void Awake()
         {
             _selectionText = transform.Find("Selection Text").gameObject.GetComponent<TextMeshProUGUI>();
-            //_tooltipText = transform.Find("Tooltip").gameObject.GetComponent<TextMeshProUGUI>();
-            //_tooltipPosition = transform.Find("Tooltip").gameObject.transform.position;
         }
 
         private void Start()
@@ -135,7 +130,6 @@ namespace UI.RadialMenu
                     Pieces[i].Recolor(true);
                     SetText(Pieces[i].GetText());
                     Pieces[i].ShowTooltip(true);
-                    //SetTooltip(mousePosition, Pieces[i].GetTooltip());
                     if (clicked)
                         Pieces[i].Execute(_player, _handler);
                 }
@@ -143,7 +137,6 @@ namespace UI.RadialMenu
 
             if (!outer)
             {
-                //SetTooltip(mousePosition, "");
                 SetText("Cancel");
             }
             
@@ -158,13 +151,6 @@ namespace UI.RadialMenu
         {
             _selectionText.SetText(text);
         }
-
-        private void SetTooltip(Vector3 position, string text)
-        {
-            //_tooltipPosition = position;
-            //_tooltipText.SetText(text);
-        }
-
 
         private float ModuloAngle(float a) => (a + 360f) % 360f;
 

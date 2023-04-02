@@ -8,14 +8,19 @@ namespace Utility.Interaction
 {
     public class TowerHandler : InteractionHandler
     {
-        public Ring ringData;
+        private Ring _ringData;
         public float distanceThreshold;
 
         public override void Handle(PlayerController player)
         {
-            player.GetMenu().Setup(ringData, player, this);
+            player.GetMenu().Setup(_ringData, player, this);
             player.GetMenu().SetActive(true);
             StartCoroutine(HideMenuIfFar(player));
+        }
+
+        public void SetRingData(Ring data)
+        {
+            _ringData = data;
         }
 
         private IEnumerator HideMenuIfFar(PlayerController player)

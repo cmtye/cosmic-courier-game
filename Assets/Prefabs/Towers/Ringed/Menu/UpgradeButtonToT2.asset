@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0630838f0c698c0499cbbebe02817f86, type: 3}
-  m_Name: CraftRingedButton
+  m_Name: UpgradeButtonToT2
   m_EditorClassIdentifier: 
-  Text: Ringed Tower
-  Tooltip: Costs 5  <sprite name="StardustIcon">
-  Icon: {fileID: 21300000, guid: bfa9f6bbd3d00474ab2275197f81cfe9, type: 3}
-  Event: {fileID: 11400000, guid: 984922f9082f48b43b397628db2ff83a, type: 2}
+  Text: Upgrade
+  Tooltip: Costs 10  <sprite name="StardustIcon">
+  Icon: {fileID: 21300000, guid: 02800fb9cff14da47a04572790384d8b, type: 3}
+  Event: {fileID: 11400000, guid: eed68a9fc6fffa14a937edd0066043eb, type: 2}

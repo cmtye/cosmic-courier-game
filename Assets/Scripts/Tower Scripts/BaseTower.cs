@@ -8,6 +8,7 @@ using UnityEngine.Rendering.Universal;
 using Level_Scripts.Interaction;
 using UI;
 using Utility;
+using Utility.Interaction;
 
 
 namespace Tower_Scripts
@@ -55,6 +56,18 @@ namespace Tower_Scripts
 
         public int Cost;
 
+        private TowerHandler _towerHandler;
+
+        private void Start()
+        {
+            _towerHandler = this.gameObject.GetComponent<TowerHandler>();
+            if (_towerHandler == null) 
+            {
+                Debug.Log("BAD");
+            }
+            SetTowerTier(0);
+        }
+
         private void EnableComponents()
         {
             foreach (var c in towerComponents)
@@ -65,13 +78,16 @@ namespace Tower_Scripts
 
         private void SetTowerTier(int upgradeIndex)
         {
-            towerData = towerUpgrades.Upgrades[upgradeIndex].tierStats;
-            towerComponents = towerUpgrades.Upgrades[upgradeIndex].tierComponents;
+            var tierData = towerUpgrades.Upgrades[upgradeIndex];
+            towerData = tierData.tierStats;
+            towerComponents = tierData.tierComponents;
             var tempBody = _towerBody;
-            var visuals = towerUpgrades.Upgrades[upgradeIndex].tierVisuals;
+            var visuals = tierData.tierVisuals;
             _towerBody = Instantiate(visuals, transform);
             _towerBody.name = "Body";
-            _iconUI.icon = towerUpgrades.Upgrades[upgradeIndex].tierIcon;
+            _iconUI.icon = tierData.tierIcon;
+            Debug.LogFormat("Setting tower tier with ring {0}", _towerHandler);
+            _towerHandler.SetRingData(tierData.ringData);
             foreach (Transform t in _towerBody.transform)
             {
                 if (t.name == "FiringPoint")
@@ -117,7 +133,6 @@ namespace Tower_Scripts
             {
                 if (t.CompareTag("TowerBody")) _towerBody = t.gameObject;
             }
-            SetTowerTier(0);
 
             UpgradeEvent.OnTowerUpgrade += Upgrade;
         }
@@ -187,10 +202,13 @@ namespace Tower_Scripts
         }
 
         // The upgrade index is equivalent to the tier minus one, besides 3A and 3B which are index 2 and 3 respectively
-        private void Upgrade(PlayerController player, InteractionHandler handler, int upgradeIndex)
+        private void Upgrade(PlayerController player, InteractionHandler handler, int upgradeIndex, int cost)
         { 
             // Only upgrade the tower instance accessed by the player
             if (handler.gameObject != gameObject) return;
+
+            // If we cannot spend the cost of the upgrade, we can't upgrade
+            if (!GameManager.Instance.Spend(cost)) return;
             
             // Cannot upgrade outside of the predefined tower bounds
             if (upgradeIndex > 3) return;

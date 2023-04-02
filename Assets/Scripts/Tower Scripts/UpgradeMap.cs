@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Enemy_Scripts.Spawning_Scripts;
 using Tower_Scripts.Components;
 using UnityEngine;
+using UI.RadialMenu; 
 
 namespace Tower_Scripts
 {
@@ -18,6 +19,7 @@ namespace Tower_Scripts
             public List<TowerComponent> tierComponents;
             public GameObject tierVisuals;
             public Texture2D tierIcon;
+            public Ring ringData;
 
         }
 
