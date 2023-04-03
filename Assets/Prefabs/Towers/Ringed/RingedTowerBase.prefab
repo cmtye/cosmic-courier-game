@@ -60,7 +60,7 @@ MonoBehaviour:
   enemiesInRange: []
   targetEnemy: {fileID: 0}
   attackCooldown: 0
-  Cost: 5
+  cost: 5
 --- !u!136 &5620321665923549753
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -145,7 +145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6fe11d9c12112544974e7252afa0316, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ringData: {fileID: 11400000, guid: f1e4e248a7a439e4a8157086aa7fe572, type: 2}
   distanceThreshold: 3
 --- !u!111 &1793635297223125266
 Animation:
