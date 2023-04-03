@@ -22,18 +22,25 @@ namespace Enemy_Scripts.Spawning_Scripts
             _poolContainer = new GameObject($"Pool - {poolName}");
         }
 
-        public void AppendPool(GameObject prefab, int appendSize)
+        public void AppendPool(GameObject prefab, int appendSize, int prestigeLevel)
         {
             for (var i = 0; i < appendSize; i++)
             {
-                _pool.Add(CreateInstance(prefab));
+                _pool.Add(CreateInstance(prefab, prestigeLevel));
                 ActiveInPool++;
             }
         }
 
-        private GameObject CreateInstance(GameObject prefab)
+        private GameObject CreateInstance(GameObject prefab, int prestigeLevel)
         {
             var newInstance = Instantiate(prefab, _poolContainer.transform);
+            var enemy = newInstance.GetComponent<EnemyHealthBehavior>();
+            if (enemy)
+            {
+                enemy.maxHealth *= prestigeLevel;
+                enemy.initialHealth *= prestigeLevel;
+                enemy.GetComponent<EnemyBehavior>().moveSpeed *= prestigeLevel;
+            }
             newInstance.SetActive(false);
             return newInstance;
         }

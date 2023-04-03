@@ -15,7 +15,7 @@ namespace Enemy_Scripts
     {
         public static event Action<int> OnEndReached;
         
-        [SerializeField] private float moveSpeed = 5;
+        public float moveSpeed = 5;
         [SerializeField] private ElementalTypes[] vulnerableTo = { ElementalTypes.Standard };
         [SerializeField] private GameObject itemDrop;
         // [SerializeField] private AnimationCurve slowDownCurve;

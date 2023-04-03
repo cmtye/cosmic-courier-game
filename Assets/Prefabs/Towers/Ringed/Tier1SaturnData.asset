@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   info:
     towerTag: Saturn
-    towerRange: 2
+    towerRange: 1.5
     towerDamage: 0.5
     attackTimer: 0.1
     damageType: 0

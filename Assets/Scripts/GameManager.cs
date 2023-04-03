@@ -27,9 +27,9 @@ public class GameManager : Singleton<GameManager>
     {
         depositBar.SetMax(depotGoal);
      
+        patienceBar.SetMax(patienceMax);
         _patienceAmount = patienceMax;
         patienceBar.SetCurrent(_patienceAmount);
-        patienceBar.SetMax(patienceMax);
     }
 
     public void Deposit(int value)

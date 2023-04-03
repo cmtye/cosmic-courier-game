@@ -53,9 +53,9 @@ public class CharacterMovement : MonoBehaviour
 
         //Default to normal floor behavior if tag is not found
 
-        // Check layers for a hit, return if nothing (can change valid layers as need be)
+        // Check layers for a hit, return if nothing (can change valid layers as need be) 0 == Default, 7 == Unstackable
         Debug.DrawRay(currTransform.position, fwd, Color.green);
-        if (Physics.Raycast(transform.position, fwd, out var hit, 1))
+        if (Physics.Raycast(transform.position, fwd, out var hit, 1, (1 << 0 | 1 << 7)))
         {
             if(_floorBehaviorLookup.TryGetValue(hit.transform.tag, out var floorBehavior))
             {

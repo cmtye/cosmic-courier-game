@@ -13,8 +13,8 @@ namespace Enemy_Scripts
         
         [SerializeField] private GameObject healthBarPrefab;
         [SerializeField] private Transform healthBarTransform;
-        [SerializeField] private float initialHealth = 10f;
-        [SerializeField] private float maxHealth = 10f;
+        public float initialHealth = 10f;
+        public float maxHealth = 10f;
 
         public float MaxHealth { get; private set; }
         public float CurrentHealth { get; private set; }

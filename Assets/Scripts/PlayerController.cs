@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using System.Collections;
 using Tower_Scripts;
 using UI.RadialMenu;
+using Utility;
 
 [RequireComponent(typeof(CharacterMovement))]
 [RequireComponent(typeof(CharacterController))]
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
     private CharacterMovement _characterMovement;
     private Vector2 _moveDirectionInput;
     private ParticleController _particleController;
+    private Animator _animator;
 
     // The players item/tower holding variables
     [SerializeField] private Transform holdTransform;
@@ -28,12 +30,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject playerRadial;
     public Transform respawnPoint;
     private GridSelector _gridSelector;
+    private static readonly int Running = Animator.StringToHash("Running");
 
     private void Awake()
     {
         _characterMovement = GetComponent<CharacterMovement>();
         _gridSelector = GetComponent<GridSelector>();
         _particleController = GetComponent<ParticleController>();
+        _animator = GetComponentInChildren<Animator>();
 
         _controls = new PlayerInputActions();
         _controls.Player.Move.started += OnMovementInput;
@@ -49,9 +53,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (_animator) _animator.SetBool(Running, _moveDirectionInput.magnitude > 0);
         _characterMovement.UpdateFloorBehavior();
         _characterMovement.Move(_moveDirectionInput);
-        
+
         _particleController.SetDustTrail(_moveDirectionInput.magnitude > 0);
         _gridSelector.PlayerHoldingItem = currentlyHeld;
     }
@@ -145,6 +150,7 @@ public class PlayerController : MonoBehaviour
         // Store a reference to the currently held object and make it so we can't pick it up again
         var item = currentlyHeld;
         item.GetComponent<ItemController>().canPickup = false;
+        item.GetComponent<OutlineHighlight>().enabled = false;
         
         // Set the held object's parent to the target object and start moving the object towards the target position
         var targetPosition = caller.transform.position;

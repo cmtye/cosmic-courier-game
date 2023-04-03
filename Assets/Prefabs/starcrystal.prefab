@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6989217726464393615}
   - component: {fileID: 6989217726464393608}
   - component: {fileID: 6989217726464393609}
+  - component: {fileID: 1883769798095132348}
   m_Layer: 10
   m_Name: starcrystal
   m_TagString: Item
@@ -93,6 +94,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 1
   canPickup: 1
+--- !u!114 &1883769798095132348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 885441889811427027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.7885426, g: 0.23018867, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+  needsUpdate: 1
+  needsRender: 0
 --- !u!1 &1444841428294763341
 GameObject:
   m_ObjectHideFlags: 0
