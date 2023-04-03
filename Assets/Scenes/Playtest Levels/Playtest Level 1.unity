@@ -15263,7 +15263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   persistent: 0
-  depotGoal: 50
+  depotGoal: 25
   patienceMax: 15
   storageDisplay: {fileID: 362226876}
   depositBar: {fileID: 8827475581094836877}
@@ -17106,6 +17106,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1968600510}
+    - target: {fileID: 5357811667326873457, guid: 069e857546e3f8849bcd5c9a3dd1cd85, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5357811667484986778, guid: 069e857546e3f8849bcd5c9a3dd1cd85, type: 3}
       propertyPath: m_Camera
       value: 

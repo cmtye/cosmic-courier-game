@@ -3332,6 +3332,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ToggleFreeze
       objectReference: {fileID: 0}
+    - target: {fileID: 5357811667326873457, guid: 069e857546e3f8849bcd5c9a3dd1cd85, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5357811667484986778, guid: 069e857546e3f8849bcd5c9a3dd1cd85, type: 3}
       propertyPath: m_Camera
       value: 
