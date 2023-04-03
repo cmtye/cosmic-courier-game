@@ -195,7 +195,7 @@ public class PlayerController : MonoBehaviour
         if (player != this || currentlyHeld) return;
 
         // If we cannot spend the cost of the tower, we can't craft
-        if (!GameManager.Instance.Spend(received.GetComponent<BaseTower>().Cost)) return;
+        if (!GameManager.Instance.Spend(received.GetComponent<BaseTower>().cost)) return;
 
         // Instantiate a new tower
         var tower = Instantiate(received);

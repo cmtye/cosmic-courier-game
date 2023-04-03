@@ -54,13 +54,15 @@ namespace Tower_Scripts
         public float attackCooldown;
         public bool IsDisabled { private get; set; }
 
-        public int Cost;
+        public int cost;
 
         private TowerHandler _towerHandler;
 
         private void Start()
         {
-            _towerHandler = this.gameObject.GetComponent<TowerHandler>();
+            enemiesInRange = new List<EnemyBehavior>();
+            _towerHandler = GetComponent<TowerHandler>();
+
             SetTowerTier(0);
         }
 
@@ -181,7 +183,8 @@ namespace Tower_Scripts
         private void OnTriggerEnter(Collider other)
         {
             if (!other.CompareTag("Enemy")) return;
-            var newEnemy = other.transform.parent.GetComponent<EnemyBehavior>();
+            
+            var newEnemy = other.transform.GetComponentInChildren<EnemyBehavior>();
             enemiesInRange.Add(newEnemy);
         }
 
@@ -189,7 +192,7 @@ namespace Tower_Scripts
         {
             if (!other.CompareTag("Enemy")) return;
             
-            var enemy = other.transform.parent.GetComponent<EnemyBehavior>();
+            var enemy = other.transform.GetComponentInChildren<EnemyBehavior>();
             if (enemiesInRange.Contains(enemy))
             {
                 enemiesInRange.Remove(enemy);
@@ -197,13 +200,13 @@ namespace Tower_Scripts
         }
 
         // The upgrade index is equivalent to the tier minus one, besides 3A and 3B which are index 2 and 3 respectively
-        private void Upgrade(PlayerController player, InteractionHandler handler, int upgradeIndex, int cost)
+        private void Upgrade(PlayerController player, InteractionHandler handler, int upgradeIndex, int upgradeCost)
         { 
             // Only upgrade the tower instance accessed by the player
             if (handler.gameObject != gameObject) return;
 
             // If we cannot spend the cost of the upgrade, we can't upgrade
-            if (!GameManager.Instance.Spend(cost)) return;
+            if (!GameManager.Instance.Spend(upgradeCost)) return;
             
             // Cannot upgrade outside of the predefined tower bounds
             if (upgradeIndex > 3) return;
