@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttons:
   - {fileID: 11400000, guid: e5de9f7200659df49be819d9805058e0, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: b53d11539b6923b4199e80670f4af773, type: 2}
+  - {fileID: 11400000, guid: 067e868f2cb027140942096c659625f1, type: 2}

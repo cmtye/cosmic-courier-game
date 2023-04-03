@@ -61,10 +61,6 @@ namespace Tower_Scripts
         private void Start()
         {
             _towerHandler = this.gameObject.GetComponent<TowerHandler>();
-            if (_towerHandler == null) 
-            {
-                Debug.Log("BAD");
-            }
             SetTowerTier(0);
         }
 
@@ -86,7 +82,6 @@ namespace Tower_Scripts
             _towerBody = Instantiate(visuals, transform);
             _towerBody.name = "Body";
             _iconUI.icon = tierData.tierIcon;
-            Debug.LogFormat("Setting tower tier with ring {0}", _towerHandler);
             _towerHandler.SetRingData(tierData.ringData);
             foreach (Transform t in _towerBody.transform)
             {

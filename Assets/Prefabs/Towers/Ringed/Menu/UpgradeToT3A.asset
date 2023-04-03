@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: UpgradeToT3A
   m_EditorClassIdentifier: 
   upgradeIndex: 2
+  cost: 20

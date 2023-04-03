@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: UpgradeToT2
   m_EditorClassIdentifier: 
   upgradeIndex: 1
+  cost: 10
