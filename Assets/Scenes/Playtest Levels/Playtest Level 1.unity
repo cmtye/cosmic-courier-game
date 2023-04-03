@@ -15263,8 +15263,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   persistent: 0
-  depotGoal: 10
-  patienceMax: 10
+  depotGoal: 50
+  patienceMax: 15
   storageDisplay: {fileID: 362226876}
   depositBar: {fileID: 8827475581094836877}
   patienceBar: {fileID: 1455042497}

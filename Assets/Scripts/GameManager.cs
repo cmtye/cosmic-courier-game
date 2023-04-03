@@ -23,6 +23,8 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private GameObject gameLostCanvas;
     [SerializeField] private GameObject gameWonCanvas;
 
+    private bool _isFrozen;
+
     private void Start()
     {
         depositBar.SetMax(depotGoal);
@@ -66,7 +68,7 @@ public class GameManager : Singleton<GameManager>
         if (_depotAmount >= depotGoal)
         {
             Debug.Log("STAGE COMPLETE");
-            //gamePausedCanvas.SetActive(false);
+            gamePausedCanvas.SetActive(false);
             gameLostCanvas.SetActive(false);
             gameWonCanvas.SetActive(true);
             ToggleFreeze();
@@ -76,26 +78,40 @@ public class GameManager : Singleton<GameManager>
         if (_patienceAmount <= 0)
         {
             Debug.Log("LOST STAGE");
-            //gamePausedCanvas.SetActive(false);
+            gamePausedCanvas.SetActive(false);
             gameWonCanvas.SetActive(false);
             gameLostCanvas.SetActive(true);
             ToggleFreeze();
         }
     }
 
+    public void TogglePause()
+    {
+        if (!_isFrozen)
+        {
+            gameWonCanvas.SetActive(false);
+            gameLostCanvas.SetActive(false);
+            gamePausedCanvas.SetActive(true);
+            ToggleFreeze();
+            return;
+        }
+        gameWonCanvas.SetActive(false);
+        gameLostCanvas.SetActive(false);
+        gamePausedCanvas.SetActive(false);
+        ToggleFreeze();
+    }
+
     public void ToggleFreeze()
     {
         if (Time.timeScale != 0)
         {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
             Time.timeScale = 0;
+            _isFrozen = true;
         }
         else
         {
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
             Time.timeScale = 1;
+            _isFrozen = false;
         }
     }
     

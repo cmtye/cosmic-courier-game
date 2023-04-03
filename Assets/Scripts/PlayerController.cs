@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
         _controls.Player.Move.canceled += OnMovementInput;
         _controls.Player.Move.performed += OnMovementInput;
         _controls.Player.Interact.performed += OnInteractInput;
+        _controls.Player.Pause.performed += _ => GameManager.Instance.TogglePause();
     }
 
     private void Start()
