@@ -35,7 +35,7 @@ namespace Level_Scripts
 
         private Dictionary<GameObject, Interactable> _cachedInteractables;
 
-        private void FixedUpdate()
+        private void Update()
         {
             FindTarget(transform);
         }
