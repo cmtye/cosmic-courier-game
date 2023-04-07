@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Enemy_Scripts;
+using Interaction;
+using Interaction.Events;
 using Tower_Scripts.Components;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-using Level_Scripts.Interaction;
-using UI;
 using Utility;
-using Utility.Interaction;
+using UX;
 
 
 namespace Tower_Scripts

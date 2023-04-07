@@ -1,9 +1,9 @@
 using System;
 using Enemy_Scripts;
-using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utility;
+using UX;
 
 public class GameManager : Singleton<GameManager>
 {
