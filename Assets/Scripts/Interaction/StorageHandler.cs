@@ -10,17 +10,18 @@ namespace Interaction
 
         public override void Handle(PlayerController player)
         {
-            if (player.currentlyHeld != null && player.currentlyHeld.CompareTag("Item"))
+            if (player.currentlyHeld != null && 
+                player.currentlyHeld.CompareTag("Item") && 
+                player.currentlyHeld.GetComponent<ItemController>().GetTier() != Item.DarkMatter)
             {
                 // Take from the player 
                 var item = player.TransferHeldItem(gameObject);
                 var animator = GetComponent<Animator>();
                 animator.SetTrigger(Open);
 
-                // TODO: different types of resources?
-                // Increment stored amount by item value
-                var value = item.GetComponent<ItemController>().GetValue();
-                GameManager.Instance.Store(value);
+                // Pass item tier to storage 
+                var tier = item.GetComponent<ItemController>().GetTier();
+                GameManager.Instance.Store(tier);
                 StopCoroutine(nameof(CloseStorage));
                 StartCoroutine(nameof(CloseStorage));
                 Destroy(item, 1);
@@ -32,8 +33,7 @@ namespace Interaction
             yield return new WaitForSeconds(2f);
             var animator = GetComponent<Animator>();
             animator.ResetTrigger(Open);
-            animator.SetTrigger(Close);
-            
+            animator.SetTrigger(Close); 
         }
     }
 }

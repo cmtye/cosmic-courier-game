@@ -8,9 +8,9 @@ using UX;
 public class GameManager : Singleton<GameManager>
 {
 
-    private int _storedAmount;
+    private Vector3Int _stored;
 
-    private int _depotAmount;
+    private int _deposited;
     [SerializeField] private int depotGoal = 0;
 
     private int _patienceAmount;
@@ -34,25 +34,46 @@ public class GameManager : Singleton<GameManager>
         patienceBar.SetCurrent(_patienceAmount);
     }
 
-    public void Deposit(int value)
+    public void Deposit()
     {
-        _depotAmount += value;
-        depositBar.SetCurrent(_depotAmount);
+        _deposited++;
+        depositBar.SetCurrent(_deposited);
         CheckStageStatus();
     }
 
-    public void Store(int value)
+    public void Store(Item item)
     {
-        _storedAmount += value;
-        storageDisplay.SetCurrent(_storedAmount);
+        switch(item)
+        {
+            case Item.Small:
+                _stored += Vector3Int.right;
+                break;
+            case Item.Medium:
+                _stored += Vector3Int.up;
+                break;
+            case Item.Large:
+                _stored += Vector3Int.forward;
+                break;
+            default:
+                Debug.Log("Shouldn't be here...");
+                break;
+        }
+        Debug.LogFormat("The stored item amounts are {0}", _stored.ToString());
+        //TODO: update UI
+        //storageDisplay.SetCurrent(_stored);
     }
 
-    public bool Spend(int value)
+    public bool Spend(Vector3Int cost)
     {
-        if (value > _storedAmount) return false;
+        if (cost.x > _stored.x ||
+            cost.y > _stored.y ||
+            cost.z > _stored.z) return false;
 
-        _storedAmount -= value;
-        storageDisplay.SetCurrent(_storedAmount);
+        _stored -= cost;
+
+        Debug.LogFormat("The stored item amounts are {0}", _stored.ToString());
+        //TODO: update UI
+        //storageDisplay.SetCurrent(_stored);
         return true;
     }
 
@@ -65,7 +86,7 @@ public class GameManager : Singleton<GameManager>
 
     private void CheckStageStatus()
     {
-        if (_depotAmount >= depotGoal)
+        if (_deposited >= depotGoal)
         {
             Debug.Log("STAGE COMPLETE");
             gamePausedCanvas.SetActive(false);

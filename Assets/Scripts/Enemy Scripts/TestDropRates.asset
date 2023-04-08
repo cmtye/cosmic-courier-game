@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cef5a5ac8ba7514687d3c7fd35f7374, type: 3}
+  m_Name: TestDropRates
+  m_EditorClassIdentifier: 
+  StardustSmallRate: 0.1
+  StardustSmallObject: {fileID: 885441889811427027, guid: 5ace47e62b3d8d04c80114ffd610e971, type: 3}
+  StardustMediumRate: 0.05
+  StardustMediumObject: {fileID: 885441889811427027, guid: fa5cb0e12533435418696bb55fcfd23e, type: 3}
+  StardustLargeRate: 0
+  StardustLargeObject: {fileID: 885441889811427027, guid: e86b86fc5bbe68d4cb98fad503ea8aef, type: 3}
+  DarkMatterRate: 0.1
+  DarkMatterObject: {fileID: 885441889811427027, guid: e15fe1946ef049343aaa19ae0f1920dd, type: 3}
