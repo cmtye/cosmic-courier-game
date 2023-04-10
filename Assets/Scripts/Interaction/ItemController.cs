@@ -4,12 +4,12 @@ namespace Interaction
 {
     public class ItemController : MonoBehaviour
     {
-        [SerializeField] private int value = 1;
+        [SerializeField] private Item tier;
         public bool canPickup = true;
-        public int GetValue()
-        {
-            return value;
-        }
 
+        public Item GetTier()
+        {
+            return tier;
+        }
     }
 }

@@ -17,7 +17,7 @@ namespace Enemy_Scripts
         
         public float moveSpeed = 5;
         [SerializeField] private ElementalTypes[] vulnerableTo = { ElementalTypes.Standard };
-        [SerializeField] private GameObject itemDrop;
+        [SerializeField] private DropRates dropRates;
         // [SerializeField] private AnimationCurve slowDownCurve;
 
         [HideInInspector] public ObjectPool parentPool;
@@ -34,6 +34,7 @@ namespace Enemy_Scripts
             _healthBehavior = GetComponent<EnemyHealthBehavior>();
             _path = PathManager.Instance.PathVectors;
             _pathCoroutine = StartCoroutine(MoveAlongPath());
+            dropRates.UpdateGrossRates();
         }
         
         private void OnEnable()
@@ -55,21 +56,36 @@ namespace Enemy_Scripts
             StopCoroutine(enemy._moveCoroutine);
             StopCoroutine(enemy._pathCoroutine);
 
-            if (!itemDrop)
+            // If no drop rates attached, return
+            if (!dropRates)
             {
                 enemy.parentPool.ReturnToPool(enemy.gameObject);
                 return;
             }
-            
-            if (Random.value > 0.2)
+
+
+            var rand = Random.value;
+            GameObject itemToDrop = null;
+            if (dropRates.SmallGrossRate > rand)
             {
-                Instantiate(itemDrop, enemy.transform.position, quaternion.identity);
-                var continuedDropChance = 0.2;
-                while (Random.value > continuedDropChance)
-                {
-                    Instantiate(itemDrop, enemy.transform);
-                    continuedDropChance += 0.2;
-                }
+                itemToDrop = dropRates.StardustSmallObject;
+            }
+            else if (dropRates.MediumGrossRate > rand)
+            {
+                itemToDrop = dropRates.StardustMediumObject;
+            }
+            else if (dropRates.LargeGrossRate > rand)
+            {
+                itemToDrop = dropRates.StardustLargeObject;
+            } 
+            else if (dropRates.DarkGrossRate > rand)
+            {
+                itemToDrop = dropRates.DarkMatterObject;
+            }
+
+            if (itemToDrop is not null)
+            {
+                Instantiate(itemToDrop, enemy.transform.position, quaternion.identity);
             }
             enemy.parentPool.ReturnToPool(enemy.gameObject);
         }

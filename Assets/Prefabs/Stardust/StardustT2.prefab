@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6989217726464393609}
   - component: {fileID: 1883769798095132348}
   m_Layer: 10
-  m_Name: StardustT1
+  m_Name: StardustT2
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128af0839418363469a62ff2022e49b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 1
+  tier: 1
   canPickup: 1
 --- !u!114 &1883769798095132348
 MonoBehaviour:
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 1, g: 0.043137256, b: 0.2, a: 1}
+  outlineColor: {r: 1, g: 0.9844875, b: 0.23137254, a: 1}
   outlineWidth: 2
   precomputeOutline: 0
   bakeKeys: []
@@ -168,7 +168,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: aaf8221c53b20d64cb76362d50cb3a5c, type: 2}
+  - {fileID: 2100000, guid: 6928198c29b9da24eb5a3672c050837e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

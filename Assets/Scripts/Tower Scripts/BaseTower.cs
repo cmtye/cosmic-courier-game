@@ -54,7 +54,7 @@ namespace Tower_Scripts
         public float attackCooldown;
         public bool IsDisabled { private get; set; }
 
-        public int cost;
+        public Vector3Int cost;
 
         private TowerHandler _towerHandler;
 
@@ -200,7 +200,7 @@ namespace Tower_Scripts
         }
 
         // The upgrade index is equivalent to the tier minus one, besides 3A and 3B which are index 2 and 3 respectively
-        private void Upgrade(PlayerController player, InteractionHandler handler, int upgradeIndex, int upgradeCost)
+        private void Upgrade(PlayerController player, InteractionHandler handler, int upgradeIndex, Vector3Int upgradeCost)
         { 
             // Only upgrade the tower instance accessed by the player
             if (handler.gameObject != gameObject) return;
