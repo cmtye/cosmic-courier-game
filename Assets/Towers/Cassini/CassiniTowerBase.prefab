@@ -60,7 +60,7 @@ MonoBehaviour:
   enemiesInRange: []
   targetEnemy: {fileID: 0}
   attackCooldown: 0
-  cost: 5
+  cost: {x: 5, y: 0, z: 0}
 --- !u!136 &5620321665923549753
 CapsuleCollider:
   m_ObjectHideFlags: 0

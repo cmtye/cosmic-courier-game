@@ -67,7 +67,10 @@ public class GameManager : Singleton<GameManager>
     {
         if (cost.x > _stored.x ||
             cost.y > _stored.y ||
-            cost.z > _stored.z) return false;
+            cost.z > _stored.z) 
+        {
+            return false;
+        }
 
         _stored -= cost;
 
