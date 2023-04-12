@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a47a03189dee1054786415139abdd00f, type: 3}
+  m_Name: AsteroidTiers
+  m_EditorClassIdentifier: 
+  upgrades:
+  - upgradeTag: Tier 1
+    tierStats: {fileID: 11400000, guid: a377753096058a54ebbe0f313d83655e, type: 2}
+    tierComponents:
+    - {fileID: 11400000, guid: ccd3f338c1386e749abbbf82151b173d, type: 2}
+    tierVisuals: {fileID: 4744530069606316960, guid: fd25c5f694e10c8438156e441a60a0f0, type: 3}
+    tierIcon: {fileID: 2800000, guid: 626b9cddb29049e4cac50cd87b419945, type: 3}
+    ringData: {fileID: 11400000, guid: 533c6c43a84fc3e4183e86c4044825d0, type: 2}
+  - upgradeTag: Tier 2
+    tierStats: {fileID: 11400000, guid: 1f2277ff889bfc8418c029bf95b93d3c, type: 2}
+    tierComponents:
+    - {fileID: 11400000, guid: ccd3f338c1386e749abbbf82151b173d, type: 2}
+    tierVisuals: {fileID: 4744530069606316960, guid: fd25c5f694e10c8438156e441a60a0f0, type: 3}
+    tierIcon: {fileID: 2800000, guid: 626b9cddb29049e4cac50cd87b419945, type: 3}
+    ringData: {fileID: 11400000, guid: 8becef5488d86a145858f1cc02e26e7e, type: 2}
+  - upgradeTag: Tier 3A
+    tierStats: {fileID: 11400000, guid: 1f2277ff889bfc8418c029bf95b93d3c, type: 2}
+    tierComponents:
+    - {fileID: 11400000, guid: ccd3f338c1386e749abbbf82151b173d, type: 2}
+    tierVisuals: {fileID: 4744530069606316960, guid: fd25c5f694e10c8438156e441a60a0f0, type: 3}
+    tierIcon: {fileID: 2800000, guid: 626b9cddb29049e4cac50cd87b419945, type: 3}
+    ringData: {fileID: 11400000, guid: 0750261726bb28947ac06a915e490048, type: 2}
+  - upgradeTag: Tier 3B
+    tierStats: {fileID: 11400000, guid: 1f2277ff889bfc8418c029bf95b93d3c, type: 2}
+    tierComponents:
+    - {fileID: 11400000, guid: ccd3f338c1386e749abbbf82151b173d, type: 2}
+    tierVisuals: {fileID: 4744530069606316960, guid: fd25c5f694e10c8438156e441a60a0f0, type: 3}
+    tierIcon: {fileID: 2800000, guid: 626b9cddb29049e4cac50cd87b419945, type: 3}
+    ringData: {fileID: 11400000, guid: 0750261726bb28947ac06a915e490048, type: 2}

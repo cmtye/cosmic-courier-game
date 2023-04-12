@@ -9,9 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcd25d82007f2514aaa7b4d93c5d6da5, type: 3}
-  m_Name: CraftRing
+  m_Script: {fileID: 11500000, guid: 47d715648fb382b4c9fb0ca5970b555a, type: 3}
+  m_Name: Tier1AsteroidData
   m_EditorClassIdentifier: 
-  buttons:
-  - {fileID: 11400000, guid: c2d5fed5bf09a674a839180464db1b44, type: 2}
-  - {fileID: 11400000, guid: 4b48527f6c8935a4ea8654fd2fff54a3, type: 2}
+  info:
+    towerTag: Asteroid
+    towerRange: 3
+    towerDamage: 0.5
+    attackTimer: 0.1
+    damageType: 0
+    targetType: 0
