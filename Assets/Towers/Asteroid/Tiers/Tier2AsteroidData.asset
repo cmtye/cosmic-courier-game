@@ -15,7 +15,7 @@ MonoBehaviour:
   info:
     towerTag: Asteroid
     towerRange: 3
-    towerDamage: 1
-    attackTimer: 0.1
+    towerDamage: 3
+    attackTimer: 0.25
     damageType: 0
     targetType: 0

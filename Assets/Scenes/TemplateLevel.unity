@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -16939,7 +16939,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 09ce991ae63373043b8ed39c58a53d7f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3f4fa214c3080d34aa1cbfabccfb495f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -26586,7 +26586,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 73d6d168092833f4fbb4dc39a3de8953, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 503c18beb2d8daa478786d0b2ab064f8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -43612,7 +43612,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 87fe2ecda71cd2443b99585b9043a0f5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3c59dbe2e7b900a4f82566ecbd482834, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -46446,9 +46446,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   persistent: 0
+  _stored: {x: 0, y: 0, z: 0}
   depotGoal: 50
   patienceMax: 15
-  storageDisplay: {fileID: 362226876}
+  storageDisplays:
+  - {fileID: 362226876}
+  - {fileID: 713073811}
+  - {fileID: 720715816}
   depositBar: {fileID: 8827475581094836877}
   patienceBar: {fileID: 1455042497}
   gamePausedCanvas: {fileID: 328744518}

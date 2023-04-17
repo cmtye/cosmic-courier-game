@@ -91,6 +91,17 @@ namespace Tower_Scripts
                 {
                     FiringPoint = t;
                 }
+                if (t.name == "FiringPointContainer")
+                {
+                    FiringPoint = t.GetChild(0).transform;
+                    foreach (Transform t2 in t.gameObject.transform)
+                    {                
+                        if (t.name == "FiringPoint")
+                        {
+                            FiringPoint = t;
+                        }
+                    }
+                }
             }
             Destroy(tempBody);
             _animationHolder.clip = _animationHolder.GetClip(_animationClips[upgradeIndex]);

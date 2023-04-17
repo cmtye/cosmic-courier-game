@@ -17,27 +17,27 @@ MonoBehaviour:
     tierStats: {fileID: 11400000, guid: a377753096058a54ebbe0f313d83655e, type: 2}
     tierComponents:
     - {fileID: 11400000, guid: ccd3f338c1386e749abbbf82151b173d, type: 2}
-    tierVisuals: {fileID: 4744530069606316960, guid: fd25c5f694e10c8438156e441a60a0f0, type: 3}
-    tierIcon: {fileID: 2800000, guid: 626b9cddb29049e4cac50cd87b419945, type: 3}
-    ringData: {fileID: 11400000, guid: 533c6c43a84fc3e4183e86c4044825d0, type: 2}
+    tierVisuals: {fileID: 605138159385220009, guid: f0e510b3fa89b1846a24e91d5352c463, type: 3}
+    tierIcon: {fileID: 2800000, guid: 7034b6c54bb285348aa73ee61313ca0b, type: 3}
+    ringData: {fileID: 11400000, guid: ffaadd5fb6fcbd143af95358fceab907, type: 2}
   - upgradeTag: Tier 2
-    tierStats: {fileID: 11400000, guid: 1f2277ff889bfc8418c029bf95b93d3c, type: 2}
+    tierStats: {fileID: 11400000, guid: 038834af40c5a154f9e3a0640282bd2d, type: 2}
     tierComponents:
     - {fileID: 11400000, guid: ccd3f338c1386e749abbbf82151b173d, type: 2}
-    tierVisuals: {fileID: 4744530069606316960, guid: fd25c5f694e10c8438156e441a60a0f0, type: 3}
-    tierIcon: {fileID: 2800000, guid: 626b9cddb29049e4cac50cd87b419945, type: 3}
-    ringData: {fileID: 11400000, guid: 8becef5488d86a145858f1cc02e26e7e, type: 2}
+    tierVisuals: {fileID: 1505890644184643871, guid: 9c1b41a3d2f74c1408540e1092249e71, type: 3}
+    tierIcon: {fileID: 2800000, guid: 998bf9fa098eeb249ac1303372ca68b3, type: 3}
+    ringData: {fileID: 11400000, guid: 95e8bd6bbd9ca2e45b69f9fd10055dd4, type: 2}
   - upgradeTag: Tier 3A
-    tierStats: {fileID: 11400000, guid: 1f2277ff889bfc8418c029bf95b93d3c, type: 2}
+    tierStats: {fileID: 11400000, guid: 772c37e7f6038a44094ca9077a106cdf, type: 2}
     tierComponents:
     - {fileID: 11400000, guid: ccd3f338c1386e749abbbf82151b173d, type: 2}
-    tierVisuals: {fileID: 4744530069606316960, guid: fd25c5f694e10c8438156e441a60a0f0, type: 3}
-    tierIcon: {fileID: 2800000, guid: 626b9cddb29049e4cac50cd87b419945, type: 3}
-    ringData: {fileID: 11400000, guid: 0750261726bb28947ac06a915e490048, type: 2}
+    tierVisuals: {fileID: 7347385741390531248, guid: 45112633991a3de40ab59b4c99bef396, type: 3}
+    tierIcon: {fileID: 2800000, guid: 4cbdec844323c65409608485c62e68ef, type: 3}
+    ringData: {fileID: 11400000, guid: 7f28cfdfccbba024fb1ad99637b6cb0f, type: 2}
   - upgradeTag: Tier 3B
-    tierStats: {fileID: 11400000, guid: 1f2277ff889bfc8418c029bf95b93d3c, type: 2}
+    tierStats: {fileID: 11400000, guid: 81db107ebf8e6e3429c084c20d517114, type: 2}
     tierComponents:
     - {fileID: 11400000, guid: ccd3f338c1386e749abbbf82151b173d, type: 2}
-    tierVisuals: {fileID: 4744530069606316960, guid: fd25c5f694e10c8438156e441a60a0f0, type: 3}
-    tierIcon: {fileID: 2800000, guid: 626b9cddb29049e4cac50cd87b419945, type: 3}
-    ringData: {fileID: 11400000, guid: 0750261726bb28947ac06a915e490048, type: 2}
+    tierVisuals: {fileID: 3026896891703916806, guid: 4c754a93aae5e9742a8debcc7fb3d2cc, type: 3}
+    tierIcon: {fileID: 2800000, guid: 5cad61993cedd14478ffa1eaa5aa1986, type: 3}
+    ringData: {fileID: 11400000, guid: 7f28cfdfccbba024fb1ad99637b6cb0f, type: 2}

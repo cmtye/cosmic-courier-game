@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0630838f0c698c0499cbbebe02817f86, type: 3}
   m_Name: CraftAsteroidButton
   m_EditorClassIdentifier: 
-  Text: Asteroid Something
-  Tooltip: Costs 5  <sprite name="T1">
-  Icon: {fileID: 21300000, guid: 626b9cddb29049e4cac50cd87b419945, type: 3}
+  Text: Goliath's Belt
+  Tooltip: Costs 5  <sprite=0>
+  Icon: {fileID: 21300000, guid: 7034b6c54bb285348aa73ee61313ca0b, type: 3}
   Event: {fileID: 11400000, guid: 722864d4e6e371a40a49f7cd19eef185, type: 2}

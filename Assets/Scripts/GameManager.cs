@@ -8,7 +8,7 @@ using UX;
 public class GameManager : Singleton<GameManager>
 {
 
-    private Vector3Int _stored;
+    [SerializeField] private Vector3Int _stored;
 
     private int _deposited;
     [SerializeField] private int depotGoal = 0;
@@ -16,7 +16,7 @@ public class GameManager : Singleton<GameManager>
     private int _patienceAmount;
     [SerializeField] private int patienceMax;
     
-    [SerializeField] private StorageBehavior storageDisplay;
+    [SerializeField] private StorageBehavior[] storageDisplays;
     [SerializeField] private DepositBehavior depositBar;
     [SerializeField] private PatienceBehavior patienceBar;
     [SerializeField] private GameObject gamePausedCanvas;
@@ -59,8 +59,7 @@ public class GameManager : Singleton<GameManager>
                 break;
         }
         Debug.LogFormat("The stored item amounts are {0}", _stored.ToString());
-        //TODO: update UI
-        //storageDisplay.SetCurrent(_stored);
+        UpdateStorageDisplays();
     }
 
     public bool Spend(Vector3Int cost)
@@ -75,9 +74,15 @@ public class GameManager : Singleton<GameManager>
         _stored -= cost;
 
         Debug.LogFormat("The stored item amounts are {0}", _stored.ToString());
-        //TODO: update UI
-        //storageDisplay.SetCurrent(_stored);
+        UpdateStorageDisplays();
         return true;
+    }
+
+    void UpdateStorageDisplays()
+    {
+        storageDisplays[0].SetCurrent(_stored.x);
+        storageDisplays[1].SetCurrent(_stored.y);
+        storageDisplays[2].SetCurrent(_stored.z);
     }
 
     private void LosePatience(int value)

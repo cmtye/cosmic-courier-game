@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8f25a93405a8bc45b339e21ade94134, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 2800000, guid: 6260774d849f2504794ec03b75d1e350, type: 3}
+  icon: {fileID: 2800000, guid: 3c59dbe2e7b900a4f82566ecbd482834, type: 3}
 --- !u!114 &6989217726464393609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128af0839418363469a62ff2022e49b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 1
+  tier: 0
   canPickup: 1
 --- !u!114 &1883769798095132348
 MonoBehaviour:
