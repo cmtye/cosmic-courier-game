@@ -1,3 +1,4 @@
+using System;
 using Enemy_Scripts.Spawning_Scripts;
 using TMPro;
 using UnityEngine;
@@ -24,7 +25,7 @@ namespace UX
 
         private void UpdateText(int wave)
         {
-            _text.SetText("Wave: " + (wave + 1));
+            _text.SetText(wave + 1 + "");
         }
     
     }
