@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f28f359023c0af4e800f6a9c80347ce, type: 3}
-  m_Name: AsteroidFling
+  m_Name: CeresFling
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 4463340891056942088, guid: 844a664d183185d4bb4df28bc60c28b8, type: 3}
+  projectilePrefab: {fileID: 4325444036507539423, guid: fcb1b64303f82ae4292705df1046dd88, type: 3}
   projectileSpeed: 5
   damageDistance: 0.1

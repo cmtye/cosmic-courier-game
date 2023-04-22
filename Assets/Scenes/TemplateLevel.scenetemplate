@@ -93,8 +93,6 @@ MonoBehaviour:
     instantiationMode: 0
   - dependency: {fileID: 11400000, guid: c2d5fed5bf09a674a839180464db1b44, type: 2}
     instantiationMode: 1
-  - dependency: {fileID: 7400000, guid: 7a73526d847341b498da468de8df53ee, type: 2}
-    instantiationMode: 0
   - dependency: {fileID: 2800000, guid: 39ab5662afd0a3842a01a25481589427, type: 2}
     instantiationMode: 0
   - dependency: {fileID: 9100000, guid: 2ddad55120b829d44b82cfffae3df7f2, type: 2}
@@ -109,7 +107,11 @@ MonoBehaviour:
     instantiationMode: 0
   - dependency: {fileID: 885441889811427027, guid: 5ace47e62b3d8d04c80114ffd610e971, type: 3}
     instantiationMode: 0
+<<<<<<< HEAD
   - dependency: {fileID: 5614567742693918233, guid: 2d46a885a7bec7c42a9a7f9d4dca02d8, type: 3}
+=======
+  - dependency: {fileID: 7400000, guid: f1b418d8d55d83843b73fd27602f57fe, type: 2}
+>>>>>>> afc73c5 (Fix asteroid tower position, icons, mesh, projectiles)
     instantiationMode: 0
   - dependency: {fileID: 7400000, guid: ee77268d8df16334db817a5d55d8e2a8, type: 2}
     instantiationMode: 0
@@ -171,6 +173,8 @@ MonoBehaviour:
     instantiationMode: 0
   - dependency: {fileID: 7400000, guid: 702c2f3e6f314204e90fd3b7e1719f7b, type: 2}
     instantiationMode: 0
+  - dependency: {fileID: 4631307348157644025, guid: 6100ad69598d9694880fb1e63c5bc5ea, type: 3}
+    instantiationMode: 0
   - dependency: {fileID: 527480944543684511, guid: aca3cb5bec21a79438c3e12a434ebf0c, type: 3}
     instantiationMode: 0
   - dependency: {fileID: -2334228938269764537, guid: f7003320a27ec2c40b09f9eb7d7253df, type: 3}
@@ -185,10 +189,10 @@ MonoBehaviour:
     instantiationMode: 1
   - dependency: {fileID: 7632671070151298236, guid: 74c94a4fe7823ef41a5abd7b2a94668e, type: 3}
     instantiationMode: 0
-  - dependency: {fileID: 2333106047552561816, guid: 53261b9e6d2d2c5408fe00076c331328, type: 3}
-    instantiationMode: 0
   - dependency: {fileID: 11400000, guid: b431343bd2a67c8449207efc08a340e8, type: 2}
     instantiationMode: 1
+  - dependency: {fileID: 4593827211108649508, guid: ac003c758478b854c9a55488c369026d, type: 3}
+    instantiationMode: 0
   - dependency: {fileID: 11400000, guid: 430158f4378e3454d9568a8f9474a070, type: 2}
     instantiationMode: 1
   - dependency: {fileID: 11400000, guid: b53d11539b6923b4199e80670f4af773, type: 2}
@@ -241,6 +245,8 @@ MonoBehaviour:
     instantiationMode: 0
   - dependency: {fileID: 2800000, guid: 40f3c98a72fd0824c95d132de45170cc, type: 2}
     instantiationMode: 0
+  - dependency: {fileID: -6398579915573399434, guid: 2b2cb6d7e7d6b0743a7a2de812b2f90c, type: 3}
+    instantiationMode: 0
   - dependency: {fileID: 11400000, guid: 95e8bd6bbd9ca2e45b69f9fd10055dd4, type: 2}
     instantiationMode: 1
   - dependency: {fileID: 11400000, guid: 81db107ebf8e6e3429c084c20d517114, type: 2}
@@ -258,6 +264,8 @@ MonoBehaviour:
   - dependency: {fileID: 2800000, guid: 55fdf8a2b41b62d4aa897e8f7d80b771, type: 2}
     instantiationMode: 0
   - dependency: {fileID: 2800000, guid: 819eebf6cc2697945bbcfa7d11f93131, type: 3}
+    instantiationMode: 0
+  - dependency: {fileID: 3504774909311059754, guid: 4cb7d6ddadbf7a74ca8976ca0804c639, type: 3}
     instantiationMode: 0
   - dependency: {fileID: 11400000, guid: 72764478736d4c44b92195c168ca140c, type: 2}
     instantiationMode: 1
@@ -283,8 +291,11 @@ MonoBehaviour:
     instantiationMode: 1
   - dependency: {fileID: 11400000, guid: ed35c7b1b35283a49ab57aad9c2ffda1, type: 2}
     instantiationMode: 1
+<<<<<<< HEAD
   - dependency: {fileID: 3026896891703916806, guid: 4c754a93aae5e9742a8debcc7fb3d2cc, type: 3}
     instantiationMode: 0
+=======
+>>>>>>> afc73c5 (Fix asteroid tower position, icons, mesh, projectiles)
   - dependency: {fileID: 11400000, guid: e50b969da10c2a941be72412a8283482, type: 2}
     instantiationMode: 1
   - dependency: {fileID: 885441889811427027, guid: e86b86fc5bbe68d4cb98fad503ea8aef, type: 3}
@@ -307,6 +318,8 @@ MonoBehaviour:
     instantiationMode: 1
   - dependency: {fileID: 2333106047552561816, guid: e71665dc3fc8a3b4c9905bd7537d2c52, type: 3}
     instantiationMode: 0
+  - dependency: {fileID: 11400000, guid: 2373612ac6ce217499be75bd734cbf4c, type: 2}
+    instantiationMode: 1
   - dependency: {fileID: 11400000, guid: a2343eb33d94b184eb85b18fa6212ff5, type: 2}
     instantiationMode: 1
   - dependency: {fileID: 2800000, guid: 569b36664e309484a83003b66936ccce, type: 3}
@@ -315,7 +328,11 @@ MonoBehaviour:
     instantiationMode: 1
   - dependency: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
     instantiationMode: 1
+<<<<<<< HEAD
   - dependency: {fileID: 2800000, guid: 305586d46310d8145b131a999ca854de, type: 2}
+=======
+  - dependency: {fileID: 4593827211108649508, guid: d8da63546c2164c4e9291a9b48e4c433, type: 3}
+>>>>>>> afc73c5 (Fix asteroid tower position, icons, mesh, projectiles)
     instantiationMode: 0
   - dependency: {fileID: 919132149155446097, guid: 5576c20f47938094883e0c443d756b2a, type: 3}
     instantiationMode: 0
@@ -340,6 +357,8 @@ MonoBehaviour:
   - dependency: {fileID: 2100000, guid: 37bb65fe9dbede04cb7bf138d32445ec, type: 2}
     instantiationMode: 0
   - dependency: {fileID: 2100000, guid: 0eeb1b4916d7a0d4d84ebca6350937e4, type: 2}
+    instantiationMode: 0
+  - dependency: {fileID: 4325444036507539423, guid: fcb1b64303f82ae4292705df1046dd88, type: 3}
     instantiationMode: 0
   - dependency: {fileID: 11400000, guid: 0a6b8a5a6f1d3eb4682fe677fb8155e0, type: 2}
     instantiationMode: 1
@@ -374,8 +393,6 @@ MonoBehaviour:
   - dependency: {fileID: 11400000, guid: b5290f1d56590914f92729e5f6c8543c, type: 2}
     instantiationMode: 1
   - dependency: {fileID: 885441889811427027, guid: e15fe1946ef049343aaa19ae0f1920dd, type: 3}
-    instantiationMode: 0
-  - dependency: {fileID: 4463340891056942088, guid: 844a664d183185d4bb4df28bc60c28b8, type: 3}
     instantiationMode: 0
   - dependency: {fileID: 7859684502675437387, guid: 1a84c84e5448e094fbbd5bca64159207, type: 3}
     instantiationMode: 0

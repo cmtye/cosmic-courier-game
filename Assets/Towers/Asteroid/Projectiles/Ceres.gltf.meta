@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 53261b9e6d2d2c5408fe00076c331328
+guid: ac003c758478b854c9a55488c369026d
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -16,11 +16,11 @@ ScriptedImporter:
       specular: {fileID: -6465566751694194690, guid: e6061ad897a8bd843b501d409aff8a22, type: 3}
       specularBlend: {fileID: -6465566751694194690, guid: 09512c1ba26fe804283ec6e09112e53c, type: 3}
     animationSettings:
-      looping: 1
+      looping: 0
       frameRate: 24
       interpolationMode: -1
       compressBlendShapeKeyFrames: 1
-      useLegacyClips: 1
+      useLegacyClips: 0
     generateLightmapUVs: 0
     hardAngle: 88
     angleError: 8

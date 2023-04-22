@@ -37,7 +37,7 @@ MonoBehaviour:
   - upgradeTag: Tier 3B
     tierStats: {fileID: 11400000, guid: 81db107ebf8e6e3429c084c20d517114, type: 2}
     tierComponents:
-    - {fileID: 11400000, guid: ccd3f338c1386e749abbbf82151b173d, type: 2}
-    tierVisuals: {fileID: 3026896891703916806, guid: 4c754a93aae5e9742a8debcc7fb3d2cc, type: 3}
+    - {fileID: 11400000, guid: 2373612ac6ce217499be75bd734cbf4c, type: 2}
+    tierVisuals: {fileID: 1528301084834952184, guid: 836185eb66cc8684f8015dc965447919, type: 3}
     tierIcon: {fileID: 2800000, guid: 5cad61993cedd14478ffa1eaa5aa1986, type: 3}
     ringData: {fileID: 11400000, guid: 7f28cfdfccbba024fb1ad99637b6cb0f, type: 2}

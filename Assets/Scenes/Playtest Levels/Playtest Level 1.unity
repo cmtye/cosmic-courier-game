@@ -3527,17 +3527,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9002588319824804569, guid: 6eb22d4a99f1f4e4fa8e4ad3e3f0206c, type: 3}
   m_PrefabInstance: {fileID: 1997824846}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &362226876 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5357811668589358306, guid: 069e857546e3f8849bcd5c9a3dd1cd85, type: 3}
-  m_PrefabInstance: {fileID: 5357811668227262558}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d990a6db5a118d84ead5b9cd607aa903, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &366935031 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9002588319824804569, guid: 6eb22d4a99f1f4e4fa8e4ad3e3f0206c, type: 3}
@@ -15263,9 +15252,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   persistent: 0
+  _stored: {x: 0, y: 0, z: 0}
   depotGoal: 25
   patienceMax: 15
-  storageDisplay: {fileID: 362226876}
+  storageDisplays: []
   depositBar: {fileID: 8827475581094836877}
   patienceBar: {fileID: 1455042497}
   gamePausedCanvas: {fileID: 328744518}

@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8f25a93405a8bc45b339e21ade94134, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 2800000, guid: 626b9cddb29049e4cac50cd87b419945, type: 3}
+  icon: {fileID: 2800000, guid: 7034b6c54bb285348aa73ee61313ca0b, type: 3}
 --- !u!114 &876108675938882173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,8 +159,8 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: 2ba61577e9d980b4aa27a7e3d4de0ced, type: 2}
   - {fileID: 7400000, guid: 948e2b47f5403514aab4d251dbf09da5, type: 2}
-  - {fileID: 7400000, guid: ee77268d8df16334db817a5d55d8e2a8, type: 2}
-  - {fileID: 7400000, guid: 7a73526d847341b498da468de8df53ee, type: 2}
+  - {fileID: 7400000, guid: 5dd60a17970b2d94f877350c13592108, type: 2}
+  - {fileID: 7400000, guid: f1b418d8d55d83843b73fd27602f57fe, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
