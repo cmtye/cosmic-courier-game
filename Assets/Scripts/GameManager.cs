@@ -40,7 +40,7 @@ public class GameManager : Singleton<GameManager>
         depositBar.SetCurrent(_deposited);
         CheckStageStatus();
     }
-
+    
     public void Store(Item item)
     {
         switch(item)

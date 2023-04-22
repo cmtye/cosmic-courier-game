@@ -1,31 +1,120 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-// this namespace makes the magic, tho
- 
 namespace UX
 {
     public class ObjectButtonBehavior : 
         MonoBehaviour, 
-        IPointerClickHandler, 
+        IPointerDownHandler,
+        IPointerUpHandler,
         IPointerEnterHandler,
         IPointerExitHandler {
 
-        [SerializeField] UnityEvent buttonEvent;
-        public void OnPointerClick(PointerEventData eventData)
+        [SerializeField] private UnityEvent buttonEvent;
+        [SerializeField] private bool toggleButton;
+        
+        [Range(0, 1)] [SerializeField] private float dimmedPercentage = .8f;
+        [Range(0, 1)] [SerializeField] private float clickedPercentage = .6f;
+        
+        private Renderer[] _renderers;
+        private List<Color> _colors;
+
+        private bool _toggleClick;
+        private bool _beingClicked;
+        private bool _beingHovered;
+
+        private void Start()
         {
-            Debug.Log("Here");
-            //buttonEvent.Invoke();
+            _colors = new List<Color>();
+            _renderers = GetComponentsInChildren<Renderer>();
+            foreach (var r in _renderers)
+            {
+                _colors.Add(r.material.color);
+            }
+        }
+        
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            if (_beingClicked) return;
+            
+            var counter = 0;
+            foreach (var c in _colors)
+            {
+                Color.RGBToHSV(c, out var h, out var s, out var v);
+                _renderers[counter].material.color = Color.HSVToRGB(h, s, v * clickedPercentage, false);
+                counter++;
+
+            }
+            _beingClicked = true;
+        }
+        
+        public void OnPointerUp(PointerEventData eventData)
+        {
+            _beingClicked = false;
+            if (toggleButton) _toggleClick = !_toggleClick;
+            if (_toggleClick)
+            {
+                buttonEvent.Invoke();
+                return;
+            }
+            
+            if (_beingHovered)
+            {
+                var counter = 0;
+                foreach (var c in _colors)
+                {
+                    Color.RGBToHSV(c, out var h, out var s, out var v);
+                    _renderers[counter].material.color = Color.HSVToRGB(h, s, v * dimmedPercentage, false);
+                    counter++;
+                }
+            }
+            else
+            {
+                var counter = 0;
+                foreach (var c in _colors)
+                {
+                    _renderers[counter].material.color = c;
+                    counter++;
+                }
+            }
+            buttonEvent.Invoke();
         }
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            Debug.Log("Over");
+            _beingHovered = true;
+            if (_toggleClick) return;
+            var counter = 0;
+            foreach (var c in _colors)
+            {
+                Color.RGBToHSV(c, out var h, out var s, out var v);
+                _renderers[counter].material.color = Color.HSVToRGB(h, s, v * dimmedPercentage, false);
+                counter++;
+            }
         }
         public void OnPointerExit(PointerEventData eventData)
         {
-            Debug.Log("Off");
+            _beingHovered = false;
+            if (_toggleClick) return;
+            var counter = 0;
+            foreach (var c in _colors)
+            {
+                _renderers[counter].material.color = c;
+                counter++;
+            }
+        }
+
+        public void SetInactive()
+        {
+            var counter = 0;
+            foreach (var c in _colors)
+            {
+                _renderers[counter].material.color = c;
+                counter++;
+            }
+            gameObject.SetActive(false);
         }
     }
 }

@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using Utility;
+using UX;
 
 namespace Enemy_Scripts.Spawning_Scripts
 {
@@ -12,6 +14,7 @@ namespace Enemy_Scripts.Spawning_Scripts
         public WaveMap[] waves;
         private int _wavesIndex;
         private int _prestigeLevel;
+        private bool _autoStart;
         
         [SerializeField] private Transform spawnPoint;
         
@@ -21,6 +24,12 @@ namespace Enemy_Scripts.Spawning_Scripts
         private ObjectPool _pool;
         private WaitForSeconds _cacheWait;
 
+        [SerializeField] private GameObject autoButton;
+        [SerializeField] private GameObject nextButton;
+        [SerializeField] private TextMeshProUGUI waveTimerText;
+        [SerializeField] private int waveTimer;
+        private bool _waveWaiting;
+
         private void Start()
         {
             transform.position = spawnPoint.position;
@@ -29,19 +38,56 @@ namespace Enemy_Scripts.Spawning_Scripts
             _pool = GetComponent<ObjectPool>();
         }
 
+        public void ToggleAutoStart()
+        {
+            _autoStart = !_autoStart;
+        }
+        
         private void FixedUpdate()
         {
-            if (_pool.ActiveInPool == 0) OnWaveOver?.Invoke(_wavesIndex + waves.Length * (_prestigeLevel - 1));
+            if (_waveWaiting) return;
+            
+            if (_pool.ActiveInPool == 0)
+            {
+                OnWaveOver?.Invoke(_wavesIndex + waves.Length * (_prestigeLevel - 1));
+                if (_autoStart)
+                {
+                    StartNewWave();
+                }
+                else
+                {
+                    waveTimerText.enabled = true;
+                    _waveWaiting = true;
+                    nextButton.SetActive(true);
+                    autoButton.SetActive(false);
+                    StartCoroutine(WaveWait());
+                }
+            }
         }
 
+        private IEnumerator WaveWait()
+        {
+            for (var i = waveTimer; i > 0; i--)
+            {
+                waveTimerText.text = i + "";
+                yield return new WaitForSeconds(1);
+            }
+            StartNewWave();
+        }
+        
         public void StartNewWave()
         {
+            nextButton.GetComponent<ObjectButtonBehavior>().SetInactive();
+            autoButton.SetActive(true);
+            waveTimerText.enabled = false;
+            _waveWaiting = false;
+            
             if (_wavesIndex == waves.Length)
             {
                 _wavesIndex = 0;
                 _prestigeLevel++;
             }
-            // Potentially a better way to check current active in pool through events
+            
             if (_pool.ActiveInPool != 0) return;
             
             _pool.CreatePool($"Wave {_wavesIndex + waves.Length * (_prestigeLevel - 1) + 1}");
