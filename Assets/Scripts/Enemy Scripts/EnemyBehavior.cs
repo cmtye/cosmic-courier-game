@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using Enemy_Scripts.Spawning_Scripts;
 using Level_Scripts;
 using Tower_Scripts;
@@ -112,8 +113,16 @@ namespace Enemy_Scripts
             {
                 var position = transform.position;
                 position = Vector3.MoveTowards(position, _path[currentIndex] , moveSpeed * Time.deltaTime);
+                
+                var direction = (_path[currentIndex] - position).normalized;
+                if (direction != Vector3.zero)
+                {
+                    var lookRotation = Quaternion.LookRotation((_path[currentIndex] - position).normalized);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10);
+                }
                 distanceToPoint = (position - _path[currentIndex]).magnitude;
                 transform.position = position;
+                
                 yield return null;
             }
         }

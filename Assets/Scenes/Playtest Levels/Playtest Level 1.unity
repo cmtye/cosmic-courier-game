@@ -178,6 +178,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1556775153061305181, guid: 0410b3c1900ee63468230cd746ef6644, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0410b3c1900ee63468230cd746ef6644, type: 3}
 --- !u!1001 &7785427
@@ -13150,6 +13154,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dde399b247107fa4a9b9ae11e753909c, type: 2}
   - {fileID: 11400000, guid: e74187451571e54459076119cbb0952a, type: 2}
   spawnPoint: {fileID: 1760627605}
+  autoButton: {fileID: 0}
+  nextButton: {fileID: 0}
+  waveTimerText: {fileID: 0}
+  waveTimer: 0
 --- !u!114 &1640451019
 MonoBehaviour:
   m_ObjectHideFlags: 0

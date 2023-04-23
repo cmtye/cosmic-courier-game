@@ -58,6 +58,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 37885a652deb0f34bb33c34d0f0a369d, type: 2}
   towerData: {fileID: 11400000, guid: 64af7fff53e29a1408a211a829c10321, type: 2}
   enemiesInRange: []
+  itemsInRange: []
   targetEnemy: {fileID: 0}
   attackCooldown: 0
   cost: {x: 5, y: 0, z: 0}
@@ -72,7 +73,7 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 2
-  m_Height: 1
+  m_Height: 10
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &4744530069606316974

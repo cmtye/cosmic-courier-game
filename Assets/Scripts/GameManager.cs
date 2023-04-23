@@ -161,6 +161,11 @@ public class GameManager : Singleton<GameManager>
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
     
     private void OnEnable()
     {

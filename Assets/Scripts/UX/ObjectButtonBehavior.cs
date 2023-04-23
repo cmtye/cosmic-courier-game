@@ -14,6 +14,7 @@ namespace UX
 
         [SerializeField] private UnityEvent buttonEvent;
         [SerializeField] private bool toggleButton;
+        [SerializeField] private Material toggleColor;
         
         [Range(0, 1)] [SerializeField] private float dimmedPercentage = .8f;
         [Range(0, 1)] [SerializeField] private float clickedPercentage = .6f;
@@ -42,8 +43,16 @@ namespace UX
             var counter = 0;
             foreach (var c in _colors)
             {
-                Color.RGBToHSV(c, out var h, out var s, out var v);
-                _renderers[counter].material.color = Color.HSVToRGB(h, s, v * clickedPercentage, false);
+                if (!_toggleClick && counter > 1)
+                {
+                    Color.RGBToHSV(toggleColor.color, out var h, out var s, out var v);
+                    _renderers[counter].material.color = Color.HSVToRGB(h, s, v * clickedPercentage, false);
+                }
+                else
+                {
+                    Color.RGBToHSV(c, out var h, out var s, out var v);
+                    _renderers[counter].material.color = Color.HSVToRGB(h, s, v * clickedPercentage, false);
+                }
                 counter++;
 
             }
@@ -54,19 +63,22 @@ namespace UX
         {
             _beingClicked = false;
             if (toggleButton) _toggleClick = !_toggleClick;
-            if (_toggleClick)
-            {
-                buttonEvent.Invoke();
-                return;
-            }
-            
+
             if (_beingHovered)
             {
                 var counter = 0;
                 foreach (var c in _colors)
                 {
-                    Color.RGBToHSV(c, out var h, out var s, out var v);
-                    _renderers[counter].material.color = Color.HSVToRGB(h, s, v * dimmedPercentage, false);
+                    if (_toggleClick && counter > 1)
+                    {
+                        Color.RGBToHSV(toggleColor.color, out var h, out var s, out var v);
+                        _renderers[counter].material.color = Color.HSVToRGB(h, s, v * dimmedPercentage, false);
+                    }
+                    else
+                    {
+                        Color.RGBToHSV(c, out var h, out var s, out var v);
+                        _renderers[counter].material.color = Color.HSVToRGB(h, s, v * dimmedPercentage, false);
+                    }
                     counter++;
                 }
             }
@@ -75,7 +87,14 @@ namespace UX
                 var counter = 0;
                 foreach (var c in _colors)
                 {
-                    _renderers[counter].material.color = c;
+                    if (_toggleClick && counter > 1)
+                    {
+                        _renderers[counter].material.color = toggleColor.color;
+                    }
+                    else
+                    {
+                        _renderers[counter].material.color = c;
+                    }
                     counter++;
                 }
             }
@@ -85,23 +104,37 @@ namespace UX
         public void OnPointerEnter(PointerEventData eventData)
         {
             _beingHovered = true;
-            if (_toggleClick) return;
+            
             var counter = 0;
             foreach (var c in _colors)
             {
-                Color.RGBToHSV(c, out var h, out var s, out var v);
-                _renderers[counter].material.color = Color.HSVToRGB(h, s, v * dimmedPercentage, false);
+                if (_toggleClick && counter > 1)
+                {
+                    Color.RGBToHSV(toggleColor.color, out var h, out var s, out var v);
+                    _renderers[counter].material.color = Color.HSVToRGB(h, s, v * dimmedPercentage, false);
+                }
+                else
+                {
+                    Color.RGBToHSV(c, out var h, out var s, out var v);
+                    _renderers[counter].material.color = Color.HSVToRGB(h, s, v * dimmedPercentage, false);
+                }
                 counter++;
             }
         }
         public void OnPointerExit(PointerEventData eventData)
         {
             _beingHovered = false;
-            if (_toggleClick) return;
             var counter = 0;
             foreach (var c in _colors)
             {
-                _renderers[counter].material.color = c;
+                if (_toggleClick && counter > 1)
+                {
+                    _renderers[counter].material.color = toggleColor.color;
+                }
+                else
+                {
+                    _renderers[counter].material.color = c;
+                }
                 counter++;
             }
         }

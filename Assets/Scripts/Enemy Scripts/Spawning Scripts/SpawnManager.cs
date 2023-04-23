@@ -29,6 +29,7 @@ namespace Enemy_Scripts.Spawning_Scripts
         [SerializeField] private TextMeshProUGUI waveTimerText;
         [SerializeField] private int waveTimer;
         private bool _waveWaiting;
+        private Coroutine _waveWaitCoroutine;
 
         private void Start()
         {
@@ -50,6 +51,11 @@ namespace Enemy_Scripts.Spawning_Scripts
             if (_pool.ActiveInPool == 0)
             {
                 OnWaveOver?.Invoke(_wavesIndex + waves.Length * (_prestigeLevel - 1));
+                if (_waveWaitCoroutine != null)
+                {
+                    StopCoroutine(_waveWaitCoroutine);
+                    _waveWaitCoroutine = null;
+                }
                 if (_autoStart)
                 {
                     StartNewWave();
@@ -60,7 +66,7 @@ namespace Enemy_Scripts.Spawning_Scripts
                     _waveWaiting = true;
                     nextButton.SetActive(true);
                     autoButton.SetActive(false);
-                    StartCoroutine(WaveWait());
+                    _waveWaitCoroutine = StartCoroutine(WaveWait());
                 }
             }
         }

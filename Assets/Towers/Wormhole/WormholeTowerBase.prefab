@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 406627309}
   - component: {fileID: 1793635297223125266}
   m_Layer: 6
-  m_Name: CassiniTowerBase 1
+  m_Name: WormholeTowerBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,11 +53,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f32254c99dba5249b3c1d65578148fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerUpgrades: {fileID: 11400000, guid: ed4b64962c1b6ff439e56e78570bf3fa, type: 2}
+  towerUpgrades: {fileID: 11400000, guid: a6ab04847125cea4e9a594c0be5fc464, type: 2}
   towerComponents:
   - {fileID: 11400000, guid: 37885a652deb0f34bb33c34d0f0a369d, type: 2}
   towerData: {fileID: 11400000, guid: 64af7fff53e29a1408a211a829c10321, type: 2}
   enemiesInRange: []
+  itemsInRange: []
   targetEnemy: {fileID: 0}
   attackCooldown: 0
   cost: {x: 0, y: 0, z: 0}
@@ -72,7 +73,7 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 2
-  m_Height: 1
+  m_Height: 10
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &5620321665923549758

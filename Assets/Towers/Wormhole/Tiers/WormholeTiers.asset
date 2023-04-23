@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a47a03189dee1054786415139abdd00f, type: 3}
+  m_Name: WormholeTiers
+  m_EditorClassIdentifier: 
+  upgrades:
+  - upgradeTag: Tier 1
+    tierStats: {fileID: 11400000, guid: 23c4c16c419b12140994f8fa928b9123, type: 2}
+    tierComponents:
+    - {fileID: 11400000, guid: 67098c2752950854aa5f85b0be797eb3, type: 2}
+    tierVisuals: {fileID: 5614567742693918233, guid: 2d46a885a7bec7c42a9a7f9d4dca02d8, type: 3}
+    tierIcon: {fileID: 2800000, guid: f9161c6c9e06dc445ada3ee16d991f90, type: 3}
+    ringData: {fileID: 11400000, guid: 7059857d661abd546ae521941c723702, type: 2}

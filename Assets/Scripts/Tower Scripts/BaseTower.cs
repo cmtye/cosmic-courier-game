@@ -46,6 +46,7 @@ namespace Tower_Scripts
         private GameObject _towerBody;
         
         public List<EnemyBehavior> enemiesInRange;
+        public List<ItemController> itemsInRange;
         
         public EnemyBehavior targetEnemy;
         private float _targetDistance;
@@ -61,6 +62,7 @@ namespace Tower_Scripts
         private void Start()
         {
             enemiesInRange = new List<EnemyBehavior>();
+            itemsInRange = new List<ItemController>();
             _towerHandler = GetComponent<TowerHandler>();
 
             SetTowerTier(0);
@@ -153,7 +155,9 @@ namespace Tower_Scripts
         private void Update()
         {
             if (IsDisabled) return;
+            enemiesInRange = enemiesInRange.Where(enemy => enemy).ToList();
             enemiesInRange.RemoveAll(x => !x.isActiveAndEnabled);
+            itemsInRange = itemsInRange.Where(item => item).ToList();
             GetTargetEnemy();
             foreach (var c in towerComponents)
             {
@@ -193,6 +197,12 @@ namespace Tower_Scripts
         
         private void OnTriggerEnter(Collider other)
         {
+            if (other.CompareTag("Item"))
+            {
+                var newItem = other.transform.GetComponentInChildren<ItemController>();
+                if (!newItem || newItem.GetTier() == Item.DarkMatter) return;
+                itemsInRange.Add(newItem);
+            }
             if (!other.CompareTag("Enemy")) return;
             
             var newEnemy = other.transform.GetComponentInChildren<EnemyBehavior>();
@@ -201,6 +211,14 @@ namespace Tower_Scripts
 
         private void OnTriggerExit(Collider other)
         {
+            if (other.CompareTag("Item"))
+            {
+                var item = other.transform.GetComponentInChildren<ItemController>();
+                if (itemsInRange.Contains(item))
+                {
+                    itemsInRange.Remove(item);
+                }
+            }
             if (!other.CompareTag("Enemy")) return;
             
             var enemy = other.transform.GetComponentInChildren<EnemyBehavior>();
