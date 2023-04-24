@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StardustSmallRate: 0.1
   StardustSmallObject: {fileID: 885441889811427027, guid: 5ace47e62b3d8d04c80114ffd610e971, type: 3}
-  StardustMediumRate: 0.4
+  StardustMediumRate: 0.35
   StardustMediumObject: {fileID: 885441889811427027, guid: fa5cb0e12533435418696bb55fcfd23e, type: 3}
   StardustLargeRate: 0.1
   StardustLargeObject: {fileID: 885441889811427027, guid: e86b86fc5bbe68d4cb98fad503ea8aef, type: 3}

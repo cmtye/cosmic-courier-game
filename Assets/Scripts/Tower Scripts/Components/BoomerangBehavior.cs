@@ -33,7 +33,7 @@ namespace Tower_Scripts.Components
 
             _direction = (target.transform.position- transform.position).normalized;
             _direction.y = 0;
-            Destroy(gameObject, .8f);
+            Destroy(gameObject, .9f);
         }
         
         private void Update()

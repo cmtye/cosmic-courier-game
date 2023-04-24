@@ -131,6 +131,11 @@ public class GameManager : Singleton<GameManager>
         ToggleFreeze();
     }
 
+    public bool CheckDepotFull()
+    {
+        return _deposited >= depotGoal;
+    }
+    
     public void ToggleFreeze()
     {
         if (Time.timeScale != 0)

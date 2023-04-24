@@ -18,6 +18,8 @@ namespace Tower_Scripts.Components
         // Update is called once per frame
         private void Update()
         {
+            if (!target.isActiveAndEnabled) Destroy(gameObject);
+            
             var targetPosition = target.transform.position;
             var moveDirection = (targetPosition - transform.position).normalized;
 

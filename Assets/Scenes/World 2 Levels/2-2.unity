@@ -3670,6 +3670,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sand
       objectReference: {fileID: 0}
+    - target: {fileID: 7859684502675437387, guid: b8df714bb347a2a478b254e4f2465922, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 9002588319824804569, guid: b8df714bb347a2a478b254e4f2465922, type: 3}
       propertyPath: m_RootOrder
       value: 148
@@ -24612,7 +24616,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1348337489}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.88, y: 0.60959756, z: -1.1}
+  m_LocalPosition: {x: 0.49, y: -1.3, z: -7.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

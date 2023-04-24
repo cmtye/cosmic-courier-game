@@ -80,7 +80,11 @@ public class PlayerController : MonoBehaviour
             var interactable = selectedObject.GetComponent<Interactable>();
             if (interactable)
             {
-                if (currentlyHeld && currentlyHeld.CompareTag("Item") && interactable.GetComponent<BaseTower>()) return;
+                if (currentlyHeld && currentlyHeld.CompareTag("Item") && interactable.GetComponent<BaseTower>())
+                {
+                    ReleaseHeldItem(true);
+                    return;
+                }
 
                 interactable.Interact(this);
                 return;

@@ -81,7 +81,7 @@ namespace Enemy_Scripts
             } 
             else if (dropRates.DarkGrossRate > rand)
             {
-                itemToDrop = dropRates.DarkMatterObject;
+                if (!GameManager.Instance.CheckDepotFull()) itemToDrop = dropRates.DarkMatterObject;
             }
 
             if (itemToDrop is not null)

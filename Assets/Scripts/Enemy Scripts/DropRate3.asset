@@ -16,7 +16,7 @@ MonoBehaviour:
   StardustSmallObject: {fileID: 885441889811427027, guid: 5ace47e62b3d8d04c80114ffd610e971, type: 3}
   StardustMediumRate: 0.2
   StardustMediumObject: {fileID: 885441889811427027, guid: fa5cb0e12533435418696bb55fcfd23e, type: 3}
-  StardustLargeRate: 0.45
+  StardustLargeRate: 0.35
   StardustLargeObject: {fileID: 885441889811427027, guid: e86b86fc5bbe68d4cb98fad503ea8aef, type: 3}
   DarkMatterRate: 0.1
   DarkMatterObject: {fileID: 885441889811427027, guid: e15fe1946ef049343aaa19ae0f1920dd, type: 3}
