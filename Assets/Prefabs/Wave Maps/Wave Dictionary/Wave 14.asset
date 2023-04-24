@@ -10,22 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 519d4cb758e288b4e9186a7536cf7d17, type: 3}
-  m_Name: Wave 11
+  m_Name: Wave 14
   m_EditorClassIdentifier: 
   subWaves:
-  - subWaveTag: 5 Small
-    enemyPrefab: {fileID: 6958277655355526180, guid: 9426b32ab561a1f4f8eb95b47ced61e6, type: 3}
-    spawnCount: 5
-    spawnDelay: 0.5
+  - subWaveTag: 1 Large Solar
+    enemyPrefab: {fileID: 6958277655355526180, guid: ad1bf92e0ab04724dbfc3b85ff99148f, type: 3}
+    spawnCount: 3
+    spawnDelay: 1
   - subWaveTag: 5 Small Flame
     enemyPrefab: {fileID: 6958277655355526180, guid: f175eebf4e64dc044852c442193397d9, type: 3}
     spawnCount: 5
-    spawnDelay: 0.5
+    spawnDelay: 0.75
+  - subWaveTag: 1 Large Solar
+    enemyPrefab: {fileID: 6958277655355526180, guid: ad1bf92e0ab04724dbfc3b85ff99148f, type: 3}
+    spawnCount: 3
+    spawnDelay: 1
   - subWaveTag: 5 Small
     enemyPrefab: {fileID: 6958277655355526180, guid: 9426b32ab561a1f4f8eb95b47ced61e6, type: 3}
     spawnCount: 5
-    spawnDelay: 0.5
-  - subWaveTag: 5 Medium
-    enemyPrefab: {fileID: 6958277655355526180, guid: 73dd4ffbadd196c4d9e41d123b2b378f, type: 3}
-    spawnCount: 5
-    spawnDelay: 1.5
+    spawnDelay: 0.75
+  - subWaveTag: 1 Large Solar
+    enemyPrefab: {fileID: 6958277655355526180, guid: 0f89cf1c1191d334fa5d786c6164bea9, type: 3}
+    spawnCount: 3
+    spawnDelay: 1

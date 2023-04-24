@@ -10,14 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 519d4cb758e288b4e9186a7536cf7d17, type: 3}
-  m_Name: Wave 10
+  m_Name: Wave 16
   m_EditorClassIdentifier: 
   subWaves:
-  - subWaveTag: 5 Large Flame
-    enemyPrefab: {fileID: 6958277655355526180, guid: a4b5013a4245887419a7a7323d4af149, type: 3}
-    spawnCount: 5
-    spawnDelay: 2
-  - subWaveTag: 2 Medium Frost
-    enemyPrefab: {fileID: 6958277655355526180, guid: cf420c3c1b940cf4b8db6f82c2c3f620, type: 3}
-    spawnCount: 1
-    spawnDelay: 1
+  - subWaveTag: 10 Large
+    enemyPrefab: {fileID: 6958277655355526180, guid: 18311c4ed9a3ceb40b62520ed065b9a4, type: 3}
+    spawnCount: 10
+    spawnDelay: 1.5

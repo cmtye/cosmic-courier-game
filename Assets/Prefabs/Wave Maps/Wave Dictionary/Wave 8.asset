@@ -21,7 +21,7 @@ MonoBehaviour:
     enemyPrefab: {fileID: 6958277655355526180, guid: f175eebf4e64dc044852c442193397d9, type: 3}
     spawnCount: 10
     spawnDelay: 0.5
-  - subWaveTag: 1 Small Solar
-    enemyPrefab: {fileID: 6958277655355526180, guid: a91e385e9257a55408fde9051d919409, type: 3}
+  - subWaveTag: 1 Small Frost
+    enemyPrefab: {fileID: 6958277655355526180, guid: e0835cc696be3b94393173e299fdd37e, type: 3}
     spawnCount: 1
     spawnDelay: 1

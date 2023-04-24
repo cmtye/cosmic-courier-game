@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: Wave 12
   m_EditorClassIdentifier: 
   subWaves:
-  - subWaveTag: 5 Small
-    enemyPrefab: {fileID: 6958277655355526180, guid: 2f009ca9bc928cb4da65c87138351109, type: 3}
+  - subWaveTag: 3 Large Flame Lunar
+    enemyPrefab: {fileID: 6958277655355526180, guid: 3adc3e8cbbedd99418d7bdf59cde1ba7, type: 3}
+    spawnCount: 3
+    spawnDelay: 1.5
+  - subWaveTag: 2 Small Flame Frost
+    enemyPrefab: {fileID: 6958277655355526180, guid: b9c244af5682edd4488594d6e688fa68, type: 3}
+    spawnCount: 2
+    spawnDelay: 1
+  - subWaveTag: 5 Medium Flame
+    enemyPrefab: {fileID: 6958277655355526180, guid: 73dd4ffbadd196c4d9e41d123b2b378f, type: 3}
     spawnCount: 5
-    spawnDelay: 0.5
+    spawnDelay: 1
   - subWaveTag: 5 Small Flame
     enemyPrefab: {fileID: 6958277655355526180, guid: f175eebf4e64dc044852c442193397d9, type: 3}
     spawnCount: 5
     spawnDelay: 0.5
-  - subWaveTag: 5 Small
-    enemyPrefab: {fileID: 6958277655355526180, guid: 9426b32ab561a1f4f8eb95b47ced61e6, type: 3}
-    spawnCount: 5
-    spawnDelay: 0.5
-  - subWaveTag: 5 Medium
-    enemyPrefab: {fileID: 6958277655355526180, guid: 73dd4ffbadd196c4d9e41d123b2b378f, type: 3}
-    spawnCount: 5
-    spawnDelay: 1.5

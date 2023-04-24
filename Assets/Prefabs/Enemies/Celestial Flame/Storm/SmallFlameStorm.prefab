@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 235399711558682968}
   - component: {fileID: 5861724923333006668}
   m_Layer: 8
-  m_Name: SmallFlameSolar
+  m_Name: SmallFlameStorm
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
