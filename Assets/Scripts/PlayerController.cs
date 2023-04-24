@@ -80,6 +80,8 @@ public class PlayerController : MonoBehaviour
             var interactable = selectedObject.GetComponent<Interactable>();
             if (interactable)
             {
+                if (currentlyHeld && currentlyHeld.CompareTag("Item") && interactable.GetComponent<BaseTower>()) return;
+
                 interactable.Interact(this);
                 return;
             }
