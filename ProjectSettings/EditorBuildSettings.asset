@@ -8,15 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main Menu.unity
     guid: ce023500caae53d43869480bc30a9c12
-  - enabled: 0
-    path: Assets/Scenes/Playtest Levels/Playtest Level 0.unity
-    guid: 89d9d7be11ec4d742a7d5b59007015be
-  - enabled: 0
-    path: Assets/Scenes/Playtest Levels/Playtest Level 1.unity
-    guid: 70da897565ba1b64d8833c58401209b4
-  - enabled: 0
-    path: Assets/Scenes/Playtest Levels/Playtest Level 2.unity
-    guid: f546ba36bffa931438479d37f8c5fa28
   - enabled: 1
     path: Assets/Scenes/World 1 Levels/1-0.unity
     guid: 7d6efdb7d296b664e98726eada359044

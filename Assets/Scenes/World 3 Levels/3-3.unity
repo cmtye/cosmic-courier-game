@@ -10768,15 +10768,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6126684011136423051, guid: 31324ae529f68294fb1063f60ca76966, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.52
+      value: 8.23
       objectReference: {fileID: 0}
     - target: {fileID: 6126684011136423051, guid: 31324ae529f68294fb1063f60ca76966, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.95
+      value: 3.47
       objectReference: {fileID: 0}
     - target: {fileID: 6126684011136423051, guid: 31324ae529f68294fb1063f60ca76966, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.22
+      value: -9.01
       objectReference: {fileID: 0}
     - target: {fileID: 6126684011136423051, guid: 31324ae529f68294fb1063f60ca76966, type: 3}
       propertyPath: m_LocalRotation.w
@@ -15303,7 +15303,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &808585536
 RectTransform:
   m_ObjectHideFlags: 0
@@ -30337,7 +30337,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -62}
+  m_AnchoredPosition: {x: 0, y: -216}
   m_SizeDelta: {x: 140, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1582769969
@@ -36946,7 +36946,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   persistent: 0
-  _stored: {x: 1, y: 1, z: 1}
+  _stored: {x: 0, y: 0, z: 0}
   depotGoal: 40
   patienceMax: 15
   storageDisplays:
