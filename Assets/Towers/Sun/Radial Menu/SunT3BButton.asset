@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SunT3BButton
   m_EditorClassIdentifier: 
   Text: Upgrade
-  Tooltip: Costs 20  <sprite=2>
+  Tooltip: Costs 10  <sprite=2>
   Icon: {fileID: 21300000, guid: 01baaf18cdae7834e89c7a1ecf9f96aa, type: 3}
   Event: {fileID: 11400000, guid: 985ef24044d8bb94983592f1a4c0a9f4, type: 2}

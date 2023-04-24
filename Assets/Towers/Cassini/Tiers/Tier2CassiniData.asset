@@ -15,7 +15,7 @@ MonoBehaviour:
   info:
     towerTag: Saturn
     towerRange: 1.5
-    towerDamage: 0.8
+    towerDamage: 0.4
     attackTimer: 0.1
     damageType: 0
     targetType: 0

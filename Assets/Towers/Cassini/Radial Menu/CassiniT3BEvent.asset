@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: CassiniT3BEvent
   m_EditorClassIdentifier: 
   upgradeIndex: 3
-  cost: {x: 0, y: 0, z: 20}
+  cost: {x: 0, y: 0, z: 10}
