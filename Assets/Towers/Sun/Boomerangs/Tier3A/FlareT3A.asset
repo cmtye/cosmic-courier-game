@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67ce34ece9e15b84d99665e990bbae65, type: 3}
+  m_Name: FlareT3A
+  m_EditorClassIdentifier: 
+  boomerangPrefab: {fileID: 3550852189946759402, guid: 7db2c1e630d85334a92f0fe73fbd3d1c, type: 3}
+  initialSpeed: 15
+  returnAcceleration: 0.05
+  resetDistance: 0.1

@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dcd25d82007f2514aaa7b4d93c5d6da5, type: 3}
-  m_Name: CraftRing
+  m_Name: SunRingT2
   m_EditorClassIdentifier: 
   buttons:
-  - {fileID: 11400000, guid: c2d5fed5bf09a674a839180464db1b44, type: 2}
-  - {fileID: 11400000, guid: 4b48527f6c8935a4ea8654fd2fff54a3, type: 2}
-  - {fileID: 11400000, guid: ee41418de814f504a892e934d7296576, type: 2}
-  - {fileID: 11400000, guid: 58d25323251ac984c93904583622924f, type: 2}
+  - {fileID: 11400000, guid: e5de9f7200659df49be819d9805058e0, type: 2}
+  - {fileID: 11400000, guid: 463b2d9c4bed37b45a5e71e1eee35eb6, type: 2}
+  - {fileID: 11400000, guid: 73960b48822171c439e6bc0970ae57fb, type: 2}
