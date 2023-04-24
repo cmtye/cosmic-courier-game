@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: PickupButton
   m_EditorClassIdentifier: 
   Text: Pick Up
-  Icon: {fileID: 21300000, guid: 602b72d4617c3694aa94419fc1b68e04, type: 3}
+  Tooltip: 
+  Icon: {fileID: 21300000, guid: 88efe0a1153b9614e8e878f6a30dbd38, type: 3}
   Event: {fileID: 11400000, guid: 9ce183ca72f31fa4692e96a61a2af6f8, type: 2}

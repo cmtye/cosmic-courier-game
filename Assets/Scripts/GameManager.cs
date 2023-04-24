@@ -59,7 +59,7 @@ public class GameManager : Singleton<GameManager>
                 break;
         }
         Debug.LogFormat("The stored item amounts are {0}", _stored.ToString());
-        //UpdateStorageDisplays();
+        UpdateStorageDisplays();
     }
 
     public bool Spend(Vector3Int cost)

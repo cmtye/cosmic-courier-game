@@ -32,11 +32,14 @@ namespace Tower_Scripts.Components
 
             if (tower.itemsInRange.Count == 0) return;
 
-            var targetItem = tower.itemsInRange.FirstOrDefault();
+            var targetItem = tower.itemsInRange[Random.Range (0, tower.itemsInRange.Count)];
             if (!targetItem) return;
 
             if (targetItem.canPickup == false) return;
-            
+            if (targetItem.transform.parent)
+            {
+                if (targetItem.transform.parent.CompareTag("Player")) return;
+            }
             var item = targetItem.gameObject;
             targetItem.canPickup = false;
             item.GetComponent<OutlineHighlight>().enabled = false;
@@ -44,10 +47,8 @@ namespace Tower_Scripts.Components
             if (!_rotatingObjects.TryGetValue(tower, out var rotator)) UpdateRotator(tower);
             else
             {
-                var transform = rotator.transform;
-                var lookDirection = (transform.position - targetItem.transform.position).normalized;
                 var lookRotation =
-                    Quaternion.FromToRotation(transform.forward, lookDirection);
+                    Quaternion.LookRotation((targetItem.transform.position - rotator.transform.position).normalized);
 
                 if (rotator) tower.StartCoroutine(SmoothRotator(rotator, lookRotation, towerInfo.attackTimer));
                 else UpdateRotator(tower);
@@ -114,7 +115,7 @@ namespace Tower_Scripts.Components
 
                 // Maximum angle of inclination, for the saturn tower and its rings specifically
                 angle = Mathf.Clamp(angle, -55f, 55f);
-                rotator.Rotate(axis, angle);
+                rotator.Rotate(new Vector3(1,0,1), angle);
                 yield return 0;
             }
         }

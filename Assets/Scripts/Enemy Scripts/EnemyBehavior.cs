@@ -17,7 +17,7 @@ namespace Enemy_Scripts
         public static event Action<int> OnEndReached;
         
         public float moveSpeed = 5;
-        [SerializeField] private ElementalTypes[] vulnerableTo = { ElementalTypes.Standard };
+        [SerializeField] private ElementalTypes[] invulnerableTo = { };
         [SerializeField] private DropRates dropRates;
         // [SerializeField] private AnimationCurve slowDownCurve;
 
@@ -27,11 +27,11 @@ namespace Enemy_Scripts
         private Coroutine _pathCoroutine;
         private Coroutine _moveCoroutine;
 
-        public ElementalTypes[] Vulnerabilities { get; private set; }
+        public ElementalTypes[] Invulnerabilities { get; private set; }
         
         private void Start()
         {
-            Vulnerabilities = vulnerableTo;
+            Invulnerabilities = invulnerableTo;
             _healthBehavior = GetComponent<EnemyHealthBehavior>();
             _path = PathManager.Instance.PathVectors;
             _pathCoroutine = StartCoroutine(MoveAlongPath());

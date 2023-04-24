@@ -1,15 +1,16 @@
-using UnityEngine;
 using System;
-using Interaction;
-using Interaction.Events;
+using UnityEngine;
 
-[CreateAssetMenu(menuName = "InteractionEvents/Pickup")]
-public class PickupEvent : InteractionEvent
+namespace Interaction.Events
 {
-    public static event Action<PlayerController, InteractionHandler> OnTowerPickup;
-
-    public override void Raise(PlayerController player, InteractionHandler handler)
+    [CreateAssetMenu(menuName = "InteractionEvents/Pickup")]
+    public class PickupEvent : InteractionEvent
     {
-        OnTowerPickup?.Invoke(player, handler);
+        public static event Action<PlayerController, InteractionHandler> OnTowerPickup;
+
+        public override void Raise(PlayerController player, InteractionHandler handler)
+        {
+            OnTowerPickup?.Invoke(player, handler);
+        }
     }
 }

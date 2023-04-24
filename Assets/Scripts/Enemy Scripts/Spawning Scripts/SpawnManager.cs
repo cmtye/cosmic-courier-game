@@ -47,27 +47,30 @@ namespace Enemy_Scripts.Spawning_Scripts
         private void FixedUpdate()
         {
             if (_waveWaiting) return;
-            
-            if (_pool.ActiveInPool == 0)
+            if (_pool.ActiveInPool != 0) return;
+            if (_wavesIndex == 0 && _prestigeLevel == 1)
             {
-                OnWaveOver?.Invoke(_wavesIndex + waves.Length * (_prestigeLevel - 1));
-                if (_waveWaitCoroutine != null)
-                {
-                    StopCoroutine(_waveWaitCoroutine);
-                    _waveWaitCoroutine = null;
-                }
-                if (_autoStart)
-                {
-                    StartNewWave();
-                }
-                else
-                {
-                    waveTimerText.enabled = true;
-                    _waveWaiting = true;
-                    nextButton.SetActive(true);
-                    autoButton.SetActive(false);
-                    _waveWaitCoroutine = StartCoroutine(WaveWait());
-                }
+                waveTimerText.enabled = false;
+                return;
+            }
+            
+            OnWaveOver?.Invoke(_wavesIndex + waves.Length * (_prestigeLevel - 1));
+            if (_waveWaitCoroutine != null)
+            {
+                StopCoroutine(_waveWaitCoroutine);
+                _waveWaitCoroutine = null;
+            }
+            if (_autoStart)
+            {
+                StartNewWave();
+            }
+            else
+            {
+                waveTimerText.enabled = true;
+                _waveWaiting = true;
+                nextButton.SetActive(true);
+                autoButton.SetActive(false);
+                _waveWaitCoroutine = StartCoroutine(WaveWait());
             }
         }
 

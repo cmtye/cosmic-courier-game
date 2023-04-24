@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Text: Upgrade
   Tooltip: Costs 20  <sprite=2>
-  Icon: {fileID: 21300000, guid: fd2662c1b41b9b747ac2ded8429da074, type: 3}
+  Icon: {fileID: 21300000, guid: ef53eee0f323bbf4daf75305b83d401d, type: 3}
   Event: {fileID: 11400000, guid: 31efb4238fee5794fadc86fff8395fcd, type: 2}

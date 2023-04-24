@@ -32,13 +32,8 @@ namespace Enemy_Scripts
 
         public void DealDamage(float damageReceived, ElementalTypes damageType)
         {
-            // Vulnerability to normal attacks means vulnerability to everything
-            if (!_enemy.Vulnerabilities.Contains(ElementalTypes.Standard))
-            {
-                // Otherwise the enemy needs to be specifically vulnerable to be damaged
-                if (!_enemy.Vulnerabilities.Contains(damageType)) return;
-            }
-            
+            if (_enemy.Invulnerabilities.Contains(damageType)) return;
+
             CurrentHealth -= damageReceived;
             if (CurrentHealth <= 0)
             {

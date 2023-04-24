@@ -19,7 +19,7 @@ namespace Tower_Scripts
         Solar, 
         Lunar, 
         Storm, 
-        Arcane
+        Frost
     }
 
     public enum TargetType
@@ -58,12 +58,16 @@ namespace Tower_Scripts
         public Vector3Int cost;
 
         private TowerHandler _towerHandler;
+        private int _targetingIndex;
+        private string[] _targetingArray;
 
         private void Start()
         {
             enemiesInRange = new List<EnemyBehavior>();
             itemsInRange = new List<ItemController>();
             _towerHandler = GetComponent<TowerHandler>();
+            _targetingArray = Enum.GetNames(typeof(TargetType));
+            _targetingIndex = 0;
 
             SetTowerTier(0);
         }
@@ -144,11 +148,13 @@ namespace Tower_Scripts
                 if (t.CompareTag("TowerBody")) _towerBody = t.gameObject;
             }
 
+            TargetingEvent.OnTowerTargeting += CycleTargetingType;
             UpgradeEvent.OnTowerUpgrade += Upgrade;
         }
 
         private void OnDisable()
         {
+            TargetingEvent.OnTowerTargeting -= CycleTargetingType;
             UpgradeEvent.OnTowerUpgrade -= Upgrade;
         }
 
@@ -206,6 +212,10 @@ namespace Tower_Scripts
             if (!other.CompareTag("Enemy")) return;
             
             var newEnemy = other.transform.GetComponentInChildren<EnemyBehavior>();
+            if (newEnemy.Invulnerabilities.Length != 0)
+            {
+                if (newEnemy.Invulnerabilities.Contains(towerData.info.damageType)) return;
+            }
             enemiesInRange.Add(newEnemy);
         }
 
@@ -241,6 +251,29 @@ namespace Tower_Scripts
             if (upgradeIndex > 3) return;
             
             SetTowerTier(upgradeIndex);
+        }
+
+        private void CycleTargetingType(PlayerController player, InteractionHandler handler)
+        {
+            // Only upgrade the tower instance accessed by the player
+            if (handler.gameObject != gameObject) return;
+            
+            _targetingIndex++;
+            if (_targetingIndex >= _targetingArray.Length) _targetingIndex = 0;
+
+            towerData.info.targetType = _targetingArray[_targetingIndex] switch
+            {
+                "Close" => TargetType.Close,
+                "Strong" => TargetType.Strong,
+                "Weak" => TargetType.Weak,
+                "Far" => TargetType.Far,
+                _ => towerData.info.targetType
+            };
+        }
+
+        public string CurrentTargeting()
+        {
+            return _targetingArray[_targetingIndex];
         }
     }
 }

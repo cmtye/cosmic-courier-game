@@ -40,7 +40,7 @@ namespace UX
         {
             _meshRenderer.GetPropertyBlock(_materialBlock);
             var damagePercent = currentValue / maxValue;
-            if (Math.Abs(damagePercent - 1) < 0.001f) StartCoroutine(Shake(0.5f, 0.1f));
+            if (Math.Abs(damagePercent) > 0.001f) StartCoroutine(Shake(0.25f, 0.1f));
             _materialBlock.SetFloat(Fill, 1 - damagePercent);
             _meshRenderer.SetPropertyBlock(_materialBlock);
         }

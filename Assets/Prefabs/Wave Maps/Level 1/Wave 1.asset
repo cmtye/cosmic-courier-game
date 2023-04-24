@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   subWaves:
   - subWaveTag: 5 Small
-    enemyPrefab: {fileID: 6958277655355526180, guid: 636bae697fab46a438263d4935e8e4cc, type: 3}
+    enemyPrefab: {fileID: 6958277655355526180, guid: 9426b32ab561a1f4f8eb95b47ced61e6, type: 3}
     spawnCount: 5
     spawnDelay: 1

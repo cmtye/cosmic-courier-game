@@ -32,6 +32,9 @@ public class PlayerController : MonoBehaviour
     public Transform respawnPoint;
     private GridSelector _gridSelector;
     private static readonly int Running = Animator.StringToHash("Running");
+    private static readonly int Pickup = Animator.StringToHash("Pickup");
+    private static readonly int Place = Animator.StringToHash("Place");
+    private static readonly int Throw = Animator.StringToHash("Throw");
 
     private void Awake()
     {
@@ -97,6 +100,9 @@ public class PlayerController : MonoBehaviour
                     // Check if we've placed a tower, if so re-enable its components
                     var towerComponent = currentlyHeld.GetComponent<BaseTower>();
                     if (towerComponent) currentlyHeld.GetComponent<BaseTower>().IsDisabled = false;
+                    _animator.ResetTrigger(Pickup);
+                    _animator.ResetTrigger(Throw);
+                    _animator.SetTrigger(Place);
 
                     currentlyHeld = null;
                     InvokeSlotChange(currentlyHeld);
@@ -124,6 +130,9 @@ public class PlayerController : MonoBehaviour
         heldRigidbody.constraints = RigidbodyConstraints.None;
 
         // Calculate the direction of the throw
+        _animator.ResetTrigger(Place);
+        _animator.ResetTrigger(Pickup);
+        _animator.SetTrigger(Throw);
         var currentPosition = transform.position;
         var hoverDirection = blockSelected ? 
             (_gridSelector.SelectedObject.transform.position - currentPosition).normalized 
@@ -176,8 +185,11 @@ public class PlayerController : MonoBehaviour
         // Try to remove the object from the grid at the object's position. If unsuccessful, exit the method
         if(!GridManager.Instance.TryRemoveObject(handler.gameObject.transform.position)) return;
         _gridSelector.ResetPreviousCell();
-            
+        
         // Set the currently held object to the tower and update its position, rotation, and parent
+        _animator.ResetTrigger(Place);
+        _animator.ResetTrigger(Throw);
+        _animator.SetTrigger(Pickup);
         var towerHoldPoint = holdTransform.position + Vector3.up * 0.5f;
         currentlyHeld = handler.gameObject;
         currentlyHeld.transform.SetPositionAndRotation(towerHoldPoint, holdTransform.rotation);
@@ -203,6 +215,9 @@ public class PlayerController : MonoBehaviour
         var tower = Instantiate(received);
 
         // Set the currently held object to the tower and update its position, rotation, and parent
+        _animator.ResetTrigger(Place);
+        _animator.ResetTrigger(Throw);
+        _animator.SetTrigger(Pickup);
         var towerHoldPoint = holdTransform.position + Vector3.up * 0.5f;
         currentlyHeld = tower;
         currentlyHeld.transform.SetPositionAndRotation(towerHoldPoint, holdTransform.rotation);
@@ -226,6 +241,9 @@ public class PlayerController : MonoBehaviour
         if (!collided.GetComponent<ItemController>().canPickup) return;
         
         // Set the currently held object to the collided object and update its position and constraints
+        _animator.ResetTrigger(Place);
+        _animator.ResetTrigger(Throw);
+        _animator.SetTrigger(Pickup);
         currentlyHeld = collided.gameObject;
         currentlyHeld.transform.SetParent(transform);
         currentlyHeld.transform.position = holdTransform.position;

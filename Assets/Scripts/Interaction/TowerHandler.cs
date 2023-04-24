@@ -1,4 +1,5 @@
 using System.Collections;
+using Tower_Scripts;
 using UnityEngine;
 using UX.RadialMenu;
 
@@ -11,6 +12,7 @@ namespace Interaction
 
         public override void Handle(PlayerController player)
         {
+            SetTargetingTooltip("Current: " + GetComponent<BaseTower>().CurrentTargeting());
             player.GetMenu().Setup(_ringData, player, this);
             player.GetMenu().SetActive(true);
             StartCoroutine(HideMenuIfFar(player));
@@ -21,6 +23,17 @@ namespace Interaction
             _ringData = data;
         }
 
+        private void SetTargetingTooltip(string tooltip)
+        {
+            foreach (var b in _ringData.buttons)
+            {
+                if (b.Text != "Targeting") continue;
+                
+                b.Tooltip = tooltip;
+                break;
+            }
+        }
+        
         private IEnumerator HideMenuIfFar(PlayerController player)
         {
             for(;;)
