@@ -164,6 +164,9 @@ public class PlayerController : MonoBehaviour
         item.GetComponent<OutlineHighlight>().enabled = false;
         
         // Set the held object's parent to the target object and start moving the object towards the target position
+        _animator.ResetTrigger(Place);
+        _animator.ResetTrigger(Pickup);
+        _animator.SetTrigger(Throw);
         var targetPosition = caller.transform.position;
         var duration = .2f;
         currentlyHeld.transform.SetParent(caller.transform);
