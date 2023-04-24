@@ -14,8 +14,8 @@ namespace Enemy_Scripts
             _meshRenderer = GetComponent<MeshRenderer>();
             _materialBlock = new MaterialPropertyBlock();
             
-            if (transform.childCount > 0) transform.GetChild(0).gameObject.SetActive(true);
-            _meshRenderer.enabled = true;
+            if (transform.childCount > 0) transform.GetChild(0).gameObject.SetActive(false);
+            _meshRenderer.enabled = false;
         }
 
         private void OnEnable()

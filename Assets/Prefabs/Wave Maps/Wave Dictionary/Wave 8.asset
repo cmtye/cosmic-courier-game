@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 519d4cb758e288b4e9186a7536cf7d17, type: 3}
+  m_Name: Wave 8
+  m_EditorClassIdentifier: 
+  subWaves:
+  - subWaveTag: 3 Large
+    enemyPrefab: {fileID: 6958277655355526180, guid: b951dfe6e613f0949b2a0c0a67840f3e, type: 3}
+    spawnCount: 3
+    spawnDelay: 2
+  - subWaveTag: 10 Small Flame
+    enemyPrefab: {fileID: 6958277655355526180, guid: f175eebf4e64dc044852c442193397d9, type: 3}
+    spawnCount: 10
+    spawnDelay: 0.5
+  - subWaveTag: 1 Small Solar
+    enemyPrefab: {fileID: 6958277655355526180, guid: a91e385e9257a55408fde9051d919409, type: 3}
+    spawnCount: 1
+    spawnDelay: 1
