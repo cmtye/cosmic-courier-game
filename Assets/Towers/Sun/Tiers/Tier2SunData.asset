@@ -15,7 +15,7 @@ MonoBehaviour:
   info:
     towerTag: Sun
     towerRange: 3
-    towerDamage: 2
-    attackTimer: 0.75
+    towerDamage: 3
+    attackTimer: 0.5
     damageType: 1
     targetType: 0

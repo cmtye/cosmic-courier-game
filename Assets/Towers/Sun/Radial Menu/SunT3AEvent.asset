@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SunT3AEvent
   m_EditorClassIdentifier: 
   upgradeIndex: 2
-  cost: {x: 0, y: 0, z: 20}
+  cost: {x: 0, y: 0, z: 10}

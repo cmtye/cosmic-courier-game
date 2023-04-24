@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: AsteroidT3AButton
   m_EditorClassIdentifier: 
   Text: Upgrade
-  Tooltip: Costs 20  <sprite=2>
+  Tooltip: Costs 10  <sprite=2>
   Icon: {fileID: 21300000, guid: 4cbdec844323c65409608485c62e68ef, type: 3}
   Event: {fileID: 11400000, guid: 0a6b8a5a6f1d3eb4682fe677fb8155e0, type: 2}
