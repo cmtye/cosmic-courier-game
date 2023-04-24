@@ -82,7 +82,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1
   invulnerableTo: 0100000000000000
-  dropRates: {fileID: 11400000, guid: edcbf5d71c36e6e448af808db8b4ddef, type: 2}
+  dropRates: {fileID: 11400000, guid: d6dc473cf2e231b4ba4af4b1c7a1e815, type: 2}
   parentPool: {fileID: 0}
 --- !u!114 &6613045112582604019
 MonoBehaviour:

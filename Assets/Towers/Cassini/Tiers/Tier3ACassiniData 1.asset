@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47d715648fb382b4c9fb0ca5970b555a, type: 3}
-  m_Name: Tier2CassiniData
+  m_Name: Tier3ACassiniData 1
   m_EditorClassIdentifier: 
   info:
     towerTag: Saturn
-    towerRange: 1.5
-    towerDamage: 0.8
+    towerRange: 4
+    towerDamage: 1
     attackTimer: 0.1
-    damageType: 0
+    damageType: 3
     targetType: 0

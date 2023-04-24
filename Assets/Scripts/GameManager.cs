@@ -32,6 +32,7 @@ public class GameManager : Singleton<GameManager>
         patienceBar.SetMax(patienceMax);
         _patienceAmount = patienceMax;
         patienceBar.SetCurrent(_patienceAmount);
+        UpdateStorageDisplays();
     }
 
     public void Deposit()
@@ -74,7 +75,7 @@ public class GameManager : Singleton<GameManager>
         _stored -= cost;
 
         Debug.LogFormat("The stored item amounts are {0}", _stored.ToString());
-        //UpdateStorageDisplays();
+        UpdateStorageDisplays();
         return true;
     }
 
