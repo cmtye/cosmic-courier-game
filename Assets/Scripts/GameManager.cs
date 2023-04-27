@@ -39,7 +39,14 @@ public class GameManager : Singleton<GameManager>
     {
         _deposited++;
         depositBar.SetCurrent(_deposited);
-        CheckStageStatus();
+        if (CheckDepotFull())
+        {
+            Debug.Log("STAGE COMPLETE");
+            gamePausedCanvas.SetActive(false);
+            gameLostCanvas.SetActive(false);
+            gameWonCanvas.SetActive(true);
+            ToggleFreeze();
+        }
     }
     
     public void Store(Item item)
@@ -90,21 +97,6 @@ public class GameManager : Singleton<GameManager>
     {
         _patienceAmount -= value;
         patienceBar.SetCurrent(_patienceAmount);
-        CheckStageStatus();
-    }
-
-    private void CheckStageStatus()
-    {
-        if (_deposited >= depotGoal)
-        {
-            Debug.Log("STAGE COMPLETE");
-            gamePausedCanvas.SetActive(false);
-            gameLostCanvas.SetActive(false);
-            gameWonCanvas.SetActive(true);
-            ToggleFreeze();
-            return;
-        }
-
         if (_patienceAmount <= 0)
         {
             Debug.Log("LOST STAGE");
@@ -113,6 +105,7 @@ public class GameManager : Singleton<GameManager>
             gameLostCanvas.SetActive(true);
             ToggleFreeze();
         }
+        
     }
 
     public void TogglePause()

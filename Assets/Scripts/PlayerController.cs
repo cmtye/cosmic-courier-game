@@ -285,6 +285,12 @@ public class PlayerController : MonoBehaviour
     
     public void InvokeSlotChange(GameObject held)
     {
+        if (!held)
+        {
+            _animator.ResetTrigger(Throw);
+            _animator.ResetTrigger(Pickup);
+            _animator.SetTrigger(Place);
+        }
         OnSlotChanged?.Invoke(held);
     }
     

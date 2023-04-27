@@ -16,4 +16,4 @@ MonoBehaviour:
   - subWaveTag: 10 Small
     enemyPrefab: {fileID: 6958277655355526180, guid: 9426b32ab561a1f4f8eb95b47ced61e6, type: 3}
     spawnCount: 10
-    spawnDelay: 2
+    spawnDelay: 1.5

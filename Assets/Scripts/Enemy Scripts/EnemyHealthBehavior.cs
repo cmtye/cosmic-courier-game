@@ -33,7 +33,10 @@ namespace Enemy_Scripts
         public void DealDamage(float damageReceived, ElementalTypes damageType)
         {
             if (_enemy.Invulnerabilities.Contains(damageType)) return;
-
+            
+            // If the enemy has invulnerabilities, standard attacks should deal a fourth of the damage
+            if (_enemy.Invulnerabilities.Length != 0 && damageType == ElementalTypes.Standard) damageReceived /= 4;
+            
             CurrentHealth -= damageReceived;
             if (CurrentHealth <= 0)
             {

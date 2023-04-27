@@ -59,7 +59,7 @@ MonoBehaviour:
     m_FamilyName: 
     m_StyleName: 
     m_PointSize: 0
-    m_Scale: 0
+    m_Scale: 0.5
     m_UnitsPerEM: 0
     m_LineHeight: 0
     m_AscentLine: 0
@@ -81,19 +81,19 @@ MonoBehaviour:
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 0
-    m_Scale: 3
+    m_Scale: 1.5
     m_Name: StardustSprites_0
     m_HashCode: 429315287
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 1
-    m_Scale: 3
+    m_Scale: 1.5
     m_Name: StardustSprites_1
     m_HashCode: 429315286
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 2
-    m_Scale: 3
+    m_Scale: 1.5
     m_Name: StardustSprites_2
     m_HashCode: 429315285
   m_SpriteGlyphTable:
@@ -105,10 +105,10 @@ MonoBehaviour:
       m_HorizontalBearingY: 256
       m_HorizontalAdvance: 512
     m_GlyphRect:
-      m_X: 0
-      m_Y: -60
-      m_Width: 512
-      m_Height: 512
+      m_X: 146
+      m_Y: 152
+      m_Width: 210
+      m_Height: 210
     m_Scale: 1
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
@@ -121,10 +121,10 @@ MonoBehaviour:
       m_HorizontalBearingY: 256
       m_HorizontalAdvance: 512
     m_GlyphRect:
-      m_X: 512
-      m_Y: -60
-      m_Width: 512
-      m_Height: 512
+      m_X: 658
+      m_Y: 152
+      m_Width: 210
+      m_Height: 210
     m_Scale: 1
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
@@ -137,10 +137,10 @@ MonoBehaviour:
       m_HorizontalBearingY: 256
       m_HorizontalAdvance: 512
     m_GlyphRect:
-      m_X: 1024
-      m_Y: -60
-      m_Width: 512
-      m_Height: 512
+      m_X: 1167
+      m_Y: 152
+      m_Width: 210
+      m_Height: 210
     m_Scale: 1
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0

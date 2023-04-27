@@ -12,7 +12,7 @@ namespace Interaction
 
         public override void Handle(PlayerController player)
         {
-            SetTargetingTooltip("Current: " + GetComponent<BaseTower>().CurrentTargeting());
+            SetTargetingTooltip("Now:" + GetComponent<BaseTower>().CurrentTargeting());
             player.GetMenu().Setup(_ringData, player, this);
             player.GetMenu().SetActive(true);
             StartCoroutine(HideMenuIfFar(player));

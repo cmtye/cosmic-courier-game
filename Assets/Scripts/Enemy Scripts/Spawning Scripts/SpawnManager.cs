@@ -122,7 +122,7 @@ namespace Enemy_Scripts.Spawning_Scripts
             var subWaves = waves[_wavesIndex].SubWaves;
             foreach (var subWave in subWaves)
             {
-                _cacheWait = new WaitForSeconds(subWave.spawnDelay);
+                _cacheWait = new WaitForSeconds(subWave.spawnDelay / _prestigeLevel);
                 for (var i = 0; i < subWave.spawnCount * _prestigeLevel; i++)
                 {
                     yield return _cacheWait;

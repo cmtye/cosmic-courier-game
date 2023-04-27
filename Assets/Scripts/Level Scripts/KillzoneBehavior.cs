@@ -24,7 +24,7 @@ namespace Level_Scripts
             
             _lastDroppedPlayer = player.GetComponent<PlayerController>();
             var respawn = _lastDroppedPlayer.respawnPoint;
-            _lastDroppedPlayer.InvokeSlotChange(null);
+            _lastDroppedPlayer.InvokeSlotChange(_lastDroppedPlayer.currentlyHeld);
             player.transform.position = respawn.position;
             player.transform.rotation = respawn.rotation;
 

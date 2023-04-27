@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0630838f0c698c0499cbbebe02817f86, type: 3}
   m_Name: CassiniT2Button
   m_EditorClassIdentifier: 
-  Text: Upgrade
-  Tooltip: Costs 10  <sprite=1>
+  Text: Cassini Prime
+  Tooltip: Costs 10 <sprite=1>
   Icon: {fileID: 21300000, guid: 819eebf6cc2697945bbcfa7d11f93131, type: 3}
   Event: {fileID: 11400000, guid: eed68a9fc6fffa14a937edd0066043eb, type: 2}

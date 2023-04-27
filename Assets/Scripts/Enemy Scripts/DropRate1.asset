@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cef5a5ac8ba7514687d3c7fd35f7374, type: 3}
   m_Name: DropRate1
   m_EditorClassIdentifier: 
-  StardustSmallRate: 0.35
+  StardustSmallRate: 0.3
   StardustSmallObject: {fileID: 885441889811427027, guid: 5ace47e62b3d8d04c80114ffd610e971, type: 3}
   StardustMediumRate: 0.15
   StardustMediumObject: {fileID: 885441889811427027, guid: fa5cb0e12533435418696bb55fcfd23e, type: 3}

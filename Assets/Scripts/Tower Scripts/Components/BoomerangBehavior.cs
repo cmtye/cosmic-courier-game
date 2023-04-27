@@ -11,7 +11,7 @@ namespace Tower_Scripts.Components
 
         private float _curveAccel = 1.001f;
 
-        private float _rotationSpeed = 3f;
+        private float _rotationSpeed = 1f;
 
         private Vector3 _direction;
         private float _speed;
@@ -33,7 +33,7 @@ namespace Tower_Scripts.Components
 
             _direction = (target.transform.position- transform.position).normalized;
             _direction.y = 0;
-            Destroy(gameObject, .9f);
+            Destroy(gameObject, .95f);
         }
         
         private void Update()

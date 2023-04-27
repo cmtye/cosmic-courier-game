@@ -18,7 +18,7 @@ namespace UX.RadialMenu
 
 
         private Color _selectedColor = new (.01f, .36f, .61f, 0.6f);
-        private Color _baseColor = new (0f, 0f, 0f, 0.7f);
+        private Color _baseColor = new (0f, 0f, 0f, 0.9f);
 
 
         public void Recolor(bool selected)

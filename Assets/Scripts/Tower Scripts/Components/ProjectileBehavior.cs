@@ -14,20 +14,34 @@ namespace Tower_Scripts.Components
 
         [SerializeField] private GameObject travelPrefab;
         [SerializeField] private GameObject hitPrefab;
+        [SerializeField] private float damageModifier = 1f;
         
         // Update is called once per frame
         private void Update()
         {
-            if (!target.isActiveAndEnabled) Destroy(gameObject);
+            if (!target.isActiveAndEnabled)
+            {
+                Destroy(gameObject);
+                return;
+            }
             
             var targetPosition = target.transform.position;
-            var moveDirection = (targetPosition - transform.position).normalized;
+            
+            var position = transform.position;
+            var moveDirection = (targetPosition - position).normalized;
 
-            transform.position += moveDirection * (_projectileSpeed * Time.deltaTime);
+            position += moveDirection * (_projectileSpeed * Time.deltaTime);
+            transform.position = position;
 
-            if (Vector3.Distance(transform.position, targetPosition) < _damageDistance)
+            if (Vector3.Distance(position, targetPosition) < _damageDistance)
             {
-                target.GetHealth().DealDamage(_projectileDamage, _damageType);
+                if (!target.isActiveAndEnabled)
+                {
+                    Destroy(gameObject);
+                    return;
+                }
+                
+                target.GetHealth().DealDamage(_projectileDamage * damageModifier, _damageType);
                 Destroy(gameObject);
             }
         }
