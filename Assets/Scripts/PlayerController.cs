@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     private static readonly int Pickup = Animator.StringToHash("Pickup");
     private static readonly int Place = Animator.StringToHash("Place");
     private static readonly int Throw = Animator.StringToHash("Throw");
+    private static readonly int Reset = Animator.StringToHash("Reset");
 
     private void Awake()
     {
@@ -108,6 +109,7 @@ public class PlayerController : MonoBehaviour
                     if (towerComponent) currentlyHeld.GetComponent<BaseTower>().IsDisabled = false;
                     _animator.ResetTrigger(Pickup);
                     _animator.ResetTrigger(Throw);
+                    _animator.ResetTrigger(Reset);
                     _animator.SetTrigger(Place);
 
                     currentlyHeld = null;
@@ -125,6 +127,34 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void DropItemOnDeath()
+    {
+        // Enable gravity and release constraints on the held object
+        currentlyHeld.transform.SetParent(null);
+        
+        // Enable gravity and release constraints on the held object
+        var heldRigidbody = currentlyHeld.GetComponent<Rigidbody>();
+        heldRigidbody.useGravity = true;
+        heldRigidbody.constraints = RigidbodyConstraints.None;
+
+        // Calculate the direction of the throw
+        ResetPlayerAnimator();
+        
+        var item = currentlyHeld.GetComponent<ItemController>();
+        item.canPickup = false;
+        currentlyHeld = null;
+        StartCoroutine(PickupWaitCoroutine(item, 0.75f));
+    }
+
+    public void ResetPlayerAnimator()
+    {
+        _animator.ResetTrigger(Place);
+        _animator.ResetTrigger(Pickup);
+        _animator.ResetTrigger(Throw);
+        _animator.SetTrigger(Reset);
+        InvokeSlotChange(null);
+    }
+    
     private void ReleaseHeldItem(bool blockSelected)
     {
         // Enable gravity and release constraints on the held object
@@ -138,6 +168,7 @@ public class PlayerController : MonoBehaviour
         // Calculate the direction of the throw
         _animator.ResetTrigger(Place);
         _animator.ResetTrigger(Pickup);
+        _animator.ResetTrigger(Reset);
         _animator.SetTrigger(Throw);
         var currentPosition = transform.position;
         var hoverDirection = blockSelected ? 
@@ -170,9 +201,10 @@ public class PlayerController : MonoBehaviour
         item.GetComponent<OutlineHighlight>().enabled = false;
         
         // Set the held object's parent to the target object and start moving the object towards the target position
-        _animator.ResetTrigger(Place);
+        _animator.ResetTrigger(Throw);
         _animator.ResetTrigger(Pickup);
-        _animator.SetTrigger(Throw);
+        _animator.ResetTrigger(Reset);
+        _animator.SetTrigger(Place);
         var targetPosition = caller.transform.position;
         var duration = .2f;
         currentlyHeld.transform.SetParent(caller.transform);
@@ -198,6 +230,7 @@ public class PlayerController : MonoBehaviour
         // Set the currently held object to the tower and update its position, rotation, and parent
         _animator.ResetTrigger(Place);
         _animator.ResetTrigger(Throw);
+        _animator.ResetTrigger(Reset);
         _animator.SetTrigger(Pickup);
         var towerHoldPoint = holdTransform.position + Vector3.up * 0.5f;
         currentlyHeld = handler.gameObject;
@@ -226,6 +259,7 @@ public class PlayerController : MonoBehaviour
         // Set the currently held object to the tower and update its position, rotation, and parent
         _animator.ResetTrigger(Place);
         _animator.ResetTrigger(Throw);
+        _animator.ResetTrigger(Reset);
         _animator.SetTrigger(Pickup);
         var towerHoldPoint = holdTransform.position + Vector3.up * 0.5f;
         currentlyHeld = tower;
@@ -252,6 +286,7 @@ public class PlayerController : MonoBehaviour
         // Set the currently held object to the collided object and update its position and constraints
         _animator.ResetTrigger(Place);
         _animator.ResetTrigger(Throw);
+        _animator.ResetTrigger(Reset);
         _animator.SetTrigger(Pickup);
         currentlyHeld = collided.gameObject;
         currentlyHeld.transform.SetParent(transform);
@@ -285,12 +320,6 @@ public class PlayerController : MonoBehaviour
     
     public void InvokeSlotChange(GameObject held)
     {
-        if (!held)
-        {
-            _animator.ResetTrigger(Throw);
-            _animator.ResetTrigger(Pickup);
-            _animator.SetTrigger(Place);
-        }
         OnSlotChanged?.Invoke(held);
     }
     
