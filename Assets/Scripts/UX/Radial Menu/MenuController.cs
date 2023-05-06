@@ -17,16 +17,13 @@ namespace UX.RadialMenu
 
         //protected MenuController Parent;
 
-        private TextMeshProUGUI _selectionText;
+        [SerializeField] private TextMeshProUGUI selectionText;
+        [SerializeField] private TextMeshProUGUI descriptionText;
 
         private RectTransform _rectTransform;
 
         private int _numButtons;
-
-        private void Awake()
-        {
-            _selectionText = transform.Find("Selection Text").gameObject.GetComponent<TextMeshProUGUI>();
-        }
+        
 
         private void Start()
         {
@@ -128,6 +125,7 @@ namespace UX.RadialMenu
                 {
                     Pieces[i].Recolor(true);
                     SetText(Pieces[i].GetText());
+                    SetBlurbText(Pieces[i].GetBlurb());
                     Pieces[i].ShowTooltip(true);
                     if (clicked)
                         Pieces[i].Execute(_player, _handler);
@@ -137,6 +135,7 @@ namespace UX.RadialMenu
             if (!outer)
             {
                 SetText("Cancel");
+                SetBlurbText("");
             }
             
             // If click -> exit
@@ -148,7 +147,12 @@ namespace UX.RadialMenu
 
         private void SetText(string text)
         {
-            _selectionText.SetText(text);
+            selectionText.SetText(text);
+        }
+        
+        private void SetBlurbText(string text)
+        {
+            descriptionText.SetText(text);
         }
 
         private float ModuloAngle(float a) => (a + 360f) % 360f;

@@ -3935,18 +3935,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1452810201772541195, guid: 0238e4e68d4ecb94bb295ec97668f86b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1452810201772541195, guid: 0238e4e68d4ecb94bb295ec97668f86b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1452810201772541195, guid: 0238e4e68d4ecb94bb295ec97668f86b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
     - target: {fileID: 1493197873841214617, guid: 0238e4e68d4ecb94bb295ec97668f86b, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -3998,46 +3986,6 @@ PrefabInstance:
     - target: {fileID: 1493197873841214691, guid: 0238e4e68d4ecb94bb295ec97668f86b, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086024052712222042, guid: 0238e4e68d4ecb94bb295ec97668f86b, type: 3}
-      propertyPath: m_fontSize
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086024052712222042, guid: 0238e4e68d4ecb94bb295ec97668f86b, type: 3}
-      propertyPath: m_margin.w
-      value: 2.3235397
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086024052712222042, guid: 0238e4e68d4ecb94bb295ec97668f86b, type: 3}
-      propertyPath: m_margin.x
-      value: 59.449383
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086024052712222042, guid: 0238e4e68d4ecb94bb295ec97668f86b, type: 3}
-      propertyPath: m_margin.y
-      value: -8.331739
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086024052712222042, guid: 0238e4e68d4ecb94bb295ec97668f86b, type: 3}
-      propertyPath: m_margin.z
-      value: 59.49139
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086024052712222042, guid: 0238e4e68d4ecb94bb295ec97668f86b, type: 3}
-      propertyPath: m_fontSizeMax
-      value: 24
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086024052712222042, guid: 0238e4e68d4ecb94bb295ec97668f86b, type: 3}
-      propertyPath: m_fontSizeMin
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086024052712222042, guid: 0238e4e68d4ecb94bb295ec97668f86b, type: 3}
-      propertyPath: m_enableAutoSizing
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8198405072501750476, guid: 0238e4e68d4ecb94bb295ec97668f86b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9012394676334528126, guid: 0238e4e68d4ecb94bb295ec97668f86b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0238e4e68d4ecb94bb295ec97668f86b, type: 3}
@@ -11013,11 +10961,11 @@ Transform:
   - {fileID: 1184904001}
   - {fileID: 24945784}
   - {fileID: 1865123721}
-  - {fileID: 1066456775}
   - {fileID: 1053015443}
+  - {fileID: 1066456775}
+  - {fileID: 834762676}
   - {fileID: 205359224}
   - {fileID: 129615909}
-  - {fileID: 834762676}
   - {fileID: 1672861860}
   - {fileID: 685146627}
   m_Father: {fileID: 1631962926}
@@ -18587,29 +18535,29 @@ Transform:
   - {fileID: 306876016}
   - {fileID: 1581166722}
   - {fileID: 643363573}
-  - {fileID: 585950917}
   - {fileID: 837410252}
   - {fileID: 1495108349}
   - {fileID: 1054717564}
-  - {fileID: 1955360893}
   - {fileID: 1273391820}
-  - {fileID: 626146975}
-  - {fileID: 1417126229}
-  - {fileID: 1429899304}
   - {fileID: 750764519}
+  - {fileID: 626146975}
+  - {fileID: 1429899304}
   - {fileID: 1735113382}
   - {fileID: 1349066395}
+  - {fileID: 585950917}
   - {fileID: 973742276}
-  - {fileID: 388774186}
-  - {fileID: 1387474814}
-  - {fileID: 1322018305}
-  - {fileID: 1510489006}
   - {fileID: 1749139315}
-  - {fileID: 1710061058}
+  - {fileID: 388774186}
   - {fileID: 701728643}
-  - {fileID: 1115854472}
+  - {fileID: 1322018305}
   - {fileID: 1168881701}
+  - {fileID: 1510489006}
+  - {fileID: 1115854472}
+  - {fileID: 1710061058}
+  - {fileID: 1387474814}
+  - {fileID: 1955360893}
   - {fileID: 1901731895}
+  - {fileID: 1417126229}
   m_Father: {fileID: 1631962926}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

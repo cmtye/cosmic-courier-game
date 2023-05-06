@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: CraftCassiniButton
   m_EditorClassIdentifier: 
   Text: Cassini's Halo
+  Blurb: A dazzling ring system around a gas giant. Attacks all enemies within its
+    range at once.
   Tooltip: Costs 5 <sprite=0>
-  Icon: {fileID: 21300000, guid: bfa9f6bbd3d00474ab2275197f81cfe9, type: 3}
+  Icon: {fileID: 21300000, guid: 1b548427736b3014c8dd438f39828c74, type: 3}
   Event: {fileID: 11400000, guid: 984922f9082f48b43b397628db2ff83a, type: 2}

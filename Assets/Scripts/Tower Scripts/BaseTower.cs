@@ -29,6 +29,7 @@ namespace Tower_Scripts
         Weak,
         Far
     }
+    
     public class BaseTower : MonoBehaviour
     {
         private OutlineHighlight _towerHighlight;
@@ -36,6 +37,7 @@ namespace Tower_Scripts
         public UpgradeMap towerUpgrades;
         public List<TowerComponent> towerComponents;
         public TowerData towerData;
+        private TargetType _currentTargetType;
         
         private CapsuleCollider _rangeCollider;
         private DecalProjector _decalProjector;
@@ -70,6 +72,7 @@ namespace Tower_Scripts
             _targetingIndex = 0;
 
             SetTowerTier(0);
+            _currentTargetType = TargetType.Close;
         }
 
         private void EnableComponents()
@@ -93,19 +96,23 @@ namespace Tower_Scripts
             _towerHandler.SetRingData(tierData.ringData);
             foreach (Transform t in _towerBody.transform)
             {
-                if (t.name == "FiringPoint")
+                switch (t.name)
                 {
-                    FiringPoint = t;
-                }
-                if (t.name == "FiringPointContainer")
-                {
-                    FiringPoint = t.GetChild(0).transform;
-                    foreach (Transform t2 in t.gameObject.transform)
-                    {                
-                        if (t.name == "FiringPoint")
-                        {
-                            FiringPoint = t;
+                    case "FiringPoint":
+                        FiringPoint = t;
+                        break;
+                    case "FiringPointContainer":
+                    {
+                        FiringPoint = t.GetChild(0).transform;
+                        foreach (Transform t2 in t.gameObject.transform)
+                        {                
+                            if (t2.name == "FiringPoint")
+                            {
+                                FiringPoint = t2;
+                            }
                         }
+
+                        break;
                     }
                 }
             }
@@ -178,8 +185,8 @@ namespace Tower_Scripts
                 targetEnemy = null;
                 return;
             }
-
-            targetEnemy = towerData.info.targetType switch
+            
+            targetEnemy = _currentTargetType switch
             {
                 TargetType.Close => enemiesInRange
                     .Where(e => e)
@@ -261,7 +268,7 @@ namespace Tower_Scripts
             _targetingIndex++;
             if (_targetingIndex >= _targetingArray.Length) _targetingIndex = 0;
 
-            towerData.info.targetType = _targetingArray[_targetingIndex] switch
+            _currentTargetType = _targetingArray[_targetingIndex] switch
             {
                 "Close" => TargetType.Close,
                 "Strong" => TargetType.Strong,
@@ -274,6 +281,14 @@ namespace Tower_Scripts
         public string CurrentTargeting()
         {
             return _targetingArray[_targetingIndex];
+        }
+        
+        public string NextTargeting()
+        {
+            var temp = _targetingIndex;
+            temp++;
+            if (temp >= _targetingArray.Length) temp = 0;
+            return _targetingArray[temp];
         }
     }
 }

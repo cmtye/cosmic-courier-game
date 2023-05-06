@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0630838f0c698c0499cbbebe02817f86, type: 3}
   m_Name: PlutoT3AButton
   m_EditorClassIdentifier: 
-  Text: Pluto T3A
+  Text: Hailstone Ridge
+  Blurb: An apocalyptic collision with its moon drew the planets icy core to the
+    surface. Fires larger icicle spears with more damage.
   Tooltip: Costs 10 <sprite=2>
-  Icon: {fileID: 21300000, guid: 4cbdec844323c65409608485c62e68ef, type: 3}
+  Icon: {fileID: 21300000, guid: 254e2846c5b207344a4a7255780b0c3c, type: 3}
   Event: {fileID: 11400000, guid: e2e750278664d9a489e4a74bdb596535, type: 2}

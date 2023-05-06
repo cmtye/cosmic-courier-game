@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ringData: {fileID: 11400000, guid: 75fc5a4b9bbb975438db479d349902e8, type: 2}
-  distanceThreshold: 2
+  distanceThreshold: 2.75
 --- !u!114 &671694959570769830
 MonoBehaviour:
   m_ObjectHideFlags: 0

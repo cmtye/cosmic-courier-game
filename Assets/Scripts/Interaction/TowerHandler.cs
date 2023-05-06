@@ -12,7 +12,8 @@ namespace Interaction
 
         public override void Handle(PlayerController player)
         {
-            SetTargetingTooltip("Now:" + GetComponent<BaseTower>().CurrentTargeting());
+            SetTargetingBlurbAndTooltip("Current:" + GetComponent<BaseTower>().CurrentTargeting(), 
+                "Next:" + GetComponent<BaseTower>().NextTargeting());
             player.GetMenu().Setup(_ringData, player, this);
             player.GetMenu().SetActive(true);
             StartCoroutine(HideMenuIfFar(player));
@@ -23,12 +24,13 @@ namespace Interaction
             _ringData = data;
         }
 
-        private void SetTargetingTooltip(string tooltip)
+        private void SetTargetingBlurbAndTooltip(string blurb, string tooltip)
         {
             foreach (var b in _ringData.buttons)
             {
                 if (b.Text != "Targeting") continue;
                 
+                b.Blurb = blurb;
                 b.Tooltip = tooltip;
                 break;
             }

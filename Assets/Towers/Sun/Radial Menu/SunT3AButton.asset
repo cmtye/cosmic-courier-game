@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0630838f0c698c0499cbbebe02817f86, type: 3}
   m_Name: SunT3AButton
   m_EditorClassIdentifier: 
-  Text: Expansion of Sol (Solar)
+  Text: Solis Majoris
+  Blurb: Reaching the end of its stellar life, the star becomes a supergiant. Fires
+    multiple Solar boomerangs at once.
   Tooltip: Costs 10 <sprite=2>
-  Icon: {fileID: 21300000, guid: 058d128fcc62207478c4f6f18a12ccd4, type: 3}
+  Icon: {fileID: 21300000, guid: d46e65f8fecb53c4f9e78b24e90f40f6, type: 3}
   Event: {fileID: 11400000, guid: e80ebae578777d04cb9ced2f9751a146, type: 2}

@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0630838f0c698c0499cbbebe02817f86, type: 3}
   m_Name: CraftPlutoButton
   m_EditorClassIdentifier: 
-  Text: Pluto
+  Text: The Ninth
+  Blurb: A long dismissed ice world from another galaxy. Shoots a spread of Frost
+    elemental icicles at its target.
   Tooltip: Costs 5 <sprite=0>
-  Icon: {fileID: 21300000, guid: 7034b6c54bb285348aa73ee61313ca0b, type: 3}
+  Icon: {fileID: 21300000, guid: 4a4fef65ada74b443977962636213d8b, type: 3}
   Event: {fileID: 11400000, guid: 028d80b263663774881e9f7bf4fda848, type: 2}

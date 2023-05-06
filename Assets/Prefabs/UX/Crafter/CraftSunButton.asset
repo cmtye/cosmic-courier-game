@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: CraftSunButton
   m_EditorClassIdentifier: 
   Text: Sol V
+  Blurb: The fifth star in our home system. Throws Solar elemental boomerangs in
+    the direction of its target.
   Tooltip: Costs 5 <sprite=0>
-  Icon: {fileID: 21300000, guid: f6cf82e303b9e0647a58a95e2c0c71ce, type: 3}
+  Icon: {fileID: 21300000, guid: bd1bd3b6ec275ad44b88ee70fdb6352e, type: 3}
   Event: {fileID: 11400000, guid: 6ae65cd0d7aae66488bedac7777108d6, type: 2}
