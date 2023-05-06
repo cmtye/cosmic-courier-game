@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0630838f0c698c0499cbbebe02817f86, type: 3}
   m_Name: PlutoT3BButton
   m_EditorClassIdentifier: 
-  Text: Pluto T3B
+  Text: Reaper's Macula
+  Blurb: The eternal dance between two ice giants begins a perpetual winter. Fires
+    almost constantly, but with reduced damage.
   Tooltip: Costs 10 <sprite=2>
-  Icon: {fileID: 21300000, guid: 5cad61993cedd14478ffa1eaa5aa1986, type: 3}
+  Icon: {fileID: 21300000, guid: 23fc5f61e679d5a4e992e80bd0638995, type: 3}
   Event: {fileID: 11400000, guid: f78a88f86a1180a4aaa4cb7cbe4662f0, type: 2}

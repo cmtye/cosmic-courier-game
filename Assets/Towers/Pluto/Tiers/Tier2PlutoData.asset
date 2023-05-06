@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Tier2PlutoData
   m_EditorClassIdentifier: 
   info:
-    towerTag: Asteroid
+    towerTag: Pluto
     towerRange: 3
-    towerDamage: 3
-    attackTimer: 0.25
-    damageType: 0
+    towerDamage: 0.35
+    attackTimer: 1.35
+    damageType: 4
     targetType: 0

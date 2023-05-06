@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0630838f0c698c0499cbbebe02817f86, type: 3}
   m_Name: PlutoT2Button
   m_EditorClassIdentifier: 
-  Text: Pluto T2
+  Text: Crystal Regio
+  Blurb: Eons of glacial movement have built up planetary shards on the surface.
+    Fires more often.
   Tooltip: Costs 10 <sprite=1>
-  Icon: {fileID: 21300000, guid: 998bf9fa098eeb249ac1303372ca68b3, type: 3}
+  Icon: {fileID: 21300000, guid: b9d43b57c437d5a45ac12a0f8008fda0, type: 3}
   Event: {fileID: 11400000, guid: c789c89e82a6c314eb620291a5f6ceff, type: 2}

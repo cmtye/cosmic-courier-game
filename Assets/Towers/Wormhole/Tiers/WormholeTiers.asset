@@ -18,5 +18,5 @@ MonoBehaviour:
     tierComponents:
     - {fileID: 11400000, guid: 67098c2752950854aa5f85b0be797eb3, type: 2}
     tierVisuals: {fileID: 5614567742693918233, guid: 2d46a885a7bec7c42a9a7f9d4dca02d8, type: 3}
-    tierIcon: {fileID: 2800000, guid: 9377f3e5552edcd428b59783d04b7442, type: 3}
+    tierIcon: {fileID: 2800000, guid: 75c8bffa0eac67b4bb3b0125edfd7380, type: 3}
     ringData: {fileID: 11400000, guid: 7059857d661abd546ae521941c723702, type: 2}

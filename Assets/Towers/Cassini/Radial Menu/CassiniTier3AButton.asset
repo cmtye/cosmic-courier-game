@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0630838f0c698c0499cbbebe02817f86, type: 3}
   m_Name: CassiniTier3AButton
   m_EditorClassIdentifier: 
-  Text: Cassini Sphere
+  Text: Cassus Torii
+  Blurb: A weaponized megastructure using its swarm of rings as a pulverizer. Obtains
+    much increased range and damage.
   Tooltip: Costs 10 <sprite=2>
-  Icon: {fileID: 21300000, guid: ded62ea8ee83bfc4ea851ec7786f6c8c, type: 3}
+  Icon: {fileID: 21300000, guid: 60df858373ebea147857a1c89ee118d1, type: 3}
   Event: {fileID: 11400000, guid: 6e5c02cf07f8ef14abc3f1dcb79ff8da, type: 2}

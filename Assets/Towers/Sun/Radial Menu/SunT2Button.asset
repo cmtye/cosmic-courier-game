@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0630838f0c698c0499cbbebe02817f86, type: 3}
   m_Name: SunT2Button
   m_EditorClassIdentifier: 
-  Text: Giant Sol (Solar)
+  Text: Alpha Soltari
+  Blurb: The star expands and its solar storms become more violent. Fires Solar boomerangs
+    more often.
   Tooltip: Costs 10 <sprite=1>
-  Icon: {fileID: 21300000, guid: ddf38a865a8adbb49867e7a6537c15fb, type: 3}
+  Icon: {fileID: 21300000, guid: 6bb8546d18980924c8e5e9b81f094343, type: 3}
   Event: {fileID: 11400000, guid: 8861fe1e6ee05014f96476da8d5981f6, type: 2}

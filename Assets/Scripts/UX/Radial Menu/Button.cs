@@ -7,6 +7,7 @@ namespace UX.RadialMenu
     public class Button : ScriptableObject
     {
         public string Text;
+        public string Blurb;
         public string Tooltip;
         public Sprite Icon;
         public InteractionEvent Event;

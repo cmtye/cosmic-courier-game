@@ -2968,42 +2968,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3086024052712222042, guid: 0238e4e68d4ecb94bb295ec97668f86b, type: 3}
-      propertyPath: m_fontSize
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086024052712222042, guid: 0238e4e68d4ecb94bb295ec97668f86b, type: 3}
-      propertyPath: m_margin.w
-      value: 19.931322
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086024052712222042, guid: 0238e4e68d4ecb94bb295ec97668f86b, type: 3}
-      propertyPath: m_margin.x
-      value: 59.449383
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086024052712222042, guid: 0238e4e68d4ecb94bb295ec97668f86b, type: 3}
-      propertyPath: m_margin.y
-      value: -8.331739
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086024052712222042, guid: 0238e4e68d4ecb94bb295ec97668f86b, type: 3}
-      propertyPath: m_margin.z
-      value: 59.49139
-      objectReference: {fileID: 0}
-    - target: {fileID: 3086024052712222042, guid: 0238e4e68d4ecb94bb295ec97668f86b, type: 3}
-      propertyPath: m_fontSizeMin
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5862359081200787568, guid: 0238e4e68d4ecb94bb295ec97668f86b, type: 3}
-      propertyPath: m_Color.a
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 8198405072501750476, guid: 0238e4e68d4ecb94bb295ec97668f86b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9012394676334528126, guid: 0238e4e68d4ecb94bb295ec97668f86b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0238e4e68d4ecb94bb295ec97668f86b, type: 3}
 --- !u!4 &294829278 stripped

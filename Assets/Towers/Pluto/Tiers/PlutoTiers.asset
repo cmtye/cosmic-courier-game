@@ -16,28 +16,28 @@ MonoBehaviour:
   - upgradeTag: Tier 1
     tierStats: {fileID: 11400000, guid: 5fc6d1863048c474885faa06e534368c, type: 2}
     tierComponents:
-    - {fileID: 11400000, guid: ccd3f338c1386e749abbbf82151b173d, type: 2}
+    - {fileID: 11400000, guid: e657a7246908c2b41a6d1e76993764c8, type: 2}
     tierVisuals: {fileID: 4380773580423146765, guid: edced0e37692141468d43eef7fa85fbf, type: 3}
-    tierIcon: {fileID: 2800000, guid: 7034b6c54bb285348aa73ee61313ca0b, type: 3}
+    tierIcon: {fileID: 2800000, guid: 4a4fef65ada74b443977962636213d8b, type: 3}
     ringData: {fileID: 11400000, guid: fe77406337d17cc4aae8cc934aaad890, type: 2}
   - upgradeTag: Tier 2
     tierStats: {fileID: 11400000, guid: 1c00eec96d621214f84dc66460cdba16, type: 2}
     tierComponents:
-    - {fileID: 11400000, guid: ccd3f338c1386e749abbbf82151b173d, type: 2}
+    - {fileID: 11400000, guid: e657a7246908c2b41a6d1e76993764c8, type: 2}
     tierVisuals: {fileID: 7648928837380255027, guid: 671f7fd474409644ca9a174a69509ac6, type: 3}
-    tierIcon: {fileID: 2800000, guid: 998bf9fa098eeb249ac1303372ca68b3, type: 3}
+    tierIcon: {fileID: 2800000, guid: b9d43b57c437d5a45ac12a0f8008fda0, type: 3}
     ringData: {fileID: 11400000, guid: d93213d8319a48f4aa2f4197bc8aa0f5, type: 2}
   - upgradeTag: Tier 3A
     tierStats: {fileID: 11400000, guid: 09975c45597b110468fd853dc93c7aa5, type: 2}
     tierComponents:
-    - {fileID: 11400000, guid: ccd3f338c1386e749abbbf82151b173d, type: 2}
+    - {fileID: 11400000, guid: 41f22b51840cbe84d8ab2ed2f32274f9, type: 2}
     tierVisuals: {fileID: 1288541646179484391, guid: a93e47b7b081d244b8aeb5389c511a45, type: 3}
-    tierIcon: {fileID: 2800000, guid: 4cbdec844323c65409608485c62e68ef, type: 3}
+    tierIcon: {fileID: 2800000, guid: 254e2846c5b207344a4a7255780b0c3c, type: 3}
     ringData: {fileID: 11400000, guid: 68017efa94adab740994055cf45faece, type: 2}
   - upgradeTag: Tier 3B
     tierStats: {fileID: 11400000, guid: f09dab8bd25cf7348bcc4751208b248c, type: 2}
     tierComponents:
-    - {fileID: 11400000, guid: 2373612ac6ce217499be75bd734cbf4c, type: 2}
+    - {fileID: 11400000, guid: e657a7246908c2b41a6d1e76993764c8, type: 2}
     tierVisuals: {fileID: 813317922066686506, guid: 8d2bbf1982b7fbc46a5f0f615f695608, type: 3}
-    tierIcon: {fileID: 2800000, guid: 5cad61993cedd14478ffa1eaa5aa1986, type: 3}
+    tierIcon: {fileID: 2800000, guid: 23fc5f61e679d5a4e992e80bd0638995, type: 3}
     ringData: {fileID: 11400000, guid: 68017efa94adab740994055cf45faece, type: 2}

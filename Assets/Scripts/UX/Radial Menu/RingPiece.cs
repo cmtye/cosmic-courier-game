@@ -31,6 +31,10 @@ namespace UX.RadialMenu
             return _button.Text;
         }
 
+        public string GetBlurb()
+        {
+            return _button.Blurb;
+        }
 
         public void ShowTooltip(bool show)
         {

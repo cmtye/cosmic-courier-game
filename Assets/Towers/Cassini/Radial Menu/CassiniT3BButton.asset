@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0630838f0c698c0499cbbebe02817f86, type: 3}
   m_Name: CassiniT3BButton
   m_EditorClassIdentifier: 
-  Text: Tempest of Cassini (Storm)
+  Text: Tempest of Cassini
+  Blurb: Swirling forces within ignite a planet wide superstorm. Attacks now occasionally
+    fire Storm elemental projectiles.
   Tooltip: Costs 10 <sprite=2>
-  Icon: {fileID: 21300000, guid: ef53eee0f323bbf4daf75305b83d401d, type: 3}
+  Icon: {fileID: 21300000, guid: ab010aae5d621f04591673a1d5d31cf1, type: 3}
   Event: {fileID: 11400000, guid: 31efb4238fee5794fadc86fff8395fcd, type: 2}

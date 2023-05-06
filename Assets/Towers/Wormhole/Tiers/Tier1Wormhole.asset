@@ -16,6 +16,6 @@ MonoBehaviour:
     towerTag: Wormhole
     towerRange: 2
     towerDamage: 0
-    attackTimer: 2.5
+    attackTimer: 3.5
     damageType: 0
     targetType: 0

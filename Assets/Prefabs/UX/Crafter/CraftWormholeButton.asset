@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: CraftWormholeButton
   m_EditorClassIdentifier: 
   Text: Interstellar Bridge
-  Tooltip: Costs 10 <sprite=1>
-  Icon: {fileID: 21300000, guid: 9377f3e5552edcd428b59783d04b7442, type: 3}
+  Blurb: An object connecting two points in space-time. Collects and stores all non-dark
+    matter items in range.
+  Tooltip: Costs 5 <sprite=1>
+  Icon: {fileID: 21300000, guid: 75c8bffa0eac67b4bb3b0125edfd7380, type: 3}
   Event: {fileID: 11400000, guid: 39abdbcc4e7bd7d4eb59c00b1d9c1a9d, type: 2}

@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: AsteroidT3AButton
   m_EditorClassIdentifier: 
   Text: Cloud of Goliath
+  Blurb: A giant planet is destroyed and leaves a violent field of debris. Fires
+    even faster and farther.
   Tooltip: Costs 10 <sprite=2>
-  Icon: {fileID: 21300000, guid: 4cbdec844323c65409608485c62e68ef, type: 3}
+  Icon: {fileID: 21300000, guid: 3f93c88a67143044fb5268695e74dc46, type: 3}
   Event: {fileID: 11400000, guid: 0a6b8a5a6f1d3eb4682fe677fb8155e0, type: 2}
