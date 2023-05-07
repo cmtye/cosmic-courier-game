@@ -9,6 +9,10 @@ public class CharacterMovement : MonoBehaviour
 
     [SerializeField] private float rotateSpeed;
 
+    [SerializeField] private float stepRate = 0.5f;
+	[SerializeField] private float stepCooldown;
+	[SerializeField] private AudioSource footStep;
+
     private CharacterController _characterController;
     private Vector3 _currentVelocity;
     private Vector3 _input;
@@ -83,6 +87,8 @@ public class CharacterMovement : MonoBehaviour
         RotateTowardDirection(moveDirection);
 
         MoveInDirection(moveDirection);
+
+        HandleFootsteps(moveDirection);
     
     }
 
@@ -120,5 +126,17 @@ public class CharacterMovement : MonoBehaviour
         Physics.SyncTransforms();
         // Use built in character controller to move the character in our desired direction.
         _characterController.Move(_currentVelocity * Time.deltaTime);
+    }
+
+    private void HandleFootsteps(Vector3 moveDirection)
+    {
+		stepCooldown -= Time.deltaTime;
+        if((moveDirection.x != 0 || moveDirection.z != 0) && stepCooldown < 0f) 
+        {
+            footStep.pitch = 2.5f + Random.Range (-0.2f, 0.2f);
+            footStep.Play();
+            stepCooldown = stepRate;
+        }
+
     }
 }

@@ -98,6 +98,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBarPrefab: {fileID: 8827475580013122189, guid: 0bbc5c28ecdc3e948916f02b6c9b0f66, type: 3}
   healthBarTransform: {fileID: 5949697660490112332}
+  damageSound: {fileID: 0}
+  killSound: {fileID: 0}
   initialHealth: 5
   maxHealth: 5
 --- !u!65 &235399711558682968

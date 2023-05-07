@@ -23,6 +23,8 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private GameObject gameLostCanvas;
     [SerializeField] private GameObject gameWonCanvas;
 
+    [SerializeField] private GameObject BGM;
+
     private bool _isFrozen;
 
     private void Start()
@@ -115,12 +117,14 @@ public class GameManager : Singleton<GameManager>
             gameWonCanvas.SetActive(false);
             gameLostCanvas.SetActive(false);
             gamePausedCanvas.SetActive(true);
+            BGM.GetComponent<AudioSource>().volume = BGM.GetComponent<AudioSource>().volume / 3;
             ToggleFreeze();
             return;
         }
         gameWonCanvas.SetActive(false);
         gameLostCanvas.SetActive(false);
         gamePausedCanvas.SetActive(false);
+        BGM.GetComponent<AudioSource>().volume = BGM.GetComponent<AudioSource>().volume * 3;
         ToggleFreeze();
     }
 
