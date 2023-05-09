@@ -1,7 +1,11 @@
+using UnityEngine;
+
 namespace Interaction
 {
     public class DepotHandler : InteractionHandler
     {
+
+        [SerializeField] private AudioSource audios;
         public override void Handle(PlayerController player)
         {
             // If the player interact with the depot while full, they'll get the win screen regardless of item
@@ -24,6 +28,8 @@ namespace Interaction
             {
                 // Take from the player 
                 var item = player.TransferHeldItem(gameObject);
+
+                audios.Play(); 
 
                 // Increment deposit count
                 GameManager.Instance.Deposit();

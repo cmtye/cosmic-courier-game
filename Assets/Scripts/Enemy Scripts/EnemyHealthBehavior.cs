@@ -13,6 +13,9 @@ namespace Enemy_Scripts
         
         [SerializeField] private GameObject healthBarPrefab;
         [SerializeField] private Transform healthBarTransform;
+
+        private AudioSource damageSound;
+        private AudioSource killSound;
         public float initialHealth = 10f;
         public float maxHealth = 10f;
 
@@ -33,6 +36,8 @@ namespace Enemy_Scripts
         public void DealDamage(float damageReceived, ElementalTypes damageType)
         {
             if (_enemy.Invulnerabilities.Contains(damageType)) return;
+
+            damageSound.Play();
             
             // If the enemy has invulnerabilities, standard attacks should deal a fourth of the damage
             if (_enemy.Invulnerabilities.Length != 0 && damageType == ElementalTypes.Standard) damageReceived /= 4;
@@ -54,6 +59,9 @@ namespace Enemy_Scripts
             var newBar = Instantiate(healthBarPrefab, healthBarTransform.position, 
                                                healthBarTransform.rotation, healthBarTransform.transform);
             var container = newBar.GetComponent<EnemyHealthContainer>();
+            var sounds = newBar.GetComponents<AudioSource>();
+            damageSound = sounds[0];
+            killSound = sounds[1];
             container.HealthBehavior = this;
         }
 

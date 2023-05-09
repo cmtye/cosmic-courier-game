@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Textures/Icons/AsteroidTower/GoliathT3BIcon.png.meta
 guid: 1be34cbac715fda42afe7f59f23054c0
+========
+guid: 3f93c88a67143044fb5268695e74dc46
+>>>>>>>> c7c08dc3e9046d3e2f147fc2410751a209e24178:Assets/Textures/Icons/AsteroidTower/GoliathT3AIcon.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
