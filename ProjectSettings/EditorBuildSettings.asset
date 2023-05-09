@@ -19,14 +19,14 @@ EditorBuildSettings:
     guid: 679c7598b7e5de34398200a31e0737ab
   - enabled: 1
     path: Assets/Scenes/World 2 Levels/2-1.unity
-    guid: ec63d94f6bd336243b9ce9dd9b0ce147
-  - enabled: 1
-    path: Assets/Scenes/World 2 Levels/2-2.unity
-    guid: 4a64e1671b1e1e94fa08f50b18c28df6
-  - enabled: 1
-    path: Assets/Scenes/World 3 Levels/3-1.unity
     guid: 716097ccd48788e4ca2dc0e6f4456d25
   - enabled: 1
-    path: Assets/Scenes/World 3 Levels/3-3.unity
+    path: Assets/Scenes/World 2 Levels/2-2.unity
     guid: 412f22e500e658045ad05646aa5c20ff
+  - enabled: 1
+    path: Assets/Scenes/World 3 Levels/3-1.unity
+    guid: ec63d94f6bd336243b9ce9dd9b0ce147
+  - enabled: 1
+    path: Assets/Scenes/World 3 Levels/3-2.unity
+    guid: 4a64e1671b1e1e94fa08f50b18c28df6
   m_configObjects: {}
