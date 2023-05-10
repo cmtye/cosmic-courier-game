@@ -18,6 +18,7 @@ namespace Enemy_Scripts
         private AudioSource killSound;
         public float initialHealth = 10f;
         public float maxHealth = 10f;
+        private ElementalTypes[] _elements;
 
         public float MaxHealth { get; private set; }
         public float CurrentHealth { get; private set; }
@@ -31,6 +32,17 @@ namespace Enemy_Scripts
             CurrentHealth = initialHealth;
             CreateHealthBar();
             _enemy = GetComponent<EnemyBehavior>();
+            
+            var stringEnums = Enum.GetNames(typeof(ElementalTypes));
+            _elements = new ElementalTypes[stringEnums.Length - 1];
+            var counter = 0;
+            foreach (var s in stringEnums)
+            {
+                if (s == "Standard") continue;
+                var parsedEnum = (ElementalTypes)Enum.Parse(typeof(ElementalTypes), s);
+                _elements[counter] = parsedEnum;
+                counter++;
+            }
         }
 
         public void DealDamage(float damageReceived, ElementalTypes damageType)
@@ -39,8 +51,29 @@ namespace Enemy_Scripts
 
             damageSound.Play();
             
-            // If the enemy has invulnerabilities, standard attacks should deal a fourth of the damage
-            if (_enemy.Invulnerabilities.Length != 0 && damageType == ElementalTypes.Standard) damageReceived /= 4;
+            if (_enemy.Invulnerabilities.Length != 0)
+            {
+                // If the enemy has invulnerabilities, standard attacks should deal a fourth of the damage
+                if (damageType == ElementalTypes.Standard)
+                {
+                    damageReceived /= 4;
+                    if (damageReceived <= 0) damageReceived = 1;
+                }
+                // If the damage element is a counter, it should do double damage
+                else
+                {
+                    for (var i = 0; i < _elements.Length - 1; i++)
+                    {
+                        if (_elements[i] != _enemy.Invulnerabilities[0]) continue;
+
+                        var counterElement = i == _elements.Length - 1 ? 0 : i + 1;
+                        if (damageType == _elements[counterElement])
+                        {
+                            damageReceived *= 2;
+                        }
+                    }
+                }
+            }
             
             CurrentHealth -= damageReceived;
             if (CurrentHealth <= 0)

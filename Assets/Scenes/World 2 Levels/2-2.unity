@@ -39223,7 +39223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   persistent: 0
   _stored: {x: 0, y: 0, z: 0}
-  depotGoal: 40
+  depotGoal: 25
   patienceMax: 15
   storageDisplays:
   - {fileID: 362226876}
@@ -39234,6 +39234,7 @@ MonoBehaviour:
   gamePausedCanvas: {fileID: 1614662744}
   gameLostCanvas: {fileID: 1348642931}
   gameWonCanvas: {fileID: 734072622}
+  BGM: {fileID: 0}
 --- !u!1001 &1974226188
 PrefabInstance:
   m_ObjectHideFlags: 0

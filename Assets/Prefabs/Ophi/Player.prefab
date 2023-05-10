@@ -1461,7 +1461,7 @@ MonoBehaviour:
   gravityMultiplier: 1
   normalFloorBehavior: {x: 5, y: 0.1}
   slippyFloorBehavior: {x: 7, y: 0.5}
-  stickyFloorBehavior: {x: 3, y: 0.05}
+  stickyFloorBehavior: {x: 2, y: 0.05}
 --- !u!143 &1493197873841214623
 CharacterController:
   m_ObjectHideFlags: 0
