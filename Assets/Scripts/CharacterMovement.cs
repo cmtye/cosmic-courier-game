@@ -131,7 +131,7 @@ public class CharacterMovement : MonoBehaviour
     private void HandleFootsteps(Vector3 moveDirection)
     {
 		stepCooldown -= Time.deltaTime;
-        if((moveDirection.x != 0 || moveDirection.z != 0) && stepCooldown < 0f) 
+        if((moveDirection.x != 0 || moveDirection.z != 0) && stepCooldown < 0f && _characterController.isGrounded) 
         {
             footStep.pitch = 2.5f + Random.Range (-0.2f, 0.2f);
             footStep.Play();

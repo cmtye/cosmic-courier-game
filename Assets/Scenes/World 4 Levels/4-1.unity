@@ -12137,6 +12137,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Purple Nebula
       objectReference: {fileID: 0}
+    - target: {fileID: 7509480547810710052, guid: 46bb34b3537c28847808cf539b0a9a22, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46bb34b3537c28847808cf539b0a9a22, type: 3}
 --- !u!4 &968017613 stripped
@@ -12871,6 +12875,10 @@ PrefabInstance:
     - target: {fileID: 7509480547810710052, guid: 46bb34b3537c28847808cf539b0a9a22, type: 3}
       propertyPath: m_Name
       value: Purple Nebula
+      objectReference: {fileID: 0}
+    - target: {fileID: 7509480547810710052, guid: 46bb34b3537c28847808cf539b0a9a22, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46bb34b3537c28847808cf539b0a9a22, type: 3}
@@ -24636,6 +24644,8 @@ MonoBehaviour:
   gameLostCanvas: {fileID: 1348642931}
   gameWonCanvas: {fileID: 734072622}
   BGM: {fileID: 0}
+  buttonClick: {fileID: 0}
+  patienceLossBlip: {fileID: 0}
 --- !u!1001 &1973011539
 PrefabInstance:
   m_ObjectHideFlags: 0
