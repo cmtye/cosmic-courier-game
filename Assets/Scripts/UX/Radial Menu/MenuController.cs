@@ -20,6 +20,8 @@ namespace UX.RadialMenu
         [SerializeField] private TextMeshProUGUI selectionText;
         [SerializeField] private TextMeshProUGUI descriptionText;
 
+        [SerializeField] private AudioClip click;
+
         private RectTransform _rectTransform;
 
         private int _numButtons;
@@ -116,6 +118,9 @@ namespace UX.RadialMenu
             var outer = (mousePosition - transformPosition).magnitude > transform.lossyScale.x * (_rectTransform.rect.width / 2.2);
 
             var hoveredIndex = outer ? (int)(mouseAngle / stepLength): -1;
+
+            if (clicked)
+                AudioManager.Instance.PlaySound(click, .1f);
 
             for (int i = 0; i < _numButtons; i++)
             {

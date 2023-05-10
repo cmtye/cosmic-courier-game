@@ -12,6 +12,9 @@ namespace Level_Scripts
         [SerializeField] private GameObject respawnUI;
         [SerializeField] private TextMeshProUGUI respawnText;
         [SerializeField] private int respawnTimer;
+
+        [SerializeField] private AudioClip deathSound;
+
         private bool _isShaking;
         
         private void OnTriggerEnter(Collider other)
@@ -23,6 +26,7 @@ namespace Level_Scripts
                 {
                     if (_lastDroppedPlayer.currentlyHeld.CompareTag("Item")) _lastDroppedPlayer.DropItemOnDeath();
                 }
+                AudioManager.Instance.PlaySound(deathSound, .3f);
                 StartCoroutine(RespawnSequence());
             }
             else if (other.CompareTag("Item"))

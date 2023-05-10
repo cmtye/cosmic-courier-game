@@ -1494,6 +1494,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holdTransform: {fileID: 680274958}
   currentlyHeld: {fileID: 0}
+  placementSound: {fileID: 8300000, guid: 62a9d1ec3e32f084184ceb9f439d96c3, type: 3}
   playerRadial: {fileID: 4905169716881538910}
   respawnPoint: {fileID: 0}
 --- !u!114 &1493197873841214621
@@ -5348,6 +5349,7 @@ MonoBehaviour:
   GapWidthDegree: 1
   selectionText: {fileID: 3086024052712222042}
   descriptionText: {fileID: 4509790958278626729}
+  click: {fileID: 8300000, guid: 7ef5cf64ca40a80458a51c3148e84f81, type: 3}
 --- !u!1 &4925858596828918260
 GameObject:
   m_ObjectHideFlags: 0

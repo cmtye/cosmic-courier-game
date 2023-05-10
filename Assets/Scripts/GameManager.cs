@@ -25,6 +25,9 @@ public class GameManager : Singleton<GameManager>
 
     [SerializeField] private GameObject BGM;
 
+    [SerializeField] private AudioClip buttonClick;
+    [SerializeField] private AudioClip patienceLossBlip;
+
     private bool _isFrozen;
 
     private void Start()
@@ -97,6 +100,8 @@ public class GameManager : Singleton<GameManager>
 
     private void LosePatience(int value)
     {
+        AudioManager.Instance.PlaySound(patienceLossBlip, .1f);
+
         _patienceAmount -= value;
         patienceBar.SetCurrent(_patienceAmount);
         if (_patienceAmount <= 0)
@@ -146,21 +151,29 @@ public class GameManager : Singleton<GameManager>
             _isFrozen = false;
         }
     }
+
+    public void PlayButtonClick()
+    {
+        AudioManager.Instance.PlaySound(buttonClick, .1f);
+    }
     
     public void LoadMainMenu()
     {
+        PlayButtonClick();
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
 
     public void LoadNextLevel()
     {
+        PlayButtonClick();
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     
     public void ReloadCurrentScene()
     {
+        PlayButtonClick();
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

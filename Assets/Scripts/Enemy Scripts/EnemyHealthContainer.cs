@@ -9,6 +9,9 @@ namespace Enemy_Scripts
         private MeshRenderer _meshRenderer;
         public EnemyHealthBehavior HealthBehavior { private get; set; }
 
+        [SerializeField] public AudioClip damageSound;
+        [SerializeField] public AudioClip killSound;
+
         private void Awake() 
         {
             _meshRenderer = GetComponent<MeshRenderer>();

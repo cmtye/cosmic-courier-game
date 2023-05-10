@@ -113,3 +113,4 @@ MonoBehaviour:
   respawnUI: {fileID: 0}
   respawnText: {fileID: 0}
   respawnTimer: 3
+  deathSound: {fileID: 8300000, guid: 5f8131aa9f560324ebe0dd246b399a31, type: 3}

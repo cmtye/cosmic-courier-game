@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform holdTransform;
     public GameObject currentlyHeld;
 
+    [SerializeField] private AudioClip placementSound;
+
     // The players variables that interact with the world or towers
     [SerializeField] private GameObject playerRadial;
     public Transform respawnPoint;
@@ -104,6 +106,8 @@ public class PlayerController : MonoBehaviour
                 // If we're holding something and its not an item, we'll try placing it instead
                 if (GridManager.Instance.TryPlaceObject(currentlyHeld, selectedObject.transform.position))
                 {
+                    AudioManager.Instance.PlaySound(placementSound, 1);
+
                     // Check if we've placed a tower, if so re-enable its components
                     var towerComponent = currentlyHeld.GetComponent<BaseTower>();
                     if (towerComponent) currentlyHeld.GetComponent<BaseTower>().IsDisabled = false;

@@ -14,8 +14,8 @@ namespace Enemy_Scripts
         [SerializeField] private GameObject healthBarPrefab;
         [SerializeField] private Transform healthBarTransform;
 
-        private AudioSource damageSound;
-        private AudioSource killSound;
+        private AudioClip damageSound;
+        private AudioClip killSound;
         public float initialHealth = 10f;
         public float maxHealth = 10f;
         private ElementalTypes[] _elements;
@@ -49,7 +49,6 @@ namespace Enemy_Scripts
         {
             if (_enemy.Invulnerabilities.Contains(damageType)) return;
 
-            damageSound.Play();
             
             if (_enemy.Invulnerabilities.Length != 0)
             {
@@ -83,6 +82,7 @@ namespace Enemy_Scripts
             }
             else
             {
+                AudioManager.Instance.PlaySound(damageSound, .05f);
                 OnEnemyHit?.Invoke(_enemy);
             }
         }
@@ -92,14 +92,16 @@ namespace Enemy_Scripts
             var newBar = Instantiate(healthBarPrefab, healthBarTransform.position, 
                                                healthBarTransform.rotation, healthBarTransform.transform);
             var container = newBar.GetComponent<EnemyHealthContainer>();
-            var sounds = newBar.GetComponents<AudioSource>();
-            damageSound = sounds[0];
-            killSound = sounds[1];
+
+            damageSound = container.damageSound;
+            killSound = container.killSound;
+ 
             container.HealthBehavior = this;
         }
 
         private void Die()
         {
+            AudioManager.Instance.PlaySound(killSound, .2f);
             OnEnemyKilled?.Invoke(_enemy);
         }
     }
