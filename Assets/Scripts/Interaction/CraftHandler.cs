@@ -9,8 +9,12 @@ namespace Interaction
         public Ring ringData;
         public float distanceThreshold;
 
+        [SerializeField] private AudioClip craftNoise;
+
         public override void Handle(PlayerController player)
         {
+            AudioManager.Instance.PlaySound(craftNoise, .3f);
+
             player.GetMenu().Setup(ringData, player, this);
             player.GetMenu().SetActive(true);
             StartCoroutine(HideMenuIfFar(player));

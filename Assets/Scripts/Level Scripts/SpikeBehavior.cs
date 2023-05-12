@@ -16,6 +16,8 @@ namespace Level_Scripts
         private static readonly int Retract = Animator.StringToHash("Retract");
         private static readonly int Initiate = Animator.StringToHash("Initiate");
 
+        [SerializeField] private AudioClip noise;
+
         // Start is called before the first frame update
         private void Start()
         {
@@ -44,6 +46,8 @@ namespace Level_Scripts
             _animator.ResetTrigger(Retract);
             _animator.SetTrigger(Initiate);
             _collider.enabled = true;
+
+            AudioManager.Instance.PlaySound(noise, .05f);
             
             yield return _activeWait;
             

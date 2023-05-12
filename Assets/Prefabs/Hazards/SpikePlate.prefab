@@ -227,6 +227,7 @@ MonoBehaviour:
   respawnUI: {fileID: 0}
   respawnText: {fileID: 0}
   respawnTimer: 0
+  deathSound: {fileID: 0}
 --- !u!1 &5401168228034955531
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,6 +383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliderObject: {fileID: 4108150964336825832}
+  noise: {fileID: 8300000, guid: b0c9036e0378d2444a2d5f1f6055a4aa, type: 3}
 --- !u!1 &8839659982934328392
 GameObject:
   m_ObjectHideFlags: 0
