@@ -226,8 +226,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   respawnUI: {fileID: 0}
   respawnText: {fileID: 0}
-  respawnTimer: 0
-  deathSound: {fileID: 0}
+  respawnTimer: 3
+  deathSound: {fileID: 8300000, guid: 2e2e742ea6ed32446b94b683e2035304, type: 3}
 --- !u!1 &5401168228034955531
 GameObject:
   m_ObjectHideFlags: 0

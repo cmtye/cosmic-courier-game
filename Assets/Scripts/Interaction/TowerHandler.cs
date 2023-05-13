@@ -16,6 +16,7 @@ namespace Interaction
                 "Next:" + GetComponent<BaseTower>().NextTargeting());
             player.GetMenu().Setup(_ringData, player, this);
             player.GetMenu().SetActive(true);
+            GameManager.Instance.DampenBGM(true);
             StartCoroutine(HideMenuIfFar(player));
         }
 

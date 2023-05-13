@@ -30,11 +30,13 @@ public class GameManager : Singleton<GameManager>
 
     [SerializeField] private bool startPaused;
     [HideInInspector] public bool tutorialStarted;
+    public float startAudioVolume;
 
     private bool _isFrozen;
 
     private void Start()
     {
+        startAudioVolume = BGM.GetComponent<AudioSource>().volume;
         depositBar.SetMax(depotGoal);
      
         patienceBar.SetMax(patienceMax);
@@ -151,8 +153,8 @@ public class GameManager : Singleton<GameManager>
 
     public void DampenBGM(bool dampen)
     {
-        if (dampen) BGM.GetComponent<AudioSource>().volume = BGM.GetComponent<AudioSource>().volume / 3;
-        else BGM.GetComponent<AudioSource>().volume = BGM.GetComponent<AudioSource>().volume * 3;
+        if (dampen) BGM.GetComponent<AudioSource>().volume = startAudioVolume / 2;
+        else BGM.GetComponent<AudioSource>().volume = startAudioVolume;
     }
     
     public bool CheckDepotFull()

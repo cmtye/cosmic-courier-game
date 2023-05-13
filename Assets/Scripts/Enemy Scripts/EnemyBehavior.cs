@@ -1,11 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using Enemy_Scripts.Spawning_Scripts;
 using Level_Scripts;
 using Tower_Scripts;
-using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -19,7 +17,6 @@ namespace Enemy_Scripts
         public float moveSpeed = 5;
         [SerializeField] private ElementalTypes[] invulnerableTo = { };
         [SerializeField] private DropRates dropRates;
-        // [SerializeField] private AnimationCurve slowDownCurve;
 
         [HideInInspector] public ObjectPool parentPool;
         private EnemyHealthBehavior _healthBehavior;
@@ -40,13 +37,11 @@ namespace Enemy_Scripts
         
         private void OnEnable()
         {
-            EnemyHealthBehavior.OnEnemyHit += HitStun;
             EnemyHealthBehavior.OnEnemyKilled += DropResources;
         }
 
         private void OnDisable()
         {
-            EnemyHealthBehavior.OnEnemyHit -= HitStun;
             EnemyHealthBehavior.OnEnemyKilled -= DropResources;
         }
 
@@ -89,11 +84,6 @@ namespace Enemy_Scripts
                 Instantiate(itemToDrop, enemy.transform.position, Quaternion.identity);
             }
             enemy.parentPool.ReturnToPool(enemy.gameObject);
-        }
-        
-        private void HitStun(EnemyBehavior enemy)
-        {
-            // Could be implemented as diminishing returns or as a towers unique ability
         }
 
         private IEnumerator MoveAlongPath()
