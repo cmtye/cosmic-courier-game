@@ -13,7 +13,8 @@ namespace Interaction
 
         public override void Handle(PlayerController player)
         {
-            AudioManager.Instance.PlaySound(craftNoise, .3f);
+            AudioManager.Instance.PlaySound(craftNoise, .45f);
+            GameManager.Instance.DampenBGM(true);
 
             player.GetMenu().Setup(ringData, player, this);
             player.GetMenu().SetActive(true);

@@ -38,6 +38,7 @@ MonoBehaviour:
     tierStats: {fileID: 11400000, guid: f9aca2ca60d3bb0439cf3e676cda84a9, type: 2}
     tierComponents:
     - {fileID: 11400000, guid: bf77d78ecd663b847920a0943fda1ba9, type: 2}
+    - {fileID: 11400000, guid: f69ed0f9f4b560d44b6cb2fde76f22bf, type: 2}
     tierVisuals: {fileID: 856122491875478911, guid: cad599c07a54d4bc8ad920f68ce54883, type: 3}
     tierIcon: {fileID: 2800000, guid: ab010aae5d621f04591673a1d5d31cf1, type: 3}
     ringData: {fileID: 11400000, guid: 0750261726bb28947ac06a915e490048, type: 2}

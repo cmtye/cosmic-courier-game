@@ -120,7 +120,10 @@ namespace UX.RadialMenu
             var hoveredIndex = outer ? (int)(mouseAngle / stepLength): -1;
 
             if (clicked)
+            {
                 AudioManager.Instance.PlaySound(click, .1f);
+                GameManager.Instance.DampenBGM(false);
+            }
 
             for (int i = 0; i < _numButtons; i++)
             {

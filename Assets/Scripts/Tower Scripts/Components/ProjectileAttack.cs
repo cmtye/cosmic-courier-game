@@ -8,6 +8,7 @@ namespace Tower_Scripts.Components
     public class ProjectileAttack : TowerComponent
     {
         [SerializeField] private GameObject projectilePrefab;
+        [SerializeField] private float randomChanceModifier = 1f;
 
         [SerializeField] private float projectileSpeed = 20f;
         [SerializeField] private float damageDistance = 0.1f;
@@ -28,11 +29,14 @@ namespace Tower_Scripts.Components
                 tower.attackCooldown -= Time.deltaTime;
                 return;
             }
-            
+
             if (!tower.targetEnemy)
             {
                 return;
             }
+            
+            var rand = Random.value;
+            if (!(rand <= randomChanceModifier)) return;
 
             // The rotator may change during runtime so we need to make consistent checks on it
             if (!_rotatingObjects.TryGetValue(tower, out var rotator)) UpdateRotator(tower);

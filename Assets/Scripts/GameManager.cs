@@ -28,6 +28,9 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private AudioClip buttonClick;
     [SerializeField] private AudioClip patienceLossBlip;
 
+    [SerializeField] private bool startPaused;
+    [HideInInspector] public bool tutorialStarted;
+
     private bool _isFrozen;
 
     private void Start()
@@ -38,6 +41,12 @@ public class GameManager : Singleton<GameManager>
         _patienceAmount = patienceMax;
         patienceBar.SetCurrent(_patienceAmount);
         UpdateStorageDisplays();
+
+        if (startPaused)
+        {
+            ToggleFreeze();
+            tutorialStarted = true;
+        }
     }
 
     public void Deposit()
@@ -98,6 +107,11 @@ public class GameManager : Singleton<GameManager>
         storageDisplays[2].SetCurrent(_stored.z);
     }
 
+    public void FinishedTutorial()
+    {
+        tutorialStarted = false;
+    }
+    
     private void LosePatience(int value)
     {
         AudioManager.Instance.PlaySound(patienceLossBlip, .1f);
@@ -117,22 +131,30 @@ public class GameManager : Singleton<GameManager>
 
     public void TogglePause()
     {
+        if (tutorialStarted) return;
+        
         if (!_isFrozen)
         {
             gameWonCanvas.SetActive(false);
             gameLostCanvas.SetActive(false);
             gamePausedCanvas.SetActive(true);
-            BGM.GetComponent<AudioSource>().volume = BGM.GetComponent<AudioSource>().volume / 3;
+            DampenBGM(true);
             ToggleFreeze();
             return;
         }
         gameWonCanvas.SetActive(false);
         gameLostCanvas.SetActive(false);
         gamePausedCanvas.SetActive(false);
-        BGM.GetComponent<AudioSource>().volume = BGM.GetComponent<AudioSource>().volume * 3;
+        DampenBGM(false);
         ToggleFreeze();
     }
 
+    public void DampenBGM(bool dampen)
+    {
+        if (dampen) BGM.GetComponent<AudioSource>().volume = BGM.GetComponent<AudioSource>().volume / 3;
+        else BGM.GetComponent<AudioSource>().volume = BGM.GetComponent<AudioSource>().volume * 3;
+    }
+    
     public bool CheckDepotFull()
     {
         return _deposited >= depotGoal;
@@ -144,11 +166,13 @@ public class GameManager : Singleton<GameManager>
         {
             Time.timeScale = 0;
             _isFrozen = true;
+            DampenBGM(true);
         }
         else
         {
             Time.timeScale = 1;
             _isFrozen = false;
+            DampenBGM(false);
         }
     }
 

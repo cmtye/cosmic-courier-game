@@ -8,6 +8,7 @@ namespace Level_Scripts
         [SerializeField] private TeleporterBehavior linkedTeleporter;
         [SerializeField] private float internalTimer = 2f;
         [HideInInspector] public float resetTime;
+        [SerializeField] private AudioClip noise;
         
         private void Start()
         {
@@ -27,6 +28,7 @@ namespace Level_Scripts
             if (!(internalTimer <= 0)) return;
             if (!other.CompareTag("Player")) return;
             
+            AudioManager.Instance.PlaySound(noise, 0.20f);
             other.transform.position = linkedTeleporter.transform.position;
             internalTimer = resetTime;
             linkedTeleporter.internalTimer = resetTime;

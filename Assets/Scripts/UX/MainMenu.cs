@@ -7,6 +7,7 @@ namespace UX
 
         public GameObject MainButtons;
         public GameObject LevelSelect;
+        [SerializeField] private AudioClip click;
 
         public void Awake()
         {
@@ -25,7 +26,11 @@ namespace UX
             LevelSelect.SetActive(false);
         }
 
-
+        public void PlayButtonClick()
+        {
+            AudioManager.Instance.PlaySound(click, .1f);
+        }
+        
         public void ShowSettings()
         {
 

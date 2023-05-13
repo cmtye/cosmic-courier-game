@@ -5,15 +5,26 @@ namespace Level_Scripts
     public class PropellerBehavior : MonoBehaviour
     {
         private ImpactReceiver _playerReceiver;
+        private AudioSource _audioSource;
         private RaycastHit[] _results;
 
         private void Start()
         {
+            _audioSource = GetComponent<AudioSource>();
             _results = new RaycastHit[50];
         }
 
         private void Update()
         {
+            if (Time.timeScale == 0)
+            {
+                _audioSource.Stop();
+            }
+            else if (!_audioSource.isPlaying && Time.timeScale != 0)
+            {
+                _audioSource.Play();
+            }
+            
             var currTransform = transform;
             var currPosition = currTransform.position;
             currPosition.y += 0.5f;

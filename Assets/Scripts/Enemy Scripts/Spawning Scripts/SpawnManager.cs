@@ -50,6 +50,7 @@ namespace Enemy_Scripts.Spawning_Scripts
             if (_pool.ActiveInPool != 0) return;
             if (_wavesIndex == 0 && _prestigeLevel == 1)
             {
+                OnWaveOver?.Invoke(_wavesIndex + waves.Length * (_prestigeLevel - 1));
                 waveTimerText.enabled = false;
                 return;
             }

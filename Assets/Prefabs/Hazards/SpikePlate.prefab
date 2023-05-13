@@ -383,7 +383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliderObject: {fileID: 4108150964336825832}
-  noise: {fileID: 8300000, guid: b0c9036e0378d2444a2d5f1f6055a4aa, type: 3}
+  noise: {fileID: 8300000, guid: 5ecf830df978d6243a587288abc53c24, type: 3}
 --- !u!1 &8839659982934328392
 GameObject:
   m_ObjectHideFlags: 0
